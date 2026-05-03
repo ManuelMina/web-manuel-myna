@@ -1,0 +1,1885 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manuel Myna — Ingeniería Solar · Cargadores EV · Web & SEO</title>
+<meta name="description" content="Mg. Ingeniero electrónico. +5.5 MWp ejecutados, +30 clientes, equipo especialista en sistemas solares, cargadores eléctricos RETIE, desarrollo web y SEO.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #060d18;
+  --bg2: #0a1628;
+  --bg3: #0f1e35;
+  --card: #0d1b2a;
+  --yellow: #f59e0b;
+  --yellow2: #fbbf24;
+  --blue: #3b82f6;
+  --blue2: #60a5fa;
+  --green: #10b981;
+  --text: #f1f5f9;
+  --muted: #94a3b8;
+  --border: rgba(255,255,255,0.07);
+  --radius: 20px;
+  --shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--yellow); border-radius: 3px; }
+
+/* ── NAV ─────────────────────────────────────────── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5%;
+  height: 70px;
+  transition: all .4s ease;
+}
+nav.scrolled {
+  background: rgba(6,13,24,0.92);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--text);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.nav-logo span {
+  color: var(--yellow);
+}
+.nav-links {
+  display: flex;
+  gap: 30px;
+  list-style: none;
+}
+.nav-links a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: .9rem;
+  font-weight: 500;
+  transition: color .3s;
+}
+.nav-links a:hover { color: var(--yellow); }
+.nav-cta {
+  background: var(--yellow);
+  color: #000;
+  font-weight: 600;
+  font-size: .85rem;
+  padding: 9px 20px;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: all .3s;
+}
+.nav-cta:hover { background: var(--yellow2); transform: translateY(-1px); }
+.nav-menu-btn { display: none; background: none; border: none; cursor: pointer; }
+
+/* ── HERO ─────────────────────────────────────────── */
+#hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 90px 5% 60px;
+  position: relative;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(59,130,246,0.12) 0%, transparent 70%),
+              radial-gradient(ellipse 60% 40% at 80% 80%, rgba(245,158,11,0.08) 0%, transparent 60%);
+}
+.hero-grid-pattern {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(var(--border) 1px, transparent 1px),
+                    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 80% 80% at center, black 30%, transparent 80%);
+}
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 70px;
+  max-width: 1200px;
+  width: 100%;
+}
+
+/* Instagram Card */
+.ig-card {
+  flex-shrink: 0;
+  width: 340px;
+  background: linear-gradient(145deg, rgba(13,27,42,0.95), rgba(10,22,40,0.9));
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius);
+  padding: 28px;
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow), 0 0 0 1px rgba(245,158,11,0.1);
+  position: relative;
+}
+.ig-card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: calc(var(--radius) + 1px);
+  background: linear-gradient(135deg, rgba(245,158,11,0.3), transparent 40%, rgba(59,130,246,0.3));
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* IG Top Bar */
+.ig-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.ig-wordmark {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.ig-dots { color: var(--muted); font-size: 1.3rem; cursor: pointer; }
+
+/* Profile Row */
+.ig-profile-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.ig-avatar-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+.ig-avatar-ring {
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888, #f09433);
+  background-size: 300% 300%;
+  animation: ringRotate 3s linear infinite;
+  z-index: 0;
+}
+@keyframes ringRotate {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.ig-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  border: 3px solid var(--bg);
+  object-fit: cover;
+  position: relative;
+  z-index: 1;
+  display: block;
+}
+.ig-avatar-fallback {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  border: 3px solid var(--bg);
+  background: linear-gradient(135deg, var(--yellow), var(--blue));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: #fff;
+  position: relative;
+  z-index: 1;
+}
+.ig-name-block { flex: 1; }
+.ig-name-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.ig-name {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--text);
+  line-height: 1.2;
+}
+.ig-verified {
+  width: 18px;
+  height: 18px;
+  background: linear-gradient(135deg, #0095f6, #0074cc);
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(0,149,246,0.4);
+}
+.ig-verified svg { width: 10px; height: 10px; }
+.ig-handle {
+  display: block;
+  font-size: .82rem;
+  color: var(--blue2);
+  text-decoration: none;
+  margin-top: 2px;
+  transition: color .3s;
+}
+.ig-handle:hover { color: var(--yellow); }
+
+/* Stats Row */
+.ig-stats {
+  display: flex;
+  justify-content: space-between;
+  padding: 14px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 14px;
+}
+.ig-stat { text-align: center; flex: 1; }
+.ig-stat-num {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--text);
+  display: block;
+}
+.ig-stat-label {
+  font-size: .72rem;
+  color: var(--muted);
+  display: block;
+}
+
+/* Category & Bio */
+.ig-category {
+  font-size: .75rem;
+  color: var(--yellow);
+  font-weight: 600;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.ig-bio {
+  font-size: .83rem;
+  color: var(--muted);
+  line-height: 1.5;
+  margin-bottom: 14px;
+}
+.ig-bio strong { color: var(--text); font-weight: 500; }
+
+/* Action Buttons */
+.ig-actions {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.ig-btn {
+  flex: 1;
+  padding: 8px 4px;
+  border-radius: 8px;
+  font-size: .8rem;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all .3s;
+  border: none;
+}
+.ig-btn-primary {
+  background: var(--blue);
+  color: #fff;
+}
+.ig-btn-primary:hover { background: var(--blue2); }
+.ig-btn-secondary {
+  background: rgba(255,255,255,0.08);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.ig-btn-secondary:hover { background: rgba(255,255,255,0.13); }
+
+/* Mini Grid */
+.ig-grid-label {
+  font-size: .72rem;
+  color: var(--muted);
+  margin-bottom: 8px;
+  letter-spacing: .3px;
+}
+.ig-mini-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.ig-mini-grid img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  display: block;
+  transition: transform .3s;
+}
+.ig-mini-grid img:hover { transform: scale(1.05); }
+
+/* Hero Right */
+.hero-text {
+  flex: 1;
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(245,158,11,0.1);
+  border: 1px solid rgba(245,158,11,0.3);
+  color: var(--yellow);
+  font-size: .8rem;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 50px;
+  margin-bottom: 24px;
+  letter-spacing: .3px;
+}
+.hero-badge-dot {
+  width: 6px; height: 6px;
+  background: var(--yellow);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%,100% { opacity: 1; transform: scale(1); }
+  50% { opacity: .5; transform: scale(.7); }
+}
+.hero-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 800;
+  line-height: 1.15;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+.hero-title .accent { color: var(--yellow); }
+.hero-title .accent-blue { color: var(--blue2); }
+.hero-desc {
+  font-size: 1rem;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-bottom: 28px;
+  max-width: 480px;
+}
+.hero-community {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 32px;
+}
+.hero-community-num {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--yellow), var(--blue2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+}
+.hero-community-text {
+  font-size: .82rem;
+  color: var(--muted);
+  line-height: 1.3;
+}
+.hero-community-divider {
+  width: 1px;
+  height: 36px;
+  background: var(--border);
+}
+.hero-networks {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 36px;
+}
+.network-pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  padding: 6px 12px;
+  font-size: .78rem;
+  color: var(--muted);
+  text-decoration: none;
+  transition: all .3s;
+}
+.network-pill:hover {
+  border-color: var(--yellow);
+  color: var(--yellow);
+  transform: translateY(-2px);
+}
+.network-pill svg { width: 14px; height: 14px; }
+.hero-btns {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.btn-primary {
+  background: linear-gradient(135deg, var(--yellow), #d97706);
+  color: #000;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: .95rem;
+  padding: 14px 32px;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: all .3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  cursor: pointer;
+}
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(245,158,11,0.35); }
+.btn-outline {
+  background: transparent;
+  color: var(--text);
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: .95rem;
+  padding: 13px 28px;
+  border-radius: 50px;
+  text-decoration: none;
+  border: 1px solid var(--border);
+  transition: all .3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn-outline:hover { border-color: var(--yellow); color: var(--yellow); transform: translateY(-2px); }
+
+/* Scroll indicator */
+.scroll-hint {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+  font-size: .75rem;
+  animation: scrollBounce 2s ease-in-out infinite;
+}
+@keyframes scrollBounce {
+  0%,100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(6px); }
+}
+.scroll-hint svg { width: 18px; height: 18px; }
+
+/* ── SECTIONS COMMON ─────────────────────────────── */
+section { padding: 100px 5%; }
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--yellow);
+  margin-bottom: 16px;
+}
+.section-label::before {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--yellow);
+}
+.section-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 16px;
+  color: var(--text);
+}
+.section-desc {
+  font-size: 1rem;
+  color: var(--muted);
+  max-width: 580px;
+  line-height: 1.7;
+  margin-bottom: 56px;
+}
+
+/* Reveal animations */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity .7s ease, transform .7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity .7s ease, transform .7s ease;
+}
+.reveal-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+.reveal-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity .7s ease, transform .7s ease;
+}
+.reveal-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ── ABOUT ─────────────────────────────────────────── */
+#sobre-mi {
+  background: var(--bg2);
+  position: relative;
+  overflow: hidden;
+}
+#sobre-mi::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 500px; height: 500px;
+  background: radial-gradient(ellipse, rgba(245,158,11,0.05), transparent 70%);
+  pointer-events: none;
+}
+.about-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.about-photos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.about-photo-main {
+  grid-column: 1 / -1;
+  border-radius: 16px;
+  overflow: hidden;
+  aspect-ratio: 16/8;
+}
+.about-photo-main img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .5s;
+}
+.about-photo-main:hover img { transform: scale(1.04); }
+.about-photo-small {
+  border-radius: 12px;
+  overflow: hidden;
+  aspect-ratio: 1;
+}
+.about-photo-small img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform .5s;
+}
+.about-photo-small:hover img { transform: scale(1.06); }
+.about-quote {
+  background: var(--bg3);
+  border-left: 3px solid var(--yellow);
+  border-radius: 0 12px 12px 0;
+  padding: 18px 20px;
+  margin: 24px 0;
+  font-style: italic;
+  color: var(--muted);
+  font-size: .9rem;
+  line-height: 1.6;
+}
+.about-quote strong { color: var(--text); font-style: normal; }
+.skills-title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: .9rem;
+  color: var(--text);
+  margin-bottom: 12px;
+  margin-top: 24px;
+}
+.skills-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.pill {
+  padding: 6px 14px;
+  border-radius: 50px;
+  font-size: .8rem;
+  font-weight: 500;
+}
+.pill-yellow { background: rgba(245,158,11,0.12); color: var(--yellow); border: 1px solid rgba(245,158,11,0.25); }
+.pill-blue { background: rgba(59,130,246,0.12); color: var(--blue2); border: 1px solid rgba(59,130,246,0.25); }
+.pill-green { background: rgba(16,185,129,0.12); color: var(--green); border: 1px solid rgba(16,185,129,0.25); }
+.values-row {
+  display: flex;
+  gap: 20px;
+  margin-top: 24px;
+}
+.value-item { text-align: center; }
+.value-emoji { font-size: 1.6rem; margin-bottom: 4px; }
+.value-label { font-size: .75rem; color: var(--muted); font-weight: 500; }
+
+/* ── SERVICES ─────────────────────────────────────── */
+#servicios {
+  background: var(--bg);
+  position: relative;
+}
+.services-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+.service-featured {
+  grid-column: span 2;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0 24px;
+}
+.service-featured .service-icon { grid-row: 1; }
+.service-featured .service-title { margin-bottom: 8px; }
+.service-featured p.service-desc { grid-column: 1 / -1; }
+.service-featured ul { grid-column: 1 / -1; }
+@media (max-width: 700px) {
+  .service-featured { grid-column: span 1; display: block; }
+}
+.service-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 36px 32px;
+  position: relative;
+  overflow: hidden;
+  transition: all .4s ease;
+  cursor: default;
+}
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  border-radius: var(--radius) var(--radius) 0 0;
+  opacity: 0;
+  transition: opacity .4s;
+}
+.service-card:nth-child(1)::before { background: linear-gradient(90deg, var(--yellow), #d97706); }
+.service-card:nth-child(2)::before { background: linear-gradient(90deg, var(--blue), var(--blue2)); }
+.service-card:nth-child(3)::before { background: linear-gradient(90deg, var(--green), #34d399); }
+.service-card:nth-child(4)::before { background: linear-gradient(90deg, #8b5cf6, #a78bfa); }
+.service-card:hover {
+  border-color: rgba(255,255,255,0.15);
+  transform: translateY(-6px);
+  box-shadow: 0 24px 50px rgba(0,0,0,0.4);
+}
+.service-card:hover::before { opacity: 1; }
+.service-icon {
+  width: 54px; height: 54px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+}
+.service-card:nth-child(1) .service-icon { background: rgba(245,158,11,0.12); }
+.service-card:nth-child(2) .service-icon { background: rgba(59,130,246,0.12); }
+.service-card:nth-child(3) .service-icon { background: rgba(16,185,129,0.12); }
+.service-card:nth-child(4) .service-icon { background: rgba(139,92,246,0.12); }
+.service-title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+.service-desc {
+  font-size: 1rem;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+.service-features {
+  list-style: none;
+  margin-bottom: 24px;
+}
+.service-features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: .95rem;
+  color: var(--muted);
+  margin-bottom: 9px;
+}
+.service-features li::before {
+  content: '→';
+  color: var(--yellow);
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.service-tag {
+  display: inline-block;
+  font-size: .75rem;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 50px;
+  border: 1px solid var(--border);
+  color: var(--muted);
+}
+
+/* ── GALLERY ─────────────────────────────────────── */
+#galeria {
+  background: var(--bg2);
+  overflow: hidden;
+}
+.gallery-header {
+  max-width: 1200px;
+  margin: 0 auto 48px;
+}
+.gallery-grid {
+  max-width: 900px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  cursor: pointer;
+}
+.gallery-item:nth-child(1) {
+  grid-column: span 2;
+  aspect-ratio: 16/8;
+}
+.gallery-item:nth-child(n+2) {
+  aspect-ratio: 1;
+}
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .5s ease;
+  min-height: 200px;
+}
+.gallery-item:hover img { transform: scale(1.07); }
+.gallery-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity .3s;
+  display: flex;
+  align-items: flex-end;
+  padding: 16px;
+}
+.gallery-item:hover .gallery-overlay { opacity: 1; }
+.gallery-overlay svg { width: 22px; height: 22px; color: #fff; }
+
+/* ── METRICS ─────────────────────────────────────── */
+#metricas {
+  background: var(--bg3);
+  position: relative;
+  overflow: hidden;
+}
+.metrics-bg-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Poppins', sans-serif;
+  font-size: 18vw;
+  font-weight: 900;
+  color: rgba(255,255,255,0.02);
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+}
+.metrics-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  position: relative;
+  z-index: 1;
+}
+.metric-card {
+  text-align: center;
+  padding: 40px 20px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: all .4s;
+}
+.metric-card:hover {
+  background: rgba(255,255,255,0.06);
+  transform: translateY(-4px);
+}
+.metric-icon { font-size: 1.8rem; margin-bottom: 12px; }
+.metric-num {
+  font-family: 'Poppins', sans-serif;
+  font-size: 2.8rem;
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 8px;
+  display: block;
+}
+.metric-num.yellow { color: var(--yellow); }
+.metric-num.blue { color: var(--blue2); }
+.metric-num.green { color: var(--green); }
+.metric-num.purple { color: #a78bfa; }
+.metric-label {
+  font-size: .85rem;
+  color: var(--muted);
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+/* ── CONTACT ─────────────────────────────────────── */
+#contacto {
+  background: var(--bg);
+  position: relative;
+}
+#contacto::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 400px; height: 400px;
+  background: radial-gradient(ellipse, rgba(59,130,246,0.07), transparent 70%);
+  pointer-events: none;
+}
+.contact-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 80px;
+  align-items: start;
+}
+.contact-info-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+.contact-info-desc {
+  color: var(--muted);
+  font-size: .95rem;
+  line-height: 1.7;
+  margin-bottom: 36px;
+}
+.contact-detail {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+.contact-detail-icon {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  background: rgba(245,158,11,0.1);
+  border: 1px solid rgba(245,158,11,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.contact-detail-icon svg { width: 18px; height: 18px; color: var(--yellow); }
+.contact-detail-label { font-size: .78rem; color: var(--muted); margin-bottom: 2px; }
+.contact-detail-value {
+  font-size: .92rem;
+  color: var(--text);
+  font-weight: 500;
+  text-decoration: none;
+  transition: color .3s;
+}
+.contact-detail-value:hover { color: var(--yellow); }
+.social-links-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 30px;
+}
+.social-link-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 14px;
+  text-decoration: none;
+  color: var(--text);
+  font-size: .84rem;
+  font-weight: 500;
+  transition: all .3s;
+}
+.social-link-card:hover {
+  border-color: var(--yellow);
+  color: var(--yellow);
+  transform: translateY(-2px);
+}
+.social-link-card svg { width: 18px; height: 18px; flex-shrink: 0; }
+.contact-form {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 40px;
+}
+.form-title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--text);
+  margin-bottom: 24px;
+}
+.form-group { margin-bottom: 18px; }
+.form-label {
+  display: block;
+  font-size: .82rem;
+  font-weight: 600;
+  color: var(--muted);
+  margin-bottom: 7px;
+  letter-spacing: .3px;
+}
+.form-input,
+.form-textarea,
+.form-select {
+  width: 100%;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 16px;
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  font-size: .9rem;
+  outline: none;
+  transition: border-color .3s, background .3s;
+  -webkit-appearance: none;
+}
+.form-input:focus,
+.form-textarea:focus,
+.form-select:focus {
+  border-color: var(--yellow);
+  background: rgba(255,255,255,0.07);
+}
+.form-textarea { resize: vertical; min-height: 120px; }
+.form-select option { background: var(--bg2); }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.form-submit {
+  width: 100%;
+  background: linear-gradient(135deg, var(--yellow), #d97706);
+  color: #000;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: .95rem;
+  padding: 14px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  transition: all .3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 6px;
+}
+.form-submit:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(245,158,11,0.3); }
+
+/* ── FOOTER ─────────────────────────────────────── */
+footer {
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+  padding: 40px 5%;
+}
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.footer-brand {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--text);
+}
+.footer-brand span { color: var(--yellow); }
+.footer-tagline {
+  font-size: .82rem;
+  color: var(--muted);
+  margin-top: 4px;
+}
+.footer-copy {
+  font-size: .8rem;
+  color: var(--muted);
+}
+.footer-links {
+  display: flex;
+  gap: 20px;
+}
+.footer-links a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: .82rem;
+  transition: color .3s;
+}
+.footer-links a:hover { color: var(--yellow); }
+
+/* ── MOBILE NAV ─────────────────────────────────── */
+@media (max-width: 900px) {
+  .nav-links { display: none; }
+  .nav-menu-btn { display: flex; }
+  .hero-inner { flex-direction: column; gap: 40px; }
+  .ig-card { width: 100%; max-width: 380px; margin: 0 auto; }
+  .about-inner { grid-template-columns: 1fr; }
+  .about-photos { order: -1; }
+  .services-grid { grid-template-columns: 1fr; }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+  .gallery-item:nth-child(1) { grid-column: span 2; }
+  .metrics-inner { grid-template-columns: repeat(2, 1fr); }
+  .contact-inner { grid-template-columns: 1fr; }
+  .hero-title { font-size: 1.9rem; }
+  section { padding: 70px 5%; }
+}
+@media (max-width: 600px) {
+  .nav-cta { display: none; }
+  .hero-networks { flex-wrap: wrap; }
+  .gallery-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .gallery-item:nth-child(1) { grid-column: span 2; }
+  .metrics-inner { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .metric-num { font-size: 2.1rem; }
+  .contact-form { padding: 24px 18px; }
+  .form-row { grid-template-columns: 1fr; }
+  .social-links-grid { grid-template-columns: 1fr; }
+  .footer-inner { flex-direction: column; text-align: center; }
+  .values-row { justify-content: center; }
+}
+
+/* ── TICKER CLIENTES ─────────────────────────────── */
+.ticker-outer {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+.ticker-outer::before,
+.ticker-outer::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 120px;
+  z-index: 2;
+  pointer-events: none;
+}
+.ticker-outer::before {
+  left: 0;
+  background: linear-gradient(90deg, var(--bg3) 0%, transparent 100%);
+}
+.ticker-outer::after {
+  right: 0;
+  background: linear-gradient(270deg, var(--bg3) 0%, transparent 100%);
+}
+.ticker-track {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  width: max-content;
+  animation: ticker-scroll 55s linear infinite;
+}
+.ticker-track:hover { animation-play-state: paused; }
+@keyframes ticker-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.ticker-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 36px;
+  font-family: 'Poppins', sans-serif;
+  font-size: .82rem;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  white-space: nowrap;
+  transition: color .3s;
+  border-right: 1px solid var(--border);
+  height: 64px;
+}
+.ticker-item:hover { color: var(--yellow); }
+.ticker-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--yellow);
+  opacity: .5;
+  flex-shrink: 0;
+}
+.ticker-item:hover .ticker-dot { opacity: 1; }
+</style>
+</head>
+<body>
+
+<!-- ── NAVIGATION ──────────────────────────────────── -->
+<nav id="nav">
+  <a href="#hero" class="nav-logo">M<span>M</span></a>
+  <ul class="nav-links">
+    <li><a href="#sobre-mi">Sobre mí</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#galeria">Galería</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <a href="#contacto" class="nav-cta">Hablemos →</a>
+  <button class="nav-menu-btn" aria-label="Menú" onclick="toggleMenu()">
+    <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+    </svg>
+  </button>
+</nav>
+
+<!-- ── HERO ────────────────────────────────────────── -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid-pattern"></div>
+  <div class="hero-inner">
+
+    <!-- Instagram Card -->
+    <div class="ig-card reveal-left">
+      <div class="ig-topbar">
+        <span class="ig-wordmark">Instagram</span>
+        <span class="ig-dots">···</span>
+      </div>
+
+      <div class="ig-profile-row">
+        <div class="ig-avatar-wrap">
+          <div class="ig-avatar-ring"></div>
+          <img src="assets/profile.jpg" alt="Manuel Myna" class="ig-avatar"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="ig-avatar-fallback" style="display:none">MM</div>
+        </div>
+        <div class="ig-name-block">
+          <div class="ig-name-row">
+            <span class="ig-name">Manuel Myna</span>
+            <span class="ig-verified" title="Perfil verificado">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </span>
+          </div>
+          <a href="https://www.instagram.com/manuel_myna" class="ig-handle" target="_blank">@manuel_myna</a>
+        </div>
+      </div>
+
+      <div class="ig-stats">
+        <div class="ig-stat">
+          <span class="ig-stat-num">39</span>
+          <span class="ig-stat-label">publicaciones</span>
+        </div>
+        <div class="ig-stat">
+          <span class="ig-stat-num">1,081</span>
+          <span class="ig-stat-label">seguidores</span>
+        </div>
+        <div class="ig-stat">
+          <span class="ig-stat-num">208</span>
+          <span class="ig-stat-label">siguiendo</span>
+        </div>
+      </div>
+
+      <p class="ig-category">Mg. Energías Renovables · Solar · EV · Web & SEO</p>
+      <p class="ig-bio">
+        <strong>Healthy 🏋🏻‍♂️ · Family 💝 · Travel 🚀</strong><br>
+        "Mejor es adquirir sabiduría que oro preciado" — Proverbios 16:16
+      </p>
+
+      <div class="ig-actions">
+        <a href="#contacto" class="ig-btn ig-btn-primary">Contactar</a>
+        <a href="#servicios" class="ig-btn ig-btn-secondary">Servicios</a>
+        <a href="https://www.instagram.com/manuel_myna" target="_blank" class="ig-btn ig-btn-secondary">Seguir</a>
+      </div>
+
+      <p class="ig-grid-label">Últimas publicaciones</p>
+      <div class="ig-mini-grid">
+        <img src="assets/profile.jpg" alt="Victor Manuel Mina" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22><rect fill=%22%23111%22 width=%22100%22 height=%22100%22/></svg>'">
+        <img src="assets/personal/photo-1.jpg" alt="Post 1" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22><rect fill=%22%23111%22 width=%22100%22 height=%22100%22/></svg>'">
+        <img src="assets/personal/photo-2.jpg" alt="Post 2" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22><rect fill=%22%23111%22 width=%22100%22 height=%22100%22/></svg>'">
+        <img src="assets/personal/photo-3.jpg" alt="Post 3" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22><rect fill=%22%23111%22 width=%22100%22 height=%22100%22/></svg>'">
+        <img src="assets/personal/photo-4.jpg" alt="Post 4" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22><rect fill=%22%23111%22 width=%22100%22 height=%22100%22/></svg>'">
+        <img src="assets/personal/photo-5.jpg" alt="Post 5" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22><rect fill=%22%23111%22 width=%22100%22 height=%22100%22/></svg>'">
+      </div>
+    </div>
+
+    <!-- Hero Text -->
+    <div class="hero-text reveal-right">
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        Mg. Energías Renovables · Equipo Especialista
+      </div>
+      <h1 class="hero-title">
+        <span class="accent">Energía solar & EV.</span><br>
+        <span class="accent-blue">Web que convierte.</span>
+      </h1>
+      <p class="hero-desc">
+        Máster en Energías Renovables con +30 clientes satisfechos y presencia en equipos de ingeniería.
+        Diseñamos, construimos y legalizamos sistemas solares a nivel internacional,
+        instalamos cargadores eléctricos y desarrollamos presencia digital que genera negocio.
+      </p>
+
+      <!-- Mini stats row -->
+      <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px;">
+        <div style="display:flex;align-items:center;gap:8px;background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.25);border-radius:10px;padding:10px 16px;">
+          <span style="font-size:1.1rem;">⚡</span>
+          <div>
+            <div style="font-family:'Poppins',sans-serif;font-weight:700;font-size:1rem;color:var(--yellow);line-height:1.1;">5.5 MWp</div>
+            <div style="font-size:.72rem;color:var(--muted);">ejecutados</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.25);border-radius:10px;padding:10px 16px;">
+          <span style="font-size:1.1rem;">🤝</span>
+          <div>
+            <div style="font-family:'Poppins',sans-serif;font-weight:700;font-size:1rem;color:var(--blue2);line-height:1.1;">+30</div>
+            <div style="font-size:.72rem;color:var(--muted);">clientes</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.25);border-radius:10px;padding:10px 16px;">
+          <span style="font-size:1.1rem;">🌍</span>
+          <div>
+            <div style="font-family:'Poppins',sans-serif;font-weight:700;font-size:.85rem;color:var(--green);line-height:1.1;">Internacional</div>
+            <div style="font-size:.72rem;color:var(--muted);">proyectos</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-community">
+        <div>
+          <div class="hero-community-num">2,880+</div>
+          <div class="hero-community-text">comunidad<br>total</div>
+        </div>
+        <div class="hero-community-divider"></div>
+        <div style="display:flex;flex-direction:column;gap:4px;">
+          <span style="font-size:.8rem;color:var(--muted)">📸 Instagram · 1,081</span>
+          <span style="font-size:.8rem;color:var(--muted)">🎵 TikTok · 1,255</span>
+          <span style="font-size:.8rem;color:var(--muted)">💼 LinkedIn · 544</span>
+        </div>
+      </div>
+
+      <div class="hero-networks">
+        <a href="https://www.instagram.com/manuel_myna" target="_blank" class="network-pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          1,081
+        </a>
+        <a href="https://www.tiktok.com/@manuelmyna" target="_blank" class="network-pill">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.32 6.32 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.16 8.16 0 0 0 4.77 1.52V6.76a4.85 4.85 0 0 1-1-.07z"/></svg>
+          1,255
+        </a>
+        <a href="https://www.linkedin.com/in/manuel-mina/" target="_blank" class="network-pill">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          544
+        </a>
+        <a href="https://www.facebook.com/ManuelMyna/" target="_blank" class="network-pill">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          Facebook
+        </a>
+      </div>
+
+      <div class="hero-btns">
+        <a href="#contacto" class="btn-primary">
+          Hablemos de tu proyecto
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#servicios" class="btn-outline">
+          Ver servicios
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+    Scroll
+  </div>
+</section>
+
+<!-- ── SOBRE MÍ ─────────────────────────────────────── -->
+<section id="sobre-mi">
+  <div class="about-inner">
+    <div class="about-photos reveal-left">
+      <div class="about-photo-main">
+        <img src="assets/trabajo/t1.jpeg" alt="Proyecto solar ejecutado" onerror="this.parentElement.style.background='var(--bg3)'">
+      </div>
+      <div class="about-photo-small">
+        <img src="assets/trabajo/t2.jpeg" alt="Implementación solar" onerror="this.parentElement.style.background='var(--bg3)'">
+      </div>
+      <div class="about-photo-small">
+        <img src="assets/trabajo/t3.jpg" alt="Ingeniería de detalle" onerror="this.parentElement.style.background='var(--bg3)'">
+      </div>
+      <div class="about-photo-small">
+        <img src="assets/trabajo/t4.jpg" alt="Sistema fotovoltaico" onerror="this.parentElement.style.background='var(--bg3)'">
+      </div>
+      <div class="about-photo-small">
+        <img src="assets/trabajo/t5.jpg" alt="Instalación solar" onerror="this.parentElement.style.background='var(--bg3)'">
+      </div>
+    </div>
+    <div class="reveal-right">
+      <div class="section-label">Quién soy</div>
+      <h2 class="section-title">M. Sc. Ing. Electrónico<br>& Energías Renovables</h2>
+      <p style="color:var(--muted);line-height:1.75;margin-bottom:16px;font-size:.95rem;">
+        Soy <strong style="color:var(--text)">Victor Manuel Mina</strong>, Magíster en Energías Renovables e Ingeniero Electrónico.
+        Lidero un <strong style="color:var(--text)">equipo especialista</strong> que interviene en todas las etapas de proyectos solares:
+        desarrollo, propuestas técnicas, construcción y legalización. Con más de
+        <strong style="color:var(--text)">5.5 MWp ejecutados</strong> y <strong style="color:var(--text)">+30 clientes</strong>,
+        operamos a nivel nacional e internacional.
+      </p>
+      <p style="color:var(--muted);line-height:1.75;margin-bottom:16px;font-size:.95rem;">
+        También instalamos <strong style="color:var(--text)">cargadores eléctricos vehiculares</strong> bajo normativa RETIE
+        y desarrollamos <strong style="color:var(--text)">páginas web profesionales</strong> con SEO continuo para empresas que
+        quieren crecer en Google — actualmente con <strong style="color:var(--text)">5 clientes web activos</strong>.
+      </p>
+
+      <div class="about-quote">
+        "Mejor es adquirir sabiduría que oro preciado" — <strong>Proverbios 16:16</strong>
+      </div>
+
+      <div class="skills-title">Áreas de expertise</div>
+      <div class="skills-pills">
+        <span class="pill pill-yellow">⚡ Sistemas Fotovoltaicos</span>
+        <span class="pill pill-yellow">🔆 5.5 MWp ejecutados</span>
+        <span class="pill pill-yellow">📐 Ingeniería de Detalle</span>
+        <span class="pill pill-yellow">🔌 Cargadores EV · RETIE</span>
+        <span class="pill pill-yellow">🌍 Proyectos Internacionales</span>
+        <span class="pill pill-blue">🌐 Desarrollo Web</span>
+        <span class="pill pill-blue">📈 SEO</span>
+        <span class="pill pill-blue">💻 Frontend</span>
+        <span class="pill pill-green">📊 Consultoría Energética</span>
+        <span class="pill pill-green">🔋 Almacenamiento BESS</span>
+        <span class="pill pill-green">🏛️ Legalización UPME/CREG</span>
+      </div>
+
+      <div class="values-row" style="margin-top:28px;">
+        <div class="value-item">
+          <div class="value-emoji">🏋🏻‍♂️</div>
+          <div class="value-label">Salud</div>
+        </div>
+        <div class="value-item">
+          <div class="value-emoji">💝</div>
+          <div class="value-label">Familia</div>
+        </div>
+        <div class="value-item">
+          <div class="value-emoji">🚀</div>
+          <div class="value-label">Aventura</div>
+        </div>
+        <div class="value-item">
+          <div class="value-emoji">🙏</div>
+          <div class="value-label">Fe</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SERVICIOS ────────────────────────────────────── -->
+<section id="servicios">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="reveal">
+      <div class="section-label">Lo que ofrezco</div>
+      <h2 class="section-title">Servicios diseñados<br>para hacer crecer tu negocio</h2>
+      <p class="section-desc">
+        Combinando ingeniería, tecnología y estrategia digital, ofrezco soluciones completas
+        para empresas que quieren reducir costos y amplificar su presencia online.
+      </p>
+    </div>
+    <div class="services-grid">
+
+      <!-- SOLAR - CARD DESTACADA -->
+      <div class="service-card service-featured reveal" style="transition-delay:.05s">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:4px;">
+          <div class="service-icon">🔆</div>
+          <span class="service-tag" style="align-self:flex-start;">🌍 Nacional & Internacional</span>
+        </div>
+        <h3 class="service-title">Ingeniería Solar Fotovoltaica</h3>
+        <p class="service-desc">
+          Equipo especialista en todas las etapas del proyecto: desarrollo, propuesta técnica,
+          construcción y legalización. <strong style="color:var(--text)">+5.5 MWp ejecutados</strong> y más de 30 clientes atendidos
+          en proyectos residenciales, comerciales e industriales.
+        </p>
+        <ul class="service-features">
+          <li>Ingeniería de detalle y planos técnicos (unifilares, layout, estructura)</li>
+          <li>Estudio de viabilidad, dimensionado y propuesta económica</li>
+          <li>Construcción, instalación y puesta en marcha</li>
+          <li>Legalización ante UPME, CREG y operadores de red</li>
+          <li>Monitoreo remoto y mantenimiento preventivo</li>
+        </ul>
+      </div>
+
+      <!-- EV CHARGERS -->
+      <div class="service-card reveal" style="transition-delay:.1s">
+        <div class="service-icon">🔌</div>
+        <h3 class="service-title">Cargadores Eléctricos Vehiculares</h3>
+        <p class="service-desc">
+          Instalación de infraestructura de recarga para vehículos eléctricos bajo
+          <strong style="color:var(--text)">normativa RETIE</strong>. Soluciones para hogares,
+          edificios, empresas y flotas corporativas.
+        </p>
+        <ul class="service-features">
+          <li>Selección y suministro de estaciones de carga (Level 1, 2 y DC Fast)</li>
+          <li>Instalación certificada bajo normativa RETIE</li>
+          <li>Integración con sistema solar fotovoltaico</li>
+          <li>Gestión inteligente de carga y monitoreo</li>
+        </ul>
+        <span class="service-tag">⚡ Certificado RETIE</span>
+      </div>
+
+      <!-- AUDITORÍA -->
+      <div class="service-card reveal" style="transition-delay:.15s">
+        <div class="service-icon">📊</div>
+        <h3 class="service-title">Auditoría & Consultoría Energética</h3>
+        <p class="service-desc">
+          Análisis técnico del consumo eléctrico de tu empresa para identificar
+          ineficiencias, reducir la tarifa y definir la mejor estrategia energética.
+        </p>
+        <ul class="service-features">
+          <li>Levantamiento de cargas y análisis de facturación</li>
+          <li>Identificación de ineficiencias y pérdidas</li>
+          <li>Plan de acción con ROI estimado y cronograma</li>
+          <li>Asesoría en normativa energética vigente</li>
+        </ul>
+        <span class="service-tag">💡 Ahorro desde el día 1</span>
+      </div>
+
+      <!-- WEB -->
+      <div class="service-card reveal" style="transition-delay:.2s">
+        <div class="service-icon">🌐</div>
+        <h3 class="service-title">Desarrollo Web Profesional</h3>
+        <p class="service-desc">
+          Páginas web que generan confianza y convierten visitas en clientes.
+          <strong style="color:var(--text)">5 clientes activos</strong> — empresas que han transformado
+          su presencia digital con nosotros.
+        </p>
+        <ul class="service-features">
+          <li>Landing pages, sitios corporativos y portafolios</li>
+          <li>Diseño responsive (móvil, tablet, escritorio)</li>
+          <li>Alta velocidad y optimización de rendimiento</li>
+          <li>Integración con WhatsApp, redes y CRM</li>
+        </ul>
+        <span class="service-tag">🚀 Entrega rápida</span>
+      </div>
+
+      <!-- SEO -->
+      <div class="service-card reveal" style="transition-delay:.25s">
+        <div class="service-icon">📈</div>
+        <h3 class="service-title">SEO & Presencia de Marca</h3>
+        <p class="service-desc">
+          Estrategia continua de posicionamiento en Google y redes sociales para
+          que tu negocio sea encontrado por quienes necesitan tus servicios.
+        </p>
+        <ul class="service-features">
+          <li>Auditoría SEO técnica y de contenido</li>
+          <li>Investigación de palabras clave estratégicas</li>
+          <li>Optimización on-page y generación de contenido</li>
+          <li>Gestión de redes y crecimiento de marca</li>
+        </ul>
+        <span class="service-tag">🎯 Tráfico orgánico constante</span>
+      </div>
+
+    </div>
+
+    <div style="text-align:center;margin-top:48px;" class="reveal">
+      <p style="color:var(--muted);margin-bottom:20px;font-size:.95rem;">
+        ¿No sabes cuál servicio necesitas? Cuéntame tu proyecto y te oriento gratis.
+      </p>
+      <a href="#contacto" class="btn-primary">Consulta gratuita →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── CLIENTES ─────────────────────────────────────────── -->
+<section id="clientes" style="padding:70px 0;background:var(--bg3);overflow:hidden;">
+  <div style="max-width:1200px;margin:0 auto 44px;padding:0 5%;" class="reveal">
+    <div class="section-label">Confianza empresarial</div>
+    <h2 class="section-title" style="margin-bottom:0;">Ellos han confiado</h2>
+  </div>
+
+  <!-- Ticker wrapper — sin padding lateral para que llegue a los bordes -->
+  <div class="ticker-outer">
+    <div class="ticker-track">
+      <!-- Lista original -->
+      <span class="ticker-item"><span class="ticker-dot"></span>DAV SOLAR</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>CPI INGENIERÍA Y CONSTRUCCIONES SAS</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>VATIA SAS</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>VA INGENIERÍA SAS</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>ENERWATTS INGENIERÍA SAS</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>ECOLECTRICA INGENIERÍA SAS</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>ABASTE COLOMBIA SA</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>ENRIKO SAS</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>CONJ. RES. MONTELUGANO</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>DELTEC SA</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>CENTRONET SAS</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>APC FRIGORÍFICOS SAS</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>AMERIPLAST SA</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>AVÍCOLA SANTA ELENA</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>ICO BANDAS SA</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>INMCOR SAS</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>SUPERMERCADOS GALERÍAS PLAZA</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>TECNOSOLAR</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>VPC BUENAVENTURA</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>TRANSPORTADORA BRASILIA</span>
+      <!-- Duplicado para loop infinito sin saltos -->
+      <span class="ticker-item" aria-hidden="true"><span class="ticker-dot"></span>DAV SOLAR</span>
+      <span class="ticker-item" aria-hidden="true"><span class="ticker-dot"></span>CPI INGENIERÍA Y CONSTRUCCIONES SAS</span>
+      <span class="ticker-item" aria-hidden="true"><span class="ticker-dot"></span>VATIA SAS</span>
+      <span class="ticker-item" aria-hidden="true"><span class="ticker-dot"></span>VA INGENIERÍA SAS</span>
+      <span class="ticker-item" aria-hidden="true"><span class="ticker-dot"></span>ENERWATTS INGENIERÍA SAS</span>
+      <span class="ticker-item" aria-hidden="true"><span class="ticker-dot"></span>ECOLECTRICA INGENIERÍA SAS</span>
+      <span class="ticker-item" aria-hidden="true"><span class="ticker-dot"></span>ABASTE COLOMBIA SA</span>
+      <span class="ticker-item" aria-hidden="true"><span class="ticker-dot"></span>ENRIKO SAS</span>
+      <span class="ticker-item" aria-hidden="true"><span class="ticker-dot"></span>CONJ. RES. MONTELUGANO</span>
+      <span class="ticker-item" aria-hidden="true"><span class="ticker-dot"></span>DELTEC SA</span>
+      <span class="ticker-item" aria-hidden="true"><span class="ticker-dot"></span>CENTRONET SAS</span>
+      <span class="ticker-item" aria-hidden="true"><span class="ticker-dot"></span>APC FRIGORÍFICOS SAS</span>
+      <span class="ticker-item" aria-hidden="true"><span class="ticker-dot"></span>AMERIPLAST SA</span>
+      <span class="ticker-item" aria-hidden="true"><span class="ticker-dot"></span>AVÍCOLA SANTA ELENA</span>
+      <span class="ticker-item" aria-hidden="true"><span class="ticker-dot"></span>ICO BANDAS SA</span>
+      <span class="ticker-item" aria-hidden="true"><span class="ticker-dot"></span>INMCOR SAS</span>
+      <span class="ticker-item" aria-hidden="true"><span class="ticker-dot"></span>SUPERMERCADOS GALERÍAS PLAZA</span>
+      <span class="ticker-item" aria-hidden="true"><span class="ticker-dot"></span>TECNOSOLAR</span>
+      <span class="ticker-item" aria-hidden="true"><span class="ticker-dot"></span>VPC BUENAVENTURA</span>
+      <span class="ticker-item" aria-hidden="true"><span class="ticker-dot"></span>TRANSPORTADORA BRASILIA</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── GALERÍA ───────────────────────────────────────── -->
+<section id="galeria">
+  <div class="gallery-header reveal">
+    <div class="section-label">Mi mundo</div>
+    <h2 class="section-title">Healthy · Family · Travel</h2>
+    <p class="section-desc">La vida detrás del trabajo. Salud, familia, aventura y fe — los pilares que guían cada proyecto.</p>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item">
+      <img src="assets/personal/photo-1.jpg" alt="Mi mundo">
+      <div class="gallery-overlay">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/></svg>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <img src="assets/personal/photo-2.jpg" alt="Mi mundo">
+      <div class="gallery-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/></svg></div>
+    </div>
+    <div class="gallery-item">
+      <img src="assets/personal/photo-3.jpg" alt="Mi mundo">
+      <div class="gallery-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/></svg></div>
+    </div>
+    <div class="gallery-item">
+      <img src="assets/personal/photo-4.jpg" alt="Mi mundo">
+      <div class="gallery-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/></svg></div>
+    </div>
+    <div class="gallery-item">
+      <img src="assets/personal/photo-5.jpg" alt="Mi mundo">
+      <div class="gallery-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/></svg></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── MÉTRICAS ──────────────────────────────────────── -->
+<section id="metricas">
+  <div class="metrics-bg-text">SOLAR</div>
+  <div class="metrics-inner">
+    <div class="metric-card reveal" style="transition-delay:.05s">
+      <div class="metric-icon">🔆</div>
+      <span class="metric-num yellow" data-target="5500" data-suffix=" kWp">0</span>
+      <p class="metric-label">MWp instalados<br>en proyectos ejecutados</p>
+    </div>
+    <div class="metric-card reveal" style="transition-delay:.1s">
+      <div class="metric-icon">🤝</div>
+      <span class="metric-num blue" data-target="30" data-prefix="+">0</span>
+      <p class="metric-label">Clientes atendidos<br>nacional e internacional</p>
+    </div>
+    <div class="metric-card reveal" style="transition-delay:.15s">
+      <div class="metric-icon">🌐</div>
+      <span class="metric-num green" data-target="5">0</span>
+      <p class="metric-label">Clientes web activos<br>con SEO continuo</p>
+    </div>
+    <div class="metric-card reveal" style="transition-delay:.2s">
+      <div class="metric-icon">👥</div>
+      <span class="metric-num purple" data-target="2880" data-prefix="+">0</span>
+      <p class="metric-label">Comunidad digital<br>en todas las redes</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACTO ──────────────────────────────────────── -->
+<section id="contacto">
+  <div class="contact-inner">
+    <div class="reveal-left">
+      <div class="section-label">Contacto</div>
+      <h2 class="contact-info-title">¿Tienes un proyecto<br>en mente?</h2>
+      <p class="contact-info-desc">
+        Ya sea un sistema solar, un cargador eléctrico, una web profesional o una estrategia SEO,
+        contáctame directamente por WhatsApp y te doy orientación sin compromiso.
+      </p>
+
+      <!-- WhatsApp CTA prominente -->
+      <a href="https://wa.me/573145596767?text=Hola%20Victor%2C%20vi%20tu%20web%20y%20quiero%20saber%20más%20sobre%20tus%20servicios."
+         target="_blank"
+         style="display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#25d366,#128c7e);border-radius:14px;padding:18px 22px;text-decoration:none;margin-bottom:24px;transition:all .3s;box-shadow:0 8px 24px rgba(37,211,102,0.25);"
+         onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 14px 32px rgba(37,211,102,0.35)'"
+         onmouseout="this.style.transform='';this.style.boxShadow='0 8px 24px rgba(37,211,102,0.25)'">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.852L0 24l6.335-1.51A11.955 11.955 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.002-1.367l-.36-.214-3.76.896.944-3.658-.235-.374A9.818 9.818 0 1112 21.818z"/></svg>
+        <div>
+          <div style="font-family:'Poppins',sans-serif;font-weight:700;font-size:1rem;color:#fff;">Escríbeme por WhatsApp</div>
+          <div style="font-size:.82rem;color:rgba(255,255,255,.85);">+57 314 559 6767 · Respondo rápido</div>
+        </div>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" style="margin-left:auto"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+
+      <div class="contact-detail">
+        <div class="contact-detail-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <div>
+          <div class="contact-detail-label">Email</div>
+          <a href="mailto:manuelmyna97@gmail.com" class="contact-detail-value">manuelmyna97@gmail.com</a>
+        </div>
+      </div>
+
+      <div class="contact-detail">
+        <div class="contact-detail-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </div>
+        <div>
+          <div class="contact-detail-label">Instagram</div>
+          <a href="https://www.instagram.com/manuel_myna" class="contact-detail-value" target="_blank">@manuel_myna</a>
+        </div>
+      </div>
+
+      <div class="social-links-grid">
+        <a href="https://wa.me/573145596767" target="_blank" class="social-link-card" style="border-color:rgba(37,211,102,.3);color:#25d366;">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.852L0 24l6.335-1.51A11.955 11.955 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.002-1.367l-.36-.214-3.76.896.944-3.658-.235-.374A9.818 9.818 0 1112 21.818z"/></svg>
+          WhatsApp
+        </a>
+        <a href="https://www.instagram.com/manuel_myna" target="_blank" class="social-link-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          Instagram
+        </a>
+        <a href="https://www.linkedin.com/in/manuel-mina/" target="_blank" class="social-link-card">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+        <a href="https://www.tiktok.com/@manuelmyna" target="_blank" class="social-link-card">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.32 6.32 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.16 8.16 0 0 0 4.77 1.52V6.76a4.85 4.85 0 0 1-1-.07z"/></svg>
+          TikTok
+        </a>
+      </div>
+    </div>
+
+    <div class="contact-form reveal-right">
+      <h3 class="form-title">Cuéntame tu proyecto</h3>
+      <p style="font-size:.82rem;color:var(--muted);margin-bottom:20px;margin-top:-8px;">Te respondo directo por WhatsApp.</p>
+      <form id="contactForm" onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="name">Nombre</label>
+            <input type="text" id="name" class="form-input" placeholder="Tu nombre" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="email">Email</label>
+            <input type="email" id="email" class="form-input" placeholder="tu@email.com" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="service">¿Qué necesitas?</label>
+          <select id="service" class="form-select">
+            <option value="">Selecciona un servicio</option>
+            <option>🔆 Diseño e Instalación Solar</option>
+            <option>📊 Auditoría Energética</option>
+            <option>🌐 Desarrollo Web Profesional</option>
+            <option>📈 SEO & Posicionamiento</option>
+            <option>💬 No sé, quiero orientación</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="message">Tu proyecto</label>
+          <textarea id="message" class="form-textarea" placeholder="Cuéntame brevemente tu proyecto o lo que necesitas..." required></textarea>
+        </div>
+        <button type="submit" class="form-submit">
+          Enviar mensaje
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ────────────────────────────────────────── -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">Victor Manuel <span>Mina</span></div>
+      <div class="footer-tagline">Mg. Energías Renovables · Solar · EV · Web & SEO · @manuel_myna</div>
+    </div>
+    <div class="footer-links">
+      <a href="#sobre-mi">Sobre mí</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#galeria">Galería</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+    <div class="footer-copy">© 2026 Victor Manuel Mina. Todos los derechos reservados.</div>
+  </div>
+</footer>
+
+<script>
+// Nav scroll effect
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// Mobile menu toggle
+function toggleMenu() {
+  const links = document.querySelector('.nav-links');
+  links.style.display = links.style.display === 'flex' ? 'none' : 'flex';
+  if (links.style.display === 'flex') {
+    Object.assign(links.style, {
+      position: 'absolute', top: '70px', left: 0, right: 0,
+      flexDirection: 'column', background: 'var(--bg)',
+      padding: '20px 5%', borderBottom: '1px solid var(--border)', gap: '16px'
+    });
+  }
+}
+
+// Intersection Observer — reveal animations
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      revealObserver.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
+  revealObserver.observe(el);
+});
+
+// Counter animation
+function animateCount(el, target, duration = 1800) {
+  const prefix = el.dataset.prefix || '';
+  const suffix = el.dataset.suffix || '';
+  const start = performance.now();
+  const update = (now) => {
+    const elapsed = now - start;
+    const progress = Math.min(elapsed / duration, 1);
+    const ease = 1 - Math.pow(1 - progress, 4);
+    const val = Math.round(ease * target);
+    el.textContent = prefix + val.toLocaleString('es') + suffix;
+    if (progress < 1) requestAnimationFrame(update);
+  };
+  requestAnimationFrame(update);
+}
+
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const target = parseInt(e.target.dataset.target);
+      animateCount(e.target, target);
+      counterObserver.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('[data-target]').forEach(el => counterObserver.observe(el));
+
+// Parallax on hero
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY;
+  const heroBg = document.querySelector('.hero-bg');
+  if (heroBg) heroBg.style.transform = `translateY(${scrollY * 0.3}px)`;
+});
+
+// Form submit
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('.form-submit');
+  const name = document.getElementById('name').value;
+  const email = document.getElementById('email').value;
+  const service = document.getElementById('service').value;
+  const message = document.getElementById('message').value;
+
+  // Send via WhatsApp
+  const text = encodeURIComponent(`Hola Victor, vi tu web.\n\n*Nombre:* ${name}\n*Email:* ${email}\n*Servicio:* ${service || 'Consulta general'}\n\n*Mensaje:*\n${message}`);
+  window.open(`https://wa.me/573145596767?text=${text}`, '_blank');
+
+  btn.textContent = '✓ Mensaje enviado';
+  btn.style.background = 'var(--green)';
+  setTimeout(() => {
+    btn.innerHTML = 'Enviar mensaje <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>';
+    btn.style.background = '';
+    e.target.reset();
+  }, 3000);
+}
+
+// Staggered gallery items
+document.querySelectorAll('.gallery-item').forEach((item, i) => {
+  item.style.transitionDelay = `${i * 0.06}s`;
+  item.classList.add('reveal');
+  revealObserver.observe(item);
+});
+</script>
+</body>
+</html>
