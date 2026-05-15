@@ -287,8 +287,8 @@ nav.scrolled { background: rgba(4,9,15,.92); backdrop-filter: blur(20px); border
 .clients-track { display: flex; width: max-content; animation: clientsTicker 32s linear infinite; align-items: center; }
 .clients-track:hover { animation-play-state: paused; }
 @keyframes clientsTicker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-.client-logo-item { display: flex; align-items: center; justify-content: center; padding: 10px 28px; flex-shrink: 0; margin: 0 6px; background: rgba(255,255,255,.07); border-radius: 10px; }
-.client-logo-item img { max-height: 70px; max-width: 180px; width: auto; height: auto; object-fit: contain; opacity: .88; transition: transform .35s, opacity .35s; }
+.client-logo-item { display: flex; align-items: center; justify-content: center; padding: 12px 44px; flex-shrink: 0; }
+.client-logo-item img { max-height: 70px; max-width: 180px; width: auto; height: auto; object-fit: contain; filter: brightness(0) invert(1); opacity: .75; transition: transform .35s, opacity .35s; }
 .client-logo-item:hover img { transform: scale(1.06); opacity: 1; }
 
 /* LIGHTBOX */
@@ -867,9 +867,9 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 3
     </div>
   </div>
   <div style="text-align:center;margin-top:36px;" class="reveal">
-    <a href="portafolio.html" class="btn-outline" style="display:inline-flex;">
+    <a href="portafolio.html" class="btn-primary">
       Ver portafolio completo
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="margin-left:8px"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>
   </div>
 </section>

@@ -69,7 +69,8 @@ h1 {
 .section ul li:last-child { border-bottom: none; }
 .section ul li::before { content: '—'; color: var(--gold); flex-shrink: 0; }
 
-.cookie-table { width: 100%; border-collapse: collapse; margin-top: 12px; }
+.cookie-table-wrap { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; margin-top: 12px; }
+.cookie-table { width: 100%; border-collapse: collapse; min-width: 420px; }
 .cookie-table th, .cookie-table td {
   text-align: left; padding: 10px 12px; font-size: .83rem;
   border-bottom: 1px solid rgba(255,255,255,.05);
@@ -195,25 +196,27 @@ footer p { font-size: .75rem; color: var(--muted); }
   <div class="section">
     <h2>8. Política de Cookies</h2>
     <p>Este sitio web es una página estática que <strong>no utiliza cookies de seguimiento, publicidad ni analíticas de terceros</strong>. Las únicas conexiones externas que se realizan son:</p>
-    <table class="cookie-table">
-      <thead>
-        <tr><th>Origen</th><th>Finalidad</th><th>Tipo</th><th>Duración</th></tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Google Fonts (fonts.googleapis.com)</td>
-          <td>Cargar tipografías del sitio</td>
-          <td>Técnica</td>
-          <td>Sesión</td>
-        </tr>
-        <tr>
-          <td>Formspree (formspree.io)</td>
-          <td>Envío del formulario de contacto</td>
-          <td>Funcional</td>
-          <td>Sesión</td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="cookie-table-wrap">
+      <table class="cookie-table">
+        <thead>
+          <tr><th>Origen</th><th>Finalidad</th><th>Tipo</th><th>Duración</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Google Fonts (fonts.googleapis.com)</td>
+            <td>Cargar tipografías del sitio</td>
+            <td>Técnica</td>
+            <td>Sesión</td>
+          </tr>
+          <tr>
+            <td>Formspree (formspree.io)</td>
+            <td>Envío del formulario de contacto</td>
+            <td>Funcional</td>
+            <td>Sesión</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
     <p style="margin-top:14px;">No instalamos cookies en su dispositivo. La solicitud a Google Fonts puede generar registros en los servidores de Google de acuerdo con su propia política de privacidad.</p>
   </div>
 
