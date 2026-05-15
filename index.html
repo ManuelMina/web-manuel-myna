@@ -428,15 +428,14 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 3
 @media (max-width: 768px) {
   .nav-links, .nav-cta { display: none; }
   .nav-menu-btn { display: flex; }
-  .nav-logo-name { display: none; }
   section { padding: 72px 5%; }
   .hero-stats { flex-direction: column; width: 100%; max-width: 280px; }
   .hero-stat { border-right: none; border-bottom: 1px solid var(--border); }
   .hero-stat:last-child { border-bottom: none; }
   .services-grid { grid-template-columns: 1fr; }
-  .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
-  .gallery-item:first-child { grid-column: span 2; }
-  .gallery-item:last-child { grid-column: span 2; }
+  #galeria { padding: 48px 5%; }
+  .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; gap: 6px; }
+  .gallery-item:first-child, .gallery-item:last-child { grid-column: span 1; }
   .contact-inner { grid-template-columns: 1fr; gap: 48px; }
   .about-stats { grid-template-columns: repeat(2,1fr); }
   .footer-inner { flex-direction: column; align-items: center; text-align: center; }
@@ -446,8 +445,7 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 3
 @media (max-width: 500px) {
   .hero-name { font-size: 3rem; }
   .hero-btns { flex-direction: column; align-items: center; }
-  .gallery-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
-  .gallery-item:first-child, .gallery-item:last-child { grid-column: span 1; }
+  .gallery-grid { grid-template-columns: 1fr 1fr; }
 }
 </style>
 </head>
@@ -475,22 +473,22 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 3
 <!-- HERO -->
 <section id="hero">
   <div class="hero-collage" aria-hidden="true">
-    <div class="hero-collage-cell"><img src="assets/Trabajo/Solar/SO1.png" alt=""></div>
-    <div class="hero-collage-cell"><img src="assets/Trabajo/Ev/EV1.png" alt=""></div>
-    <div class="hero-collage-cell"><img src="assets/Trabajo/Electricidad/EL1.png" alt=""></div>
-    <div class="hero-collage-cell"><img src="assets/Trabajo/Solar/SO2.png" alt=""></div>
-    <div class="hero-collage-cell"><img src="assets/Trabajo/Ev/EV2.png" alt=""></div>
-    <div class="hero-collage-cell"><img src="assets/Trabajo/Solar/SO3.png" alt=""></div>
-    <div class="hero-collage-cell"><img src="assets/Trabajo/Electricidad/EL2.png" alt=""></div>
-    <div class="hero-collage-cell"><img src="assets/Trabajo/Ev/EV3.png" alt=""></div>
-    <div class="hero-collage-cell"><img src="assets/Trabajo/Solar/SO4.png" alt=""></div>
-    <div class="hero-collage-cell"><img src="assets/Trabajo/Electricidad/EL3.png" alt=""></div>
-    <div class="hero-collage-cell"><img src="assets/Trabajo/Ev/EV4.png" alt=""></div>
-    <div class="hero-collage-cell"><img src="assets/Trabajo/Pantallas/PA1.png" alt=""></div>
-    <div class="hero-collage-cell"><img src="assets/Trabajo/Civil/CV1.png" alt=""></div>
-    <div class="hero-collage-cell"><img src="assets/Trabajo/Solar/SO5.png" alt=""></div>
-    <div class="hero-collage-cell"><img src="assets/Trabajo/Ev/EV5.png" alt=""></div>
-    <div class="hero-collage-cell"><img src="assets/Trabajo/Electricidad/EL4.png" alt=""></div>
+    <div class="hero-collage-cell"><img src="assets/Trabajo/Solar/SO1.png" alt="" decoding="async" fetchpriority="low"></div>
+    <div class="hero-collage-cell"></div>
+    <div class="hero-collage-cell"><img src="assets/Trabajo/Ev/EV1.png" alt="" decoding="async" fetchpriority="low"></div>
+    <div class="hero-collage-cell"></div>
+    <div class="hero-collage-cell"></div>
+    <div class="hero-collage-cell"><img src="assets/Trabajo/Electricidad/EL1.png" alt="" decoding="async" fetchpriority="low"></div>
+    <div class="hero-collage-cell"></div>
+    <div class="hero-collage-cell"><img src="assets/Trabajo/Solar/SO2.png" alt="" decoding="async" fetchpriority="low"></div>
+    <div class="hero-collage-cell"><img src="assets/Trabajo/Ev/EV2.png" alt="" decoding="async" fetchpriority="low"></div>
+    <div class="hero-collage-cell"></div>
+    <div class="hero-collage-cell"><img src="assets/Trabajo/Solar/SO3.png" alt="" decoding="async" fetchpriority="low"></div>
+    <div class="hero-collage-cell"></div>
+    <div class="hero-collage-cell"></div>
+    <div class="hero-collage-cell"><img src="assets/Trabajo/Electricidad/EL2.png" alt="" decoding="async" fetchpriority="low"></div>
+    <div class="hero-collage-cell"></div>
+    <div class="hero-collage-cell"><img src="assets/Trabajo/Ev/EV3.png" alt="" decoding="async" fetchpriority="low"></div>
   </div>
   <div class="hero-collage-overlay"></div>
   <div class="hero-glow"></div>
