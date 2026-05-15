@@ -69,9 +69,11 @@ nav {
   border-bottom: 1px solid transparent;
 }
 nav.scrolled { background: rgba(4,9,15,.92); backdrop-filter: blur(20px); border-bottom-color: var(--border); }
-.nav-logo { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; display: flex; align-items: baseline; gap: 10px; }
-.nav-logo em { font-style: normal; color: var(--gold); }
-.nav-logo-name { font-family: 'Inter', sans-serif; font-size: .72rem; font-weight: 400; color: var(--text2); letter-spacing: .04em; border-left: 1px solid var(--border); padding-left: 10px; align-self: center; white-space: nowrap; }
+.nav-logo { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 0; }
+.nav-vm { letter-spacing: -.02em; }
+.nav-vm em { font-style: normal; color: var(--gold); }
+.nav-logo-name { font-family: 'Inter', sans-serif; font-size: .72rem; font-weight: 400; color: var(--text2); letter-spacing: .04em; border-left: 1px solid var(--border); padding-left: 12px; margin-left: 12px; white-space: nowrap; }
+.nav-logo-name em { font-style: normal; color: var(--gold); }
 .nav-links { display: flex; gap: 36px; list-style: none; }
 .nav-links a { font-size: .8rem; font-weight: 500; letter-spacing: .05em; color: var(--muted); transition: color .3s; }
 .nav-links a:hover { color: var(--text); }
@@ -96,7 +98,7 @@ nav.scrolled { background: rgba(4,9,15,.92); backdrop-filter: blur(20px); border
 .hero-collage-cell img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1); display: block; }
 .hero-collage-overlay {
   position: absolute; inset: 0;
-  background: linear-gradient(160deg, rgba(4,9,15,.82) 0%, rgba(4,9,15,.72) 50%, rgba(4,9,15,.88) 100%);
+  background: linear-gradient(160deg, rgba(4,9,15,.91) 0%, rgba(4,9,15,.85) 50%, rgba(4,9,15,.93) 100%);
 }
 .hero-glow {
   position: absolute; width: 700px; height: 700px;
@@ -274,9 +276,9 @@ nav.scrolled { background: rgba(4,9,15,.92); backdrop-filter: blur(20px); border
 .process-step-desc { font-size: .93rem; color: var(--muted); line-height: 1.68; }
 
 /* CLIENTS */
-#clientes { padding: 70px 0; background: var(--bg); overflow: hidden; }
-.clients-header { max-width: 1200px; margin: 0 auto 44px; padding: 0 5%; }
-.clients-ticker { position: relative; overflow: hidden; padding: 10px 0; }
+#clientes { padding: 44px 0; background: var(--bg); overflow: hidden; }
+.clients-header { max-width: 1200px; margin: 0 auto 32px; padding: 0 5%; }
+.clients-ticker { position: relative; overflow: hidden; padding: 6px 0; }
 .clients-ticker::before, .clients-ticker::after {
   content: ''; position: absolute; top: 0; bottom: 0; width: 140px; z-index: 2; pointer-events: none;
 }
@@ -285,10 +287,9 @@ nav.scrolled { background: rgba(4,9,15,.92); backdrop-filter: blur(20px); border
 .clients-track { display: flex; width: max-content; animation: clientsTicker 32s linear infinite; align-items: center; }
 .clients-track:hover { animation-play-state: paused; }
 @keyframes clientsTicker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-.client-logo-item { display: flex; align-items: center; justify-content: center; padding: 16px 44px; flex-shrink: 0; }
-.client-logo-item img { max-height: 65px; max-width: 190px; width: auto; height: auto; object-fit: contain; transition: transform .35s; }
-.client-logo-item:hover img { transform: scale(1.08); }
-.client-logo-item.centronet img { filter: brightness(0) invert(1); }
+.client-logo-item { display: flex; align-items: center; justify-content: center; padding: 12px 40px; flex-shrink: 0; }
+.client-logo-item img { max-height: 65px; max-width: 190px; width: auto; height: auto; object-fit: contain; filter: brightness(0) invert(1); opacity: .75; transition: transform .35s, opacity .35s; }
+.client-logo-item:hover img { transform: scale(1.08); opacity: 1; }
 
 /* LIGHTBOX */
 #lightbox {
@@ -415,7 +416,7 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 3
 .footer-links { display: flex; gap: 22px; }
 .footer-links a { font-size: .76rem; color: var(--muted); transition: color .3s; letter-spacing: .04em; }
 .footer-links a:hover { color: var(--gold); }
-.footer-copy { font-size: .72rem; color: #2A4058; }
+.footer-copy { font-size: .72rem; color: var(--muted); }
 
 /* RESPONSIVE */
 @media (max-width: 1024px) {
@@ -427,18 +428,19 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 3
 @media (max-width: 768px) {
   .nav-links, .nav-cta { display: none; }
   .nav-menu-btn { display: flex; }
+  .nav-logo-name { display: none; }
   section { padding: 72px 5%; }
   .hero-stats { flex-direction: column; width: 100%; max-width: 280px; }
   .hero-stat { border-right: none; border-bottom: 1px solid var(--border); }
   .hero-stat:last-child { border-bottom: none; }
   .services-grid { grid-template-columns: 1fr; }
-  .clients-grid { grid-template-columns: repeat(2,1fr); gap: 20px 24px; }
   .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
   .gallery-item:first-child { grid-column: span 2; }
   .gallery-item:last-child { grid-column: span 2; }
   .contact-inner { grid-template-columns: 1fr; gap: 48px; }
   .about-stats { grid-template-columns: repeat(2,1fr); }
-  .footer-inner { flex-direction: column; text-align: center; }
+  .footer-inner { flex-direction: column; align-items: center; text-align: center; }
+  .footer-links { flex-wrap: wrap; justify-content: center; gap: 14px 20px; }
   .form-row { grid-template-columns: 1fr; }
 }
 @media (max-width: 500px) {
@@ -453,7 +455,7 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 3
 
 <!-- NAV -->
 <nav id="nav">
-  <a href="#hero" class="nav-logo">V<em>M</em><span class="nav-logo-name">Victor Manuel Mina</span></a>
+  <a href="#hero" class="nav-logo"><span class="nav-vm">V<em>M</em></span><span class="nav-logo-name">Victor <em>Manuel</em> Mina · Dinastel S.A.S.</span></a>
   <ul class="nav-links">
     <li><a href="#sobre-mi">Perfil</a></li>
     <li><a href="#servicios">Servicios</a></li>
@@ -473,22 +475,22 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 3
 <!-- HERO -->
 <section id="hero">
   <div class="hero-collage" aria-hidden="true">
-    <div class="hero-collage-cell"><img src="assets/Trabajo/Solar/t2.jpeg" alt=""></div>
-    <div class="hero-collage-cell"><img src="assets/Trabajo/Solar/978b7176-4784-4ad4-bd95-ed061f9d3fc9.JPG" alt=""></div>
-    <div class="hero-collage-cell"><img src="assets/Trabajo/Solar/5bb1bb84-8854-4214-b495-13ea7a3e03c9.JPG" alt=""></div>
-    <div class="hero-collage-cell"><img src="assets/Trabajo/Ev/f45ce4f2-d9d0-4412-a62c-c0b570f5a5df.JPG" alt=""></div>
-    <div class="hero-collage-cell"><img src="assets/Trabajo/Pantallas/92D3B034-E016-43A8-80AC-D1D63DBCD4B1.JPG" alt=""></div>
-    <div class="hero-collage-cell"><img src="assets/Trabajo/Solar/t2.jpeg" alt=""></div>
-    <div class="hero-collage-cell"><img src="assets/Trabajo/Solar/978b7176-4784-4ad4-bd95-ed061f9d3fc9.JPG" alt=""></div>
-    <div class="hero-collage-cell"><img src="assets/Trabajo/Solar/5bb1bb84-8854-4214-b495-13ea7a3e03c9.JPG" alt=""></div>
-    <div class="hero-collage-cell"><img src="assets/Trabajo/Ev/f45ce4f2-d9d0-4412-a62c-c0b570f5a5df.JPG" alt=""></div>
-    <div class="hero-collage-cell"><img src="assets/Trabajo/Pantallas/92D3B034-E016-43A8-80AC-D1D63DBCD4B1.JPG" alt=""></div>
-    <div class="hero-collage-cell"><img src="assets/Trabajo/Solar/t2.jpeg" alt=""></div>
-    <div class="hero-collage-cell"><img src="assets/Trabajo/Solar/5bb1bb84-8854-4214-b495-13ea7a3e03c9.JPG" alt=""></div>
-    <div class="hero-collage-cell"><img src="assets/Trabajo/Ev/f45ce4f2-d9d0-4412-a62c-c0b570f5a5df.JPG" alt=""></div>
-    <div class="hero-collage-cell"><img src="assets/Trabajo/Solar/978b7176-4784-4ad4-bd95-ed061f9d3fc9.JPG" alt=""></div>
-    <div class="hero-collage-cell"><img src="assets/Trabajo/Pantallas/92D3B034-E016-43A8-80AC-D1D63DBCD4B1.JPG" alt=""></div>
-    <div class="hero-collage-cell"><img src="assets/Trabajo/Solar/t2.jpeg" alt=""></div>
+    <div class="hero-collage-cell"><img src="assets/Trabajo/Solar/SO1.png" alt=""></div>
+    <div class="hero-collage-cell"><img src="assets/Trabajo/Ev/EV1.png" alt=""></div>
+    <div class="hero-collage-cell"><img src="assets/Trabajo/Electricidad/EL1.png" alt=""></div>
+    <div class="hero-collage-cell"><img src="assets/Trabajo/Solar/SO2.png" alt=""></div>
+    <div class="hero-collage-cell"><img src="assets/Trabajo/Ev/EV2.png" alt=""></div>
+    <div class="hero-collage-cell"><img src="assets/Trabajo/Solar/SO3.png" alt=""></div>
+    <div class="hero-collage-cell"><img src="assets/Trabajo/Electricidad/EL2.png" alt=""></div>
+    <div class="hero-collage-cell"><img src="assets/Trabajo/Ev/EV3.png" alt=""></div>
+    <div class="hero-collage-cell"><img src="assets/Trabajo/Solar/SO4.png" alt=""></div>
+    <div class="hero-collage-cell"><img src="assets/Trabajo/Electricidad/EL3.png" alt=""></div>
+    <div class="hero-collage-cell"><img src="assets/Trabajo/Ev/EV4.png" alt=""></div>
+    <div class="hero-collage-cell"><img src="assets/Trabajo/Pantallas/PA1.png" alt=""></div>
+    <div class="hero-collage-cell"><img src="assets/Trabajo/Civil/CV1.png" alt=""></div>
+    <div class="hero-collage-cell"><img src="assets/Trabajo/Solar/SO5.png" alt=""></div>
+    <div class="hero-collage-cell"><img src="assets/Trabajo/Ev/EV5.png" alt=""></div>
+    <div class="hero-collage-cell"><img src="assets/Trabajo/Electricidad/EL4.png" alt=""></div>
   </div>
   <div class="hero-collage-overlay"></div>
   <div class="hero-glow"></div>
@@ -805,7 +807,7 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 3
       <div class="client-logo-item"><img src="assets/Logos empresas/VATIA.png" alt="Vatia"></div>
       <div class="client-logo-item"><img src="assets/Logos empresas/ABASTE.png" alt="Abaste Colombia"></div>
       <div class="client-logo-item"><img src="assets/Logos empresas/DELTEC.png" alt="Deltec"></div>
-      <div class="client-logo-item centronet"><img src="assets/Logos empresas/CENTRONET.png" alt="Centronet"></div>
+      <div class="client-logo-item"><img src="assets/Logos empresas/CENTRONET.png" alt="Centronet"></div>
       <div class="client-logo-item"><img src="assets/Logos empresas/APC.png" alt="APC Frigoríficos"></div>
       <div class="client-logo-item"><img src="assets/Logos empresas/AMERIPLAST.jpg" alt="Ameriplast"></div>
       <div class="client-logo-item"><img src="assets/Logos empresas/ICOBANDAS.png" alt="Icobandas"></div>
@@ -818,7 +820,7 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 3
       <div class="client-logo-item"><img src="assets/Logos empresas/VATIA.png" alt="Vatia"></div>
       <div class="client-logo-item"><img src="assets/Logos empresas/ABASTE.png" alt="Abaste Colombia"></div>
       <div class="client-logo-item"><img src="assets/Logos empresas/DELTEC.png" alt="Deltec"></div>
-      <div class="client-logo-item centronet"><img src="assets/Logos empresas/CENTRONET.png" alt="Centronet"></div>
+      <div class="client-logo-item"><img src="assets/Logos empresas/CENTRONET.png" alt="Centronet"></div>
       <div class="client-logo-item"><img src="assets/Logos empresas/APC.png" alt="APC Frigoríficos"></div>
       <div class="client-logo-item"><img src="assets/Logos empresas/AMERIPLAST.jpg" alt="Ameriplast"></div>
       <div class="client-logo-item"><img src="assets/Logos empresas/ICOBANDAS.png" alt="Icobandas"></div>
@@ -840,27 +842,27 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 3
   </div>
   <div class="gallery-grid">
     <div class="gallery-item reveal" style="transition-delay:.04s" onclick="openLb(0)">
-      <img src="assets/Trabajo/Solar/t2.jpeg" alt="Sistema solar" onerror="this.parentElement.style.background='var(--bg3)'">
+      <img src="assets/Trabajo/Solar/SO1.png" alt="Sistema solar" onerror="this.parentElement.style.background='var(--bg3)'">
       <div class="gallery-overlay"><span>Sistema Solar</span></div>
     </div>
     <div class="gallery-item reveal" style="transition-delay:.09s" onclick="openLb(1)">
-      <img src="assets/Trabajo/Solar/978b7176-4784-4ad4-bd95-ed061f9d3fc9.JPG" alt="Sistema solar" onerror="this.parentElement.style.background='var(--bg3)'">
-      <div class="gallery-overlay"><span>Energía Solar</span></div>
-    </div>
-    <div class="gallery-item reveal" style="transition-delay:.13s" onclick="openLb(2)">
-      <img src="assets/Trabajo/Solar/5bb1bb84-8854-4214-b495-13ea7a3e03c9.JPG" alt="Instalación solar" onerror="this.parentElement.style.background='var(--bg3)'">
-      <div class="gallery-overlay"><span>Instalación Solar</span></div>
-    </div>
-    <div class="gallery-item reveal" style="transition-delay:.17s" onclick="openLb(3)">
-      <img src="assets/Trabajo/Ev/f45ce4f2-d9d0-4412-a62c-c0b570f5a5df.JPG" alt="Cargador EV" onerror="this.parentElement.style.background='var(--bg3)'">
+      <img src="assets/Trabajo/Ev/EV1.png" alt="Cargador EV" onerror="this.parentElement.style.background='var(--bg3)'">
       <div class="gallery-overlay"><span>Cargador EV</span></div>
     </div>
-    <div class="gallery-item reveal" style="transition-delay:.21s" onclick="openLb(4)">
-      <img src="assets/Trabajo/Pantallas/92D3B034-E016-43A8-80AC-D1D63DBCD4B1.JPG" alt="Señalización LED" onerror="this.parentElement.style.background='var(--bg3)'">
-      <div class="gallery-overlay"><span>Pantallas LED</span></div>
+    <div class="gallery-item reveal" style="transition-delay:.13s" onclick="openLb(2)">
+      <img src="assets/Trabajo/Electricidad/EL1.png" alt="Instalación eléctrica" onerror="this.parentElement.style.background='var(--bg3)'">
+      <div class="gallery-overlay"><span>Instalación Eléctrica</span></div>
     </div>
-    <div class="gallery-item reveal" style="transition-delay:.25s" onclick="openLb(0)">
-      <img src="assets/Trabajo/Solar/t2.jpeg" alt="Proyecto solar" onerror="this.parentElement.style.background='var(--bg3)'">
+    <div class="gallery-item reveal" style="transition-delay:.17s" onclick="openLb(3)">
+      <img src="assets/Trabajo/Solar/SO3.png" alt="Energía solar" onerror="this.parentElement.style.background='var(--bg3)'">
+      <div class="gallery-overlay"><span>Energía Solar</span></div>
+    </div>
+    <div class="gallery-item reveal" style="transition-delay:.21s" onclick="openLb(4)">
+      <img src="assets/Trabajo/Ev/EV2.png" alt="Infraestructura EV" onerror="this.parentElement.style.background='var(--bg3)'">
+      <div class="gallery-overlay"><span>Infraestructura EV</span></div>
+    </div>
+    <div class="gallery-item reveal" style="transition-delay:.25s" onclick="openLb(5)">
+      <img src="assets/Trabajo/Pantallas/PA1.png" alt="Señalización LED" onerror="this.parentElement.style.background='var(--bg3)'">
       <div class="gallery-overlay"><span>Ver portafolio completo →</span></div>
     </div>
   </div>
@@ -896,7 +898,7 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 3
         <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.852L0 24l6.335-1.51A11.955 11.955 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.002-1.367l-.36-.214-3.76.896.944-3.658-.235-.374A9.818 9.818 0 1112 21.818z"/></svg>
         <div class="contact-wa-txt">
           <strong>WhatsApp directo</strong>
-          <span>+57 314 556 9567</span>
+          <span>Escríbeme ahora</span>
         </div>
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" style="margin-left:auto"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
@@ -1037,21 +1039,12 @@ document.querySelectorAll('[data-target]').forEach(el => counterObs.observe(el))
 
 // ── Galería lightbox ──────────────────────────────────────────────
 const lbData = [
-  { src: 'assets/Trabajo/Solar/t2.jpeg',
-    title: 'Sistema Solar Fotovoltaico',
-    desc: 'Instalación solar residencial — Cali, Valle del Cauca' },
-  { src: 'assets/Trabajo/Solar/978b7176-4784-4ad4-bd95-ed061f9d3fc9.JPG',
-    title: 'Energía Solar Fotovoltaica',
-    desc: 'Proyecto solar comercial · +5.5 MWp ejecutados' },
-  { src: 'assets/Trabajo/Solar/5bb1bb84-8854-4214-b495-13ea7a3e03c9.JPG',
-    title: 'Instalación Solar',
-    desc: 'Montaje e ingeniería de paneles solares — Valle del Cauca' },
-  { src: 'assets/Trabajo/Ev/f45ce4f2-d9d0-4412-a62c-c0b570f5a5df.JPG',
-    title: 'Cargador Eléctrico Vehicular',
-    desc: 'Infraestructura EV certificada RETIE · Level 2' },
-  { src: 'assets/Trabajo/Pantallas/92D3B034-E016-43A8-80AC-D1D63DBCD4B1.JPG',
-    title: 'Señalización LED',
-    desc: 'Instalación de pantallas LED y señalización digital' },
+  { src: 'assets/Trabajo/Solar/SO1.png',        title: 'Sistema Solar Fotovoltaico',    desc: 'Instalación solar residencial — Cali, Valle del Cauca' },
+  { src: 'assets/Trabajo/Ev/EV1.png',            title: 'Cargador Eléctrico Vehicular',  desc: 'Infraestructura EV certificada RETIE · Level 2' },
+  { src: 'assets/Trabajo/Electricidad/EL1.png',  title: 'Instalación Eléctrica',         desc: 'Infraestructura eléctrica certificada RETIE — Cali' },
+  { src: 'assets/Trabajo/Solar/SO3.png',         title: 'Energía Solar Fotovoltaica',    desc: 'Proyecto solar — +5.5 MWp ejecutados en el Valle del Cauca' },
+  { src: 'assets/Trabajo/Ev/EV2.png',            title: 'Infraestructura EV',            desc: 'Cargadores vehiculares Level 2 — solución residencial y comercial' },
+  { src: 'assets/Trabajo/Pantallas/PA1.png',     title: 'Señalización LED',              desc: 'Instalación de pantallas LED y señalización digital' },
 ];
 let lbIdx = 0;
 const lbEl    = document.getElementById('lightbox');
@@ -1117,6 +1110,7 @@ window.addEventListener('scroll', () => {
 (function() {
   if (localStorage.getItem('cookie_consent')) return;
   const b = document.createElement('div');
+  b.id = 'ck-banner';
   Object.assign(b.style, {
     position:'fixed', bottom:0, left:0, right:0, zIndex:'9999',
     background:'rgba(7,17,28,.97)', borderTop:'1px solid rgba(200,144,16,.14)',
@@ -1130,8 +1124,8 @@ window.addEventListener('scroll', () => {
       <a href="politica-privacidad.html" style="color:#C89010">Política de privacidad</a>
     </p>
     <div style="display:flex;gap:10px;flex-shrink:0">
-      <button onclick="localStorage.setItem('cookie_consent','accepted');this.closest('div').remove()" style="padding:9px 22px;background:#C89010;color:#000;border:none;border-radius:8px;font-weight:700;font-size:.76rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer">Aceptar</button>
-      <button onclick="localStorage.setItem('cookie_consent','rejected');this.closest('div').remove()" style="padding:9px 22px;background:transparent;color:#6A8598;border:1px solid rgba(200,144,16,.14);border-radius:8px;font-weight:600;font-size:.76rem;cursor:pointer">Solo esenciales</button>
+      <button onclick="localStorage.setItem('cookie_consent','accepted');document.getElementById('ck-banner').remove()" style="padding:9px 22px;background:#C89010;color:#000;border:none;border-radius:8px;font-weight:700;font-size:.76rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer">Aceptar</button>
+      <button onclick="localStorage.setItem('cookie_consent','rejected');document.getElementById('ck-banner').remove()" style="padding:9px 22px;background:transparent;color:#6A8598;border:1px solid rgba(200,144,16,.14);border-radius:8px;font-weight:600;font-size:.76rem;cursor:pointer">Solo esenciales</button>
     </div>`;
   document.body.appendChild(b);
 })();

@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portafolio — Victor Manuel Mina · Dinastel S.A.S.</title>
+<meta name="description" content="Portafolio de proyectos de ingeniería eléctrica, energía solar, cargadores EV e instalaciones en Cali y el Valle del Cauca. Victor Manuel Mina — Dinastel S.A.S.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #04090F; --bg2: #07111C; --bg3: #0C1B28; --card: #08131E;
+  --gold: #C89010; --gold2: #E4AD2A; --gold3: rgba(200,144,16,.12);
+  --text: #EEF2F7; --text2: #B4C8D8; --muted: #6A8598;
+  --border: rgba(200,144,16,.14); --border2: rgba(255,255,255,.05);
+  --r: 16px; --r2: 8px; --ease: cubic-bezier(.25,.1,.25,1);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.65; overflow-x: hidden; }
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+
+/* REVEAL */
+.reveal, .reveal-up {
+  opacity: 0; transition: opacity .6s var(--ease), transform .6s var(--ease);
+}
+.reveal { transform: translateY(22px); }
+.reveal-up { transform: translateY(32px); }
+.reveal.visible, .reveal-up.visible { opacity: 1; transform: none; }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 5%; height: 72px;
+  background: rgba(4,9,15,.95); backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 0; }
+.nav-vm { letter-spacing: -.02em; }
+.nav-vm em { font-style: normal; color: var(--gold); }
+.nav-logo-name { font-family: 'Inter', sans-serif; font-size: .72rem; font-weight: 400; color: var(--text2); letter-spacing: .04em; border-left: 1px solid var(--border); padding-left: 12px; margin-left: 12px; white-space: nowrap; }
+.nav-logo-name em { font-style: normal; color: var(--gold); }
+.nav-back {
+  display: flex; align-items: center; gap: 8px;
+  font-size: .78rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
+  color: var(--muted); transition: color .3s;
+}
+.nav-back:hover { color: var(--gold); }
+.nav-cta {
+  font-size: .75rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  padding: 9px 22px; border-radius: 3px; background: var(--gold); color: #000;
+  transition: background .3s; display: none;
+}
+@media (min-width: 640px) { .nav-cta { display: inline-block; } }
+.nav-cta:hover { background: var(--gold2); }
+
+/* HERO SECTION */
+#port-hero {
+  padding: 140px 5% 70px;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+}
+.port-hero-inner { max-width: 1200px; margin: 0 auto; }
+.section-label {
+  font-size: .7rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--gold); display: flex; align-items: center; gap: 10px; margin-bottom: 16px;
+}
+.section-label::before { content: ''; width: 28px; height: 1px; background: var(--gold); }
+.port-hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 5vw, 3.4rem); font-weight: 900;
+  line-height: 1.1; color: var(--text); margin-bottom: 16px;
+}
+.port-hero-title em { font-style: normal; color: var(--gold); }
+.port-hero-desc { font-size: .95rem; color: var(--muted); max-width: 580px; line-height: 1.8; margin-bottom: 36px; }
+.port-stats { display: flex; gap: 0; border: 1px solid var(--border); border-radius: var(--r2); overflow: hidden; width: fit-content; }
+.port-stat { padding: 14px 28px; text-align: center; border-right: 1px solid var(--border); background: rgba(200,144,16,.03); }
+.port-stat:last-child { border-right: none; }
+.port-stat-num { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--gold); display: block; line-height: 1.1; }
+.port-stat-label { font-size: .66rem; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; margin-top: 3px; }
+
+/* CATEGORY TABS */
+.port-tabs {
+  position: sticky; top: 72px; z-index: 50;
+  background: rgba(4,9,15,.96); backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border); overflow-x: auto;
+}
+.port-tabs-inner { display: flex; max-width: 1200px; margin: 0 auto; padding: 0 5%; }
+.port-tab {
+  padding: 16px 22px; font-size: .75rem; font-weight: 600; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--muted); cursor: pointer;
+  border-bottom: 2px solid transparent; white-space: nowrap;
+  transition: color .3s, border-color .3s;
+}
+.port-tab:hover { color: var(--text2); }
+.port-tab.active { color: var(--gold); border-bottom-color: var(--gold); }
+
+/* CATEGORY SECTIONS */
+.port-section { padding: 72px 5%; }
+.port-section:nth-child(even) { background: var(--bg2); }
+.port-section-inner { max-width: 1200px; margin: 0 auto; }
+.port-cat-header { margin-bottom: 40px; display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+.port-cat-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700;
+  color: var(--text); line-height: 1.2;
+}
+.port-cat-count { font-size: .75rem; color: var(--muted); letter-spacing: .08em; padding: 5px 12px; border: 1px solid var(--border); border-radius: 3px; }
+
+/* PHOTO GRID */
+.port-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 10px;
+}
+.port-item {
+  position: relative; overflow: hidden; border-radius: var(--r2);
+  background: var(--bg3); cursor: pointer;
+  aspect-ratio: 4/3;
+}
+.port-item img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s var(--ease); display: block; }
+.port-item:hover img { transform: scale(1.06); }
+.port-item-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(4,9,15,.75) 0%, transparent 55%);
+  opacity: 0; transition: opacity .35s;
+  display: flex; align-items: flex-end; padding: 14px 16px;
+}
+.port-item:hover .port-item-overlay { opacity: 1; }
+.port-item-overlay span {
+  font-size: .68rem; font-weight: 700; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--gold);
+}
+
+/* LIGHTBOX */
+#lightbox {
+  display: none; position: fixed; inset: 0; z-index: 999;
+  background: rgba(0,0,0,.94); backdrop-filter: blur(16px);
+  align-items: center; justify-content: center;
+}
+#lightbox.open { display: flex; }
+#lightbox .lb-img {
+  max-width: min(88vw, 1100px); max-height: 82vh;
+  object-fit: contain; border-radius: var(--r2);
+  box-shadow: 0 40px 100px rgba(0,0,0,.8);
+  user-select: none; display: block;
+}
+.lb-btn {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  background: rgba(200,144,16,.12); border: 1px solid var(--border);
+  color: var(--gold); width: 52px; height: 52px; border-radius: 50%;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  transition: background .25s; z-index: 3; font-size: 1.3rem;
+}
+.lb-btn:hover { background: rgba(200,144,16,.32); }
+#lb-prev { left: 20px; }
+#lb-next { right: 20px; }
+#lb-close {
+  position: absolute; top: 18px; right: 20px;
+  background: none; border: none; color: var(--muted); cursor: pointer;
+  font-size: 2rem; line-height: 1; padding: 8px; transition: color .25s; z-index: 3;
+}
+#lb-close:hover { color: var(--text); }
+.lb-caption {
+  position: absolute; bottom: 52px; left: 50%; transform: translateX(-50%);
+  text-align: center; width: 90%; max-width: 680px; pointer-events: none;
+}
+.lb-caption strong { display: block; font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: 3px; }
+.lb-caption span { font-size: .78rem; color: var(--text2); letter-spacing: .04em; }
+.lb-counter {
+  position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
+  font-size: .65rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--muted);
+}
+
+/* CTA SECTION */
+.port-cta {
+  padding: 80px 5%; background: var(--bg); text-align: center;
+  border-top: 1px solid var(--border);
+}
+.port-cta h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 700; margin-bottom: 14px; }
+.port-cta p { font-size: .95rem; color: var(--muted); max-width: 480px; margin: 0 auto 32px; line-height: 1.8; }
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 28px; background: var(--gold); color: #000;
+  font-weight: 700; font-size: .8rem; letter-spacing: .08em; text-transform: uppercase;
+  border-radius: 3px; transition: background .3s, transform .2s;
+}
+.btn-primary:hover { background: var(--gold2); transform: translateY(-2px); }
+.btn-outline {
+  display: inline-flex; align-items: center; gap: 10px; margin-left: 12px;
+  padding: 14px 28px; border: 1px solid var(--border);
+  color: var(--text2); font-weight: 600; font-size: .8rem;
+  letter-spacing: .08em; text-transform: uppercase; border-radius: 3px;
+  transition: border-color .3s, color .3s;
+}
+.btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+/* FOOTER */
+footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 32px 5%; }
+.footer-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+.footer-brand { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; }
+.footer-brand em { font-style: normal; color: var(--gold); }
+.footer-tagline { font-size: .72rem; color: var(--muted); margin-top: 4px; }
+.footer-copy { font-size: .72rem; color: var(--muted); }
+
+@media (max-width: 768px) {
+  .port-grid { grid-template-columns: repeat(2, 1fr); }
+  .port-stats { flex-wrap: wrap; }
+  .footer-inner { flex-direction: column; text-align: center; }
+}
+@media (max-width: 480px) {
+  .port-grid { grid-template-columns: 1fr; }
+  .lb-btn { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <span class="nav-vm">V<em>M</em></span>
+    <span class="nav-logo-name">Victor <em>Manuel</em> Mina · Dinastel S.A.S.</span>
+  </a>
+  <a href="index.html" class="nav-back">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    Volver al inicio
+  </a>
+  <a href="index.html#contacto" class="nav-cta">Cotizar proyecto</a>
+</nav>
+
+<!-- HERO -->
+<section id="port-hero">
+  <div class="port-hero-inner">
+    <div class="section-label reveal">Portafolio</div>
+    <h1 class="port-hero-title reveal" style="transition-delay:.06s">Proyectos <em>ejecutados</em></h1>
+    <p class="port-hero-desc reveal" style="transition-delay:.12s">Instalaciones reales de ingeniería eléctrica, energía solar, cargadores EV, señalización LED y obra civil en Cali y el Valle del Cauca. Cada proyecto entregado bajo normativa RETIE con garantía técnica.</p>
+    <div class="port-stats reveal" style="transition-delay:.18s">
+      <div class="port-stat"><span class="port-stat-num">+5.5 MWp</span><span class="port-stat-label">Solar ejecutado</span></div>
+      <div class="port-stat"><span class="port-stat-num">+150</span><span class="port-stat-label">Instalaciones</span></div>
+      <div class="port-stat"><span class="port-stat-num">7 años</span><span class="port-stat-label">Experiencia</span></div>
+      <div class="port-stat"><span class="port-stat-num">RETIE</span><span class="port-stat-label">Certificado</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- TABS -->
+<div class="port-tabs">
+  <div class="port-tabs-inner">
+    <div class="port-tab active" onclick="scrollTo('solar')">Solar</div>
+    <div class="port-tab" onclick="scrollTo('ev')">Cargadores EV</div>
+    <div class="port-tab" onclick="scrollTo('electrica')">Eléctrica</div>
+    <div class="port-tab" onclick="scrollTo('pantallas')">Pantallas</div>
+    <div class="port-tab" onclick="scrollTo('civil')">Obra Civil</div>
+  </div>
+</div>
+
+<!-- SOLAR -->
+<section class="port-section" id="solar">
+  <div class="port-section-inner">
+    <div class="port-cat-header reveal">
+      <div>
+        <div class="section-label">Energía renovable</div>
+        <h2 class="port-cat-title">Ingeniería Solar Fotovoltaica</h2>
+      </div>
+      <span class="port-cat-count">11 proyectos</span>
+    </div>
+    <div class="port-grid">
+      <div class="port-item reveal" style="transition-delay:.03s" onclick="openLb(0)"><img src="assets/Trabajo/Solar/SO1.png" alt="Solar 1" loading="lazy"><div class="port-item-overlay"><span>Ver foto</span></div></div>
+      <div class="port-item reveal" style="transition-delay:.06s" onclick="openLb(1)"><img src="assets/Trabajo/Solar/SO2.png" alt="Solar 2" loading="lazy"><div class="port-item-overlay"><span>Ver foto</span></div></div>
+      <div class="port-item reveal" style="transition-delay:.09s" onclick="openLb(2)"><img src="assets/Trabajo/Solar/SO3.png" alt="Solar 3" loading="lazy"><div class="port-item-overlay"><span>Ver foto</span></div></div>
+      <div class="port-item reveal" style="transition-delay:.12s" onclick="openLb(3)"><img src="assets/Trabajo/Solar/SO4.png" alt="Solar 4" loading="lazy"><div class="port-item-overlay"><span>Ver foto</span></div></div>
+      <div class="port-item reveal" style="transition-delay:.15s" onclick="openLb(4)"><img src="assets/Trabajo/Solar/SO5.png" alt="Solar 5" loading="lazy"><div class="port-item-overlay"><span>Ver foto</span></div></div>
+      <div class="port-item reveal" style="transition-delay:.18s" onclick="openLb(5)"><img src="assets/Trabajo/Solar/SO6.png" alt="Solar 6" loading="lazy"><div class="port-item-overlay"><span>Ver foto</span></div></div>
+      <div class="port-item reveal" style="transition-delay:.21s" onclick="openLb(6)"><img src="assets/Trabajo/Solar/SO7.png" alt="Solar 7" loading="lazy"><div class="port-item-overlay"><span>Ver foto</span></div></div>
+      <div class="port-item reveal" style="transition-delay:.24s" onclick="openLb(7)"><img src="assets/Trabajo/Solar/SO8.png" alt="Solar 8" loading="lazy"><div class="port-item-overlay"><span>Ver foto</span></div></div>
+      <div class="port-item reveal" style="transition-delay:.27s" onclick="openLb(8)"><img src="assets/Trabajo/Solar/SO9.png" alt="Solar 9" loading="lazy"><div class="port-item-overlay"><span>Ver foto</span></div></div>
+      <div class="port-item reveal" style="transition-delay:.30s" onclick="openLb(9)"><img src="assets/Trabajo/Solar/SO10.png" alt="Solar 10" loading="lazy"><div class="port-item-overlay"><span>Ver foto</span></div></div>
+      <div class="port-item reveal" style="transition-delay:.33s" onclick="openLb(10)"><img src="assets/Trabajo/Solar/SO11.png" alt="Solar 11" loading="lazy"><div class="port-item-overlay"><span>Ver foto</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- EV -->
+<section class="port-section" id="ev">
+  <div class="port-section-inner">
+    <div class="port-cat-header reveal">
+      <div>
+        <div class="section-label">Movilidad eléctrica</div>
+        <h2 class="port-cat-title">Cargadores Vehiculares EV</h2>
+      </div>
+      <span class="port-cat-count">19 proyectos</span>
+    </div>
+    <div class="port-grid">
+      <div class="port-item reveal" style="transition-delay:.03s" onclick="openLb(11)"><img src="assets/Trabajo/Ev/EV1.png" alt="EV 1" loading="lazy"><div class="port-item-overlay"><span>Ver foto</span></div></div>
+      <div class="port-item reveal" style="transition-delay:.06s" onclick="openLb(12)"><img src="assets/Trabajo/Ev/EV2.png" alt="EV 2" loading="lazy"><div class="port-item-overlay"><span>Ver foto</span></div></div>
+      <div class="port-item reveal" style="transition-delay:.09s" onclick="openLb(13)"><img src="assets/Trabajo/Ev/EV3.png" alt="EV 3" loading="lazy"><div class="port-item-overlay"><span>Ver foto</span></div></div>
+      <div class="port-item reveal" style="transition-delay:.12s" onclick="openLb(14)"><img src="assets/Trabajo/Ev/EV4.png" alt="EV 4" loading="lazy"><div class="port-item-overlay"><span>Ver foto</span></div></div>
+      <div class="port-item reveal" style="transition-delay:.15s" onclick="openLb(15)"><img src="assets/Trabajo/Ev/EV5.png" alt="EV 5" loading="lazy"><div class="port-item-overlay"><span>Ver foto</span></div></div>
+      <div class="port-item reveal" style="transition-delay:.18s" onclick="openLb(16)"><img src="assets/Trabajo/Ev/EV6.png" alt="EV 6" loading="lazy"><div class="port-item-overlay"><span>Ver foto</span></div></div>
+      <div class="port-item reveal" style="transition-delay:.21s" onclick="openLb(17)"><img src="assets/Trabajo/Ev/EV7.png" alt="EV 7" loading="lazy"><div class="port-item-overlay"><span>Ver foto</span></div></div>
+      <div class="port-item reveal" style="transition-delay:.24s" onclick="openLb(18)"><img src="assets/Trabajo/Ev/EV8.png" alt="EV 8" loading="lazy"><div class="port-item-overlay"><span>Ver foto</span></div></div>
+      <div class="port-item reveal" style="transition-delay:.27s" onclick="openLb(19)"><img src="assets/Trabajo/Ev/EV9.png" alt="EV 9" loading="lazy"><div class="port-item-overlay"><span>Ver foto</span></div></div>
+      <div class="port-item reveal" style="transition-delay:.30s" onclick="openLb(20)"><img src="assets/Trabajo/Ev/EV10.png" alt="EV 10" loading="lazy"><div class="port-item-overlay"><span>Ver foto</span></div></div>
+      <div class="port-item reveal" style="transition-delay:.33s" onclick="openLb(21)"><img src="assets/Trabajo/Ev/EV11.png" alt="EV 11" loading="lazy"><div class="port-item-overlay"><span>Ver foto</span></div></div>
+      <div class="port-item reveal" style="transition-delay:.36s" onclick="openLb(22)"><img src="assets/Trabajo/Ev/EV12.png" alt="EV 12" loading="lazy"><div class="port-item-overlay"><span>Ver foto</span></div></div>
+      <div class="port-item reveal" style="transition-delay:.39s" onclick="openLb(23)"><img src="assets/Trabajo/Ev/EV13.png" alt="EV 13" loading="lazy"><div class="port-item-overlay"><span>Ver foto</span></div></div>
+      <div class="port-item reveal" style="transition-delay:.42s" onclick="openLb(24)"><img src="assets/Trabajo/Ev/EV14.png" alt="EV 14" loading="lazy"><div class="port-item-overlay"><span>Ver foto</span></div></div>
+      <div class="port-item reveal" style="transition-delay:.45s" onclick="openLb(25)"><img src="assets/Trabajo/Ev/EV15.png" alt="EV 15" loading="lazy"><div class="port-item-overlay"><span>Ver foto</span></div></div>
+      <div class="port-item reveal" style="transition-delay:.48s" onclick="openLb(26)"><img src="assets/Trabajo/Ev/EV16.png" alt="EV 16" loading="lazy"><div class="port-item-overlay"><span>Ver foto</span></div></div>
+      <div class="port-item reveal" style="transition-delay:.51s" onclick="openLb(27)"><img src="assets/Trabajo/Ev/EV17.png" alt="EV 17" loading="lazy"><div class="port-item-overlay"><span>Ver foto</span></div></div>
+      <div class="port-item reveal" style="transition-delay:.54s" onclick="openLb(28)"><img src="assets/Trabajo/Ev/EV18.png" alt="EV 18" loading="lazy"><div class="port-item-overlay"><span>Ver foto</span></div></div>
+      <div class="port-item reveal" style="transition-delay:.57s" onclick="openLb(29)"><img src="assets/Trabajo/Ev/EV19.png" alt="EV 19" loading="lazy"><div class="port-item-overlay"><span>Ver foto</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ELÉCTRICA -->
+<section class="port-section" id="electrica">
+  <div class="port-section-inner">
+    <div class="port-cat-header reveal">
+      <div>
+        <div class="section-label">Infraestructura eléctrica</div>
+        <h2 class="port-cat-title">Instalaciones Eléctricas</h2>
+      </div>
+      <span class="port-cat-count">8 proyectos</span>
+    </div>
+    <div class="port-grid">
+      <div class="port-item reveal" style="transition-delay:.03s" onclick="openLb(30)"><img src="assets/Trabajo/Electricidad/EL1.png" alt="Eléctrica 1" loading="lazy"><div class="port-item-overlay"><span>Ver foto</span></div></div>
+      <div class="port-item reveal" style="transition-delay:.06s" onclick="openLb(31)"><img src="assets/Trabajo/Electricidad/EL2.png" alt="Eléctrica 2" loading="lazy"><div class="port-item-overlay"><span>Ver foto</span></div></div>
+      <div class="port-item reveal" style="transition-delay:.09s" onclick="openLb(32)"><img src="assets/Trabajo/Electricidad/EL3.png" alt="Eléctrica 3" loading="lazy"><div class="port-item-overlay"><span>Ver foto</span></div></div>
+      <div class="port-item reveal" style="transition-delay:.12s" onclick="openLb(33)"><img src="assets/Trabajo/Electricidad/EL4.png" alt="Eléctrica 4" loading="lazy"><div class="port-item-overlay"><span>Ver foto</span></div></div>
+      <div class="port-item reveal" style="transition-delay:.15s" onclick="openLb(34)"><img src="assets/Trabajo/Electricidad/EL5.png" alt="Eléctrica 5" loading="lazy"><div class="port-item-overlay"><span>Ver foto</span></div></div>
+      <div class="port-item reveal" style="transition-delay:.18s" onclick="openLb(35)"><img src="assets/Trabajo/Electricidad/EL6.png" alt="Eléctrica 6" loading="lazy"><div class="port-item-overlay"><span>Ver foto</span></div></div>
+      <div class="port-item reveal" style="transition-delay:.21s" onclick="openLb(36)"><img src="assets/Trabajo/Electricidad/EL7.png" alt="Eléctrica 7" loading="lazy"><div class="port-item-overlay"><span>Ver foto</span></div></div>
+      <div class="port-item reveal" style="transition-delay:.24s" onclick="openLb(37)"><img src="assets/Trabajo/Electricidad/EL8.png" alt="Eléctrica 8" loading="lazy"><div class="port-item-overlay"><span>Ver foto</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PANTALLAS -->
+<section class="port-section" id="pantallas">
+  <div class="port-section-inner">
+    <div class="port-cat-header reveal">
+      <div>
+        <div class="section-label">Señalización digital</div>
+        <h2 class="port-cat-title">Pantallas LED</h2>
+      </div>
+      <span class="port-cat-count">1 proyecto</span>
+    </div>
+    <div class="port-grid" style="max-width:560px">
+      <div class="port-item reveal" onclick="openLb(38)"><img src="assets/Trabajo/Pantallas/PA1.png" alt="Pantalla 1" loading="lazy"><div class="port-item-overlay"><span>Ver foto</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- OBRA CIVIL -->
+<section class="port-section" id="civil">
+  <div class="port-section-inner">
+    <div class="port-cat-header reveal">
+      <div>
+        <div class="section-label">Infraestructura</div>
+        <h2 class="port-cat-title">Obra Civil</h2>
+      </div>
+      <span class="port-cat-count">2 proyectos</span>
+    </div>
+    <div class="port-grid" style="max-width:840px">
+      <div class="port-item reveal" style="transition-delay:.03s" onclick="openLb(39)"><img src="assets/Trabajo/Civil/CV1.png" alt="Civil 1" loading="lazy"><div class="port-item-overlay"><span>Ver foto</span></div></div>
+      <div class="port-item reveal" style="transition-delay:.06s" onclick="openLb(40)"><img src="assets/Trabajo/Civil/CV2.png" alt="Civil 2" loading="lazy"><div class="port-item-overlay"><span>Ver foto</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="port-cta">
+  <h2>¿Tiene un proyecto en mente?</h2>
+  <p>Atiendo proyectos en Cali y el Valle del Cauca con rigor técnico, cumplimiento RETIE y garantía respaldada.</p>
+  <a href="https://wa.me/573145569567?text=Hola%20Ing.%20Victor%2C%20vi%20su%20portafolio%20y%20quisiera%20cotizar%20un%20proyecto." target="_blank" class="btn-primary">
+    Solicitar cotización
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+  </a>
+  <a href="index.html" class="btn-outline">Volver al inicio</a>
+</div>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Visor de fotos" onclick="closeLbOutside(event)">
+  <button id="lb-close" onclick="closeLb()" aria-label="Cerrar">&times;</button>
+  <button class="lb-btn" id="lb-prev" onclick="lbNav(-1)" aria-label="Anterior">&#8592;</button>
+  <img class="lb-img" id="lb-img" src="" alt="">
+  <button class="lb-btn" id="lb-next" onclick="lbNav(1)" aria-label="Siguiente">&#8594;</button>
+  <div class="lb-caption" id="lb-caption">
+    <strong id="lb-title"></strong>
+    <span id="lb-desc"></span>
+  </div>
+  <div class="lb-counter" id="lb-counter"></div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">Victor <em>Manuel</em> Mina</div>
+      <div class="footer-tagline">Ing. Electrónico · Fundador Dinastel S.A.S. · Cali, Colombia</div>
+    </div>
+    <div class="footer-copy">© 2026 Victor Manuel Mina · <a href="politica-privacidad.html" style="color:var(--gold)">Política de privacidad</a></div>
+  </div>
+</footer>
+
+<script>
+// Reveal
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); } });
+}, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+document.querySelectorAll('.reveal,.reveal-up').forEach(el => revealObs.observe(el));
+
+// Tab scroll
+function scrollTo(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const offset = 72 + 48;
+  const top = el.getBoundingClientRect().top + window.scrollY - offset;
+  window.scrollTo({ top, behavior: 'smooth' });
+}
+
+// Active tab on scroll
+const sections = ['solar','ev','electrica','pantallas','civil'];
+const tabs = document.querySelectorAll('.port-tab');
+window.addEventListener('scroll', () => {
+  let active = 0;
+  sections.forEach((id, i) => {
+    const el = document.getElementById(id);
+    if (el && window.scrollY + 160 >= el.offsetTop) active = i;
+  });
+  tabs.forEach((t, i) => t.classList.toggle('active', i === active));
+}, { passive: true });
+
+// Lightbox data
+const lbData = [
+  // Solar (0-10)
+  { src: 'assets/Trabajo/Solar/SO1.png',  title: 'Ingeniería Solar Fotovoltaica', desc: 'Proyecto solar — Cali, Valle del Cauca · Dinastel S.A.S.' },
+  { src: 'assets/Trabajo/Solar/SO2.png',  title: 'Ingeniería Solar Fotovoltaica', desc: 'Proyecto solar — Cali, Valle del Cauca · Dinastel S.A.S.' },
+  { src: 'assets/Trabajo/Solar/SO3.png',  title: 'Ingeniería Solar Fotovoltaica', desc: 'Proyecto solar — +5.5 MWp ejecutados · Dinastel S.A.S.' },
+  { src: 'assets/Trabajo/Solar/SO4.png',  title: 'Ingeniería Solar Fotovoltaica', desc: 'Proyecto solar — Cali, Valle del Cauca · Dinastel S.A.S.' },
+  { src: 'assets/Trabajo/Solar/SO5.png',  title: 'Ingeniería Solar Fotovoltaica', desc: 'Proyecto solar — Cali, Valle del Cauca · Dinastel S.A.S.' },
+  { src: 'assets/Trabajo/Solar/SO6.png',  title: 'Ingeniería Solar Fotovoltaica', desc: 'Proyecto solar — Cali, Valle del Cauca · Dinastel S.A.S.' },
+  { src: 'assets/Trabajo/Solar/SO7.png',  title: 'Ingeniería Solar Fotovoltaica', desc: 'Proyecto solar — Cali, Valle del Cauca · Dinastel S.A.S.' },
+  { src: 'assets/Trabajo/Solar/SO8.png',  title: 'Ingeniería Solar Fotovoltaica', desc: 'Proyecto solar — Cali, Valle del Cauca · Dinastel S.A.S.' },
+  { src: 'assets/Trabajo/Solar/SO9.png',  title: 'Ingeniería Solar Fotovoltaica', desc: 'Proyecto solar — Cali, Valle del Cauca · Dinastel S.A.S.' },
+  { src: 'assets/Trabajo/Solar/SO10.png', title: 'Ingeniería Solar Fotovoltaica', desc: 'Proyecto solar — Cali, Valle del Cauca · Dinastel S.A.S.' },
+  { src: 'assets/Trabajo/Solar/SO11.png', title: 'Ingeniería Solar Fotovoltaica', desc: 'Proyecto solar — Cali, Valle del Cauca · Dinastel S.A.S.' },
+  // EV (11-29)
+  { src: 'assets/Trabajo/Ev/EV1.png',  title: 'Cargador Eléctrico Vehicular', desc: 'Infraestructura EV certificada RETIE · Level 2 · Dinastel S.A.S.' },
+  { src: 'assets/Trabajo/Ev/EV2.png',  title: 'Cargador Eléctrico Vehicular', desc: 'Infraestructura EV certificada RETIE · Level 2 · Dinastel S.A.S.' },
+  { src: 'assets/Trabajo/Ev/EV3.png',  title: 'Cargador Eléctrico Vehicular', desc: 'Infraestructura EV certificada RETIE · Level 2 · Dinastel S.A.S.' },
+  { src: 'assets/Trabajo/Ev/EV4.png',  title: 'Cargador Eléctrico Vehicular', desc: 'Infraestructura EV certificada RETIE · Level 2 · Dinastel S.A.S.' },
+  { src: 'assets/Trabajo/Ev/EV5.png',  title: 'Cargador Eléctrico Vehicular', desc: 'Infraestructura EV certificada RETIE · Level 2 · Dinastel S.A.S.' },
+  { src: 'assets/Trabajo/Ev/EV6.png',  title: 'Cargador Eléctrico Vehicular', desc: 'Infraestructura EV certificada RETIE · Level 2 · Dinastel S.A.S.' },
+  { src: 'assets/Trabajo/Ev/EV7.png',  title: 'Cargador Eléctrico Vehicular', desc: 'Infraestructura EV certificada RETIE · Level 2 · Dinastel S.A.S.' },
+  { src: 'assets/Trabajo/Ev/EV8.png',  title: 'Cargador Eléctrico Vehicular', desc: 'Infraestructura EV certificada RETIE · Level 2 · Dinastel S.A.S.' },
+  { src: 'assets/Trabajo/Ev/EV9.png',  title: 'Cargador Eléctrico Vehicular', desc: 'Infraestructura EV certificada RETIE · Level 2 · Dinastel S.A.S.' },
+  { src: 'assets/Trabajo/Ev/EV10.png', title: 'Cargador Eléctrico Vehicular', desc: 'Infraestructura EV certificada RETIE · Level 2 · Dinastel S.A.S.' },
+  { src: 'assets/Trabajo/Ev/EV11.png', title: 'Cargador Eléctrico Vehicular', desc: 'Infraestructura EV certificada RETIE · Level 2 · Dinastel S.A.S.' },
+  { src: 'assets/Trabajo/Ev/EV12.png', title: 'Cargador Eléctrico Vehicular', desc: 'Infraestructura EV certificada RETIE · Level 2 · Dinastel S.A.S.' },
+  { src: 'assets/Trabajo/Ev/EV13.png', title: 'Cargador Eléctrico Vehicular', desc: 'Infraestructura EV certificada RETIE · Level 2 · Dinastel S.A.S.' },
+  { src: 'assets/Trabajo/Ev/EV14.png', title: 'Cargador Eléctrico Vehicular', desc: 'Infraestructura EV certificada RETIE · Level 2 · Dinastel S.A.S.' },
+  { src: 'assets/Trabajo/Ev/EV15.png', title: 'Cargador Eléctrico Vehicular', desc: 'Infraestructura EV certificada RETIE · Level 2 · Dinastel S.A.S.' },
+  { src: 'assets/Trabajo/Ev/EV16.png', title: 'Cargador Eléctrico Vehicular', desc: 'Infraestructura EV certificada RETIE · Level 2 · Dinastel S.A.S.' },
+  { src: 'assets/Trabajo/Ev/EV17.png', title: 'Cargador Eléctrico Vehicular', desc: 'Infraestructura EV certificada RETIE · Level 2 · Dinastel S.A.S.' },
+  { src: 'assets/Trabajo/Ev/EV18.png', title: 'Cargador Eléctrico Vehicular', desc: 'Infraestructura EV certificada RETIE · Level 2 · Dinastel S.A.S.' },
+  { src: 'assets/Trabajo/Ev/EV19.png', title: 'Cargador Eléctrico Vehicular', desc: 'Infraestructura EV certificada RETIE · Level 2 · Dinastel S.A.S.' },
+  // Eléctrica (30-37)
+  { src: 'assets/Trabajo/Electricidad/EL1.png', title: 'Instalación Eléctrica', desc: 'Infraestructura eléctrica certificada RETIE — Cali · Dinastel S.A.S.' },
+  { src: 'assets/Trabajo/Electricidad/EL2.png', title: 'Instalación Eléctrica', desc: 'Infraestructura eléctrica certificada RETIE — Cali · Dinastel S.A.S.' },
+  { src: 'assets/Trabajo/Electricidad/EL3.png', title: 'Instalación Eléctrica', desc: 'Infraestructura eléctrica certificada RETIE — Cali · Dinastel S.A.S.' },
+  { src: 'assets/Trabajo/Electricidad/EL4.png', title: 'Instalación Eléctrica', desc: 'Infraestructura eléctrica certificada RETIE — Cali · Dinastel S.A.S.' },
+  { src: 'assets/Trabajo/Electricidad/EL5.png', title: 'Instalación Eléctrica', desc: 'Infraestructura eléctrica certificada RETIE — Cali · Dinastel S.A.S.' },
+  { src: 'assets/Trabajo/Electricidad/EL6.png', title: 'Instalación Eléctrica', desc: 'Infraestructura eléctrica certificada RETIE — Cali · Dinastel S.A.S.' },
+  { src: 'assets/Trabajo/Electricidad/EL7.png', title: 'Instalación Eléctrica', desc: 'Infraestructura eléctrica certificada RETIE — Cali · Dinastel S.A.S.' },
+  { src: 'assets/Trabajo/Electricidad/EL8.png', title: 'Instalación Eléctrica', desc: 'Infraestructura eléctrica certificada RETIE — Cali · Dinastel S.A.S.' },
+  // Pantallas (38)
+  { src: 'assets/Trabajo/Pantallas/PA1.png', title: 'Señalización LED', desc: 'Instalación de pantalla LED y señalización digital · Dinastel S.A.S.' },
+  // Civil (39-40)
+  { src: 'assets/Trabajo/Civil/CV1.png', title: 'Obra Civil', desc: 'Infraestructura civil para instalaciones eléctricas — Cali · Dinastel S.A.S.' },
+  { src: 'assets/Trabajo/Civil/CV2.png', title: 'Obra Civil', desc: 'Infraestructura civil para instalaciones eléctricas — Cali · Dinastel S.A.S.' },
+];
+
+let lbIdx = 0;
+const lbEl = document.getElementById('lightbox');
+const lbImg = document.getElementById('lb-img');
+const lbCtr = document.getElementById('lb-counter');
+const lbTitle = document.getElementById('lb-title');
+const lbDesc = document.getElementById('lb-desc');
+
+function lbShow() {
+  const d = lbData[lbIdx];
+  lbImg.src = d.src;
+  if (lbTitle) lbTitle.textContent = d.title;
+  if (lbDesc) lbDesc.textContent = d.desc;
+  lbCtr.textContent = (lbIdx + 1) + ' / ' + lbData.length;
+}
+function openLb(i) {
+  lbIdx = i % lbData.length;
+  lbShow(); lbEl.classList.add('open'); document.body.style.overflow = 'hidden';
+}
+function closeLb() { lbEl.classList.remove('open'); document.body.style.overflow = ''; }
+function closeLbOutside(e) { if (e.target === lbEl) closeLb(); }
+function lbNav(dir) { lbIdx = (lbIdx + dir + lbData.length) % lbData.length; lbShow(); }
+document.addEventListener('keydown', e => {
+  if (!lbEl.classList.contains('open')) return;
+  if (e.key === 'Escape') closeLb();
+  if (e.key === 'ArrowLeft') lbNav(-1);
+  if (e.key === 'ArrowRight') lbNav(1);
+});
+</script>
+</body>
+</html>
