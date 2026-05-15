@@ -288,7 +288,7 @@ nav.scrolled { background: rgba(4,9,15,.92); backdrop-filter: blur(20px); border
 .clients-track:hover { animation-play-state: paused; }
 @keyframes clientsTicker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 .client-logo-item { display: flex; align-items: center; justify-content: center; padding: 12px 44px; flex-shrink: 0; }
-.client-logo-item img { max-height: 70px; max-width: 180px; width: auto; height: auto; object-fit: contain; filter: brightness(0) invert(1); opacity: .75; transition: transform .35s, opacity .35s; }
+.client-logo-item img { max-height: 70px; max-width: 180px; width: auto; height: auto; object-fit: contain; filter: invert(1) grayscale(1) brightness(1.5); opacity: .78; transition: transform .35s, opacity .35s; }
 .client-logo-item:hover img { transform: scale(1.06); opacity: 1; }
 
 /* LIGHTBOX */
