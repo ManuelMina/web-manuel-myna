@@ -87,20 +87,41 @@ nav.scrolled { background: rgba(4,9,15,.92); backdrop-filter: blur(20px); border
   min-height: 100vh; display: flex; align-items: center; justify-content: center;
   padding: 100px 5% 80px; position: relative; overflow: hidden;
 }
-.hero-bg-grid {
+.hero-collage {
   position: absolute; inset: 0;
-  background-image: linear-gradient(rgba(200,144,16,.035) 1px, transparent 1px),
-                    linear-gradient(90deg, rgba(200,144,16,.035) 1px, transparent 1px);
-  background-size: 80px 80px;
-  mask-image: radial-gradient(ellipse 85% 85% at center, black 30%, transparent 80%);
+  display: grid; grid-template-columns: repeat(3,1fr); grid-template-rows: repeat(2,1fr);
+}
+.hero-collage-cell { overflow: hidden; }
+.hero-collage-cell img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1); display: block; }
+.hero-collage-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(160deg, rgba(4,9,15,.82) 0%, rgba(4,9,15,.72) 50%, rgba(4,9,15,.88) 100%);
 }
 .hero-glow {
   position: absolute; width: 700px; height: 700px;
   top: -200px; left: 50%; transform: translateX(-50%);
-  background: radial-gradient(circle, rgba(200,144,16,.065) 0%, transparent 70%);
-  pointer-events: none;
+  background: radial-gradient(circle, rgba(200,144,16,.05) 0%, transparent 70%);
+  pointer-events: none; z-index: 1;
 }
-.hero-inner { position: relative; z-index: 1; max-width: 860px; width: 100%; text-align: center; }
+.hero-inner { position: relative; z-index: 2; max-width: 900px; width: 100%; text-align: center; }
+.hero-identity {
+  display: inline-flex; align-items: center; gap: 20px;
+  margin-bottom: 20px;
+}
+.hero-monogram {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 7vw, 5rem); font-weight: 900;
+  line-height: 1; letter-spacing: -.04em; color: var(--text);
+}
+.hero-monogram em { font-style: normal; color: var(--gold); }
+.hero-nameblock {
+  text-align: left; border-left: 1px solid rgba(200,144,16,.3); padding-left: 20px;
+}
+.hero-nameline {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(.95rem, 2.2vw, 1.45rem); font-weight: 700;
+  line-height: 1.25; color: var(--text); letter-spacing: .01em;
+}
 .hero-chip {
   display: inline-flex; align-items: center; gap: 8px;
   padding: 6px 16px; border-radius: 3px;
@@ -110,13 +131,7 @@ nav.scrolled { background: rgba(4,9,15,.92); backdrop-filter: blur(20px); border
 }
 .hero-chip-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); animation: pulse 2s ease infinite; }
 @keyframes pulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:.4; transform:scale(.7); } }
-.hero-name {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(3.2rem, 10vw, 7.5rem); font-weight: 900;
-  line-height: .92; letter-spacing: -.03em; color: var(--text); margin-bottom: 22px;
-}
-.hero-name em { font-style: normal; color: var(--gold); }
-.hero-role { font-size: clamp(.95rem, 2vw, 1.1rem); color: var(--text2); letter-spacing: .04em; margin-bottom: 6px; }
+.hero-role { font-size: clamp(.95rem, 2vw, 1.05rem); color: var(--text2); letter-spacing: .04em; margin-bottom: 6px; }
 .hero-company { font-size: .85rem; color: var(--muted); letter-spacing: .06em; margin-bottom: 48px; }
 .hero-company strong { color: var(--gold); font-weight: 600; }
 .hero-stats {
@@ -171,8 +186,8 @@ nav.scrolled { background: rgba(4,9,15,.92); backdrop-filter: blur(20px); border
 @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 .ticker-item {
   display: inline-flex; align-items: center; gap: 10px;
-  padding: 0 36px; height: 52px;
-  font-size: .7rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+  padding: 0 28px; height: 40px;
+  font-size: .68rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
   color: var(--muted); border-right: 1px solid var(--border2); white-space: nowrap; transition: color .3s;
 }
 .ticker-item:hover { color: var(--gold); }
@@ -224,7 +239,6 @@ nav.scrolled { background: rgba(4,9,15,.92); backdrop-filter: blur(20px); border
   border: 1px solid var(--border); border-radius: var(--r); overflow: hidden;
 }
 .service-card { background: var(--bg2); padding: 40px 36px; position: relative; overflow: hidden; transition: background .3s; }
-.service-card.featured { grid-column: span 2; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
 .service-card::after {
   content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
   background: linear-gradient(90deg, var(--gold), transparent); opacity: 0; transition: opacity .4s;
@@ -277,16 +291,19 @@ nav.scrolled { background: rgba(4,9,15,.92); backdrop-filter: blur(20px); border
 #clientes { padding: 70px 0; background: var(--bg); overflow: hidden; }
 .clients-header { max-width: 1200px; margin: 0 auto 40px; padding: 0 5%; }
 
-/* LOGO TICKER */
-.ticker-logo-item {
-  display: inline-flex; align-items: center; justify-content: center;
-  padding: 0 44px; height: 80px; border-right: 1px solid var(--border2); flex-shrink: 0;
+/* CLIENTS GRID */
+#clientes { padding: 80px 5%; background: var(--bg); }
+.clients-header { max-width: 1200px; margin: 0 auto 52px; }
+.clients-grid {
+  max-width: 1100px; margin: 0 auto;
+  display: grid; grid-template-columns: repeat(4,1fr); gap: 36px 48px; align-items: center;
 }
-.ticker-logo-item img {
-  max-height: 38px; max-width: 140px; width: auto; height: auto; object-fit: contain;
-  filter: grayscale(1) brightness(1.8) opacity(.5); transition: filter .4s;
+.client-logo { display: flex; align-items: center; justify-content: center; padding: 12px 8px; }
+.client-logo img {
+  max-height: 64px; max-width: 160px; width: auto; height: auto; object-fit: contain;
+  transition: transform .35s, opacity .35s; opacity: .85;
 }
-.ticker-logo-item:hover img { filter: grayscale(0) brightness(1.1) opacity(.95); }
+.client-logo:hover img { transform: scale(1.07); opacity: 1; }
 
 /* LIGHTBOX */
 #lightbox {
@@ -317,9 +334,15 @@ nav.scrolled { background: rgba(4,9,15,.92); backdrop-filter: blur(20px); border
   font-size: 2rem; line-height: 1; padding: 8px; transition: color .25s; z-index: 3;
 }
 #lb-close:hover { color: var(--text); }
+.lb-caption {
+  position: absolute; bottom: 52px; left: 50%; transform: translateX(-50%);
+  text-align: center; width: 90%; max-width: 680px; pointer-events: none;
+}
+.lb-caption strong { display: block; font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: 3px; }
+.lb-caption span { font-size: .78rem; color: var(--text2); letter-spacing: .04em; }
 .lb-counter {
-  position: absolute; bottom: 22px; left: 50%; transform: translateX(-50%);
-  font-size: .7rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--muted);
+  position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
+  font-size: .65rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--muted);
 }
 
 /* GALLERY */
@@ -358,7 +381,16 @@ nav.scrolled { background: rgba(4,9,15,.92); backdrop-filter: blur(20px); border
 .contact-wa:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(29,168,81,.22); }
 .contact-wa-txt strong { font-size: .92rem; font-weight: 700; color: #fff; display: block; }
 .contact-wa-txt span  { font-size: .78rem; color: rgba(255,255,255,.8); }
-.contact-detail { display: flex; align-items: center; gap: 12px; font-size: .85rem; color: var(--text2); margin-bottom: 12px; }
+.contact-detail { display: flex; align-items: center; gap: 14px; font-size: .97rem; color: var(--text2); margin-bottom: 14px; }
+.contact-social-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 24px; }
+.contact-social-btn {
+  display: flex; align-items: center; gap: 10px;
+  padding: 11px 14px; border: 1px solid var(--border2); border-radius: var(--r2);
+  font-size: .83rem; font-weight: 500; color: var(--text2);
+  transition: border-color .3s, color .3s, background .3s;
+}
+.contact-social-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+.contact-social-btn:hover { border-color: var(--gold); color: var(--gold); background: var(--gold3); }
 .contact-detail-icon {
   width: 34px; height: 34px; flex-shrink: 0;
   border: 1px solid var(--border); background: var(--bg2); border-radius: var(--r2);
@@ -405,7 +437,7 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 3
   .about-grid { grid-template-columns: 1fr; gap: 48px; }
   .about-photo-wrap { max-width: 360px; margin: 0 auto; }
   .process-inner { grid-template-columns: 1fr; gap: 48px; }
-  .service-card.featured { grid-column: span 2; grid-template-columns: 1fr; gap: 24px; }
+  .clients-grid { grid-template-columns: repeat(2,1fr); }
 }
 @media (max-width: 768px) {
   .nav-links, .nav-cta { display: none; }
@@ -415,7 +447,7 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 3
   .hero-stat { border-right: none; border-bottom: 1px solid var(--border); }
   .hero-stat:last-child { border-bottom: none; }
   .services-grid { grid-template-columns: 1fr; }
-  .service-card.featured { grid-column: span 1; }
+  .clients-grid { grid-template-columns: repeat(2,1fr); gap: 20px 24px; }
   .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
   .gallery-item:first-child { grid-column: span 2; }
   .gallery-item:last-child { grid-column: span 2; }
@@ -454,38 +486,50 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 3
 
 <!-- HERO -->
 <section id="hero">
-  <div class="hero-bg-grid"></div>
+  <div class="hero-collage" aria-hidden="true">
+    <div class="hero-collage-cell"><img src="assets/Trabajo/Solar/t2.jpeg" alt=""></div>
+    <div class="hero-collage-cell"><img src="assets/Trabajo/Solar/978b7176-4784-4ad4-bd95-ed061f9d3fc9.JPG" alt=""></div>
+    <div class="hero-collage-cell"><img src="assets/Trabajo/Solar/5bb1bb84-8854-4214-b495-13ea7a3e03c9.JPG" alt=""></div>
+    <div class="hero-collage-cell"><img src="assets/Trabajo/Ev/f45ce4f2-d9d0-4412-a62c-c0b570f5a5df.JPG" alt=""></div>
+    <div class="hero-collage-cell"><img src="assets/Trabajo/Pantallas/92D3B034-E016-43A8-80AC-D1D63DBCD4B1.JPG" alt=""></div>
+    <div class="hero-collage-cell" style="background:var(--bg3)"></div>
+  </div>
+  <div class="hero-collage-overlay"></div>
   <div class="hero-glow"></div>
   <div class="hero-inner">
     <div class="hero-chip reveal">
       <span class="hero-chip-dot"></span>
       Disponible · Cali & Valle del Cauca
     </div>
-    <h1 class="hero-name reveal" style="transition-delay:.07s">
-      Victor <em>Manuel</em><br>Mina
-    </h1>
-    <p class="hero-role reveal" style="transition-delay:.13s">Ingeniero Electrónico · Energías Renovables</p>
-    <p class="hero-company reveal" style="transition-delay:.17s">Fundador & Gerente General de <strong>Dinastel SAS</strong></p>
-    <div class="hero-stats reveal" style="transition-delay:.22s">
+    <div class="hero-identity reveal" style="transition-delay:.06s">
+      <span class="hero-monogram">V<em>M</em></span>
+      <div class="hero-nameblock">
+        <div class="hero-nameline">Victor Manuel</div>
+        <div class="hero-nameline">Mina</div>
+      </div>
+    </div>
+    <p class="hero-role reveal" style="transition-delay:.12s">Ingeniero Electrónico · Energías Renovables</p>
+    <p class="hero-company reveal" style="transition-delay:.16s">Fundador & Gerente General de <strong>Dinastel SAS</strong></p>
+    <div class="hero-stats reveal" style="transition-delay:.21s">
       <div class="hero-stat">
         <span class="hero-stat-num">5.5 MWp</span>
         <span class="hero-stat-label">Ejecutados</span>
       </div>
       <div class="hero-stat">
-        <span class="hero-stat-num">+30</span>
-        <span class="hero-stat-label">Clientes</span>
+        <span class="hero-stat-num">+150</span>
+        <span class="hero-stat-label">Instalaciones</span>
       </div>
       <div class="hero-stat">
         <span class="hero-stat-num">RETIE</span>
         <span class="hero-stat-label">Certificado</span>
       </div>
       <div class="hero-stat">
-        <span class="hero-stat-num">Cali</span>
-        <span class="hero-stat-label">Valle del Cauca</span>
+        <span class="hero-stat-num">7 años</span>
+        <span class="hero-stat-label">Experiencia</span>
       </div>
     </div>
-    <div class="hero-btns reveal" style="transition-delay:.28s">
-      <a href="https://wa.me/573145596767?text=Hola%20Ing.%20Victor%2C%20vi%20su%20web%20y%20quisiera%20cotizar%20un%20proyecto." target="_blank" class="btn-primary">
+    <div class="hero-btns reveal" style="transition-delay:.27s">
+      <a href="https://wa.me/573145569567?text=Hola%20Ing.%20Victor%2C%20vi%20su%20web%20y%20quisiera%20cotizar%20un%20proyecto." target="_blank" class="btn-primary">
         Solicitar cotización
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
@@ -567,11 +611,11 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 3
           <span class="about-stat-label">Clientes</span>
         </div>
         <div class="about-stat reveal-up" style="transition-delay:.15s">
-          <span class="about-stat-num" data-target="80" data-prefix="+">0</span>
+          <span class="about-stat-num" data-target="150" data-prefix="+">0</span>
           <span class="about-stat-label">Instalaciones</span>
         </div>
         <div class="about-stat reveal-up" style="transition-delay:.2s">
-          <span class="about-stat-num" data-target="5" data-suffix=" años">0</span>
+          <span class="about-stat-num" data-target="7" data-suffix=" años">0</span>
           <span class="about-stat-label">Experiencia</span>
         </div>
       </div>
@@ -588,30 +632,27 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 3
   </div>
   <div class="services-grid">
 
-    <!-- SOLAR FEATURED -->
-    <div class="service-card featured reveal" style="transition-delay:.05s">
-      <div>
-        <div class="svc-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-            <circle cx="12" cy="12" r="4"/>
-            <line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/>
-            <line x1="4.22" y1="4.22" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.78" y2="19.78"/>
-            <line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/>
-            <line x1="4.22" y1="19.78" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.78" y2="4.22"/>
-          </svg>
-        </div>
-        <p class="svc-name">Ingeniería Solar Fotovoltaica</p>
-        <p class="svc-desc">Equipo especialista en todas las etapas del proyecto: desarrollo, propuesta técnica, construcción y legalización. +5.5 MWp ejecutados en proyectos residenciales, comerciales e industriales.</p>
-        <span class="svc-tag">Nacional</span>
+    <!-- SOLAR -->
+    <div class="service-card reveal" style="transition-delay:.05s">
+      <div class="svc-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+          <circle cx="12" cy="12" r="4"/>
+          <line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/>
+          <line x1="4.22" y1="4.22" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.78" y2="19.78"/>
+          <line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.78" y2="4.22"/>
+        </svg>
       </div>
+      <p class="svc-name">Ingeniería Solar Fotovoltaica</p>
+      <p class="svc-desc">Equipo especialista en todas las etapas del proyecto: desarrollo, propuesta técnica, construcción y legalización. +5.5 MWp ejecutados en proyectos residenciales, comerciales e industriales.</p>
       <ul class="svc-list">
         <li>Ingeniería de detalle y planos técnicos (unifilares, layout, estructura)</li>
         <li>Estudio de viabilidad, dimensionado y propuesta económica</li>
         <li>Construcción, instalación y puesta en marcha</li>
         <li>Legalización ante UPME, CREG y operadores de red</li>
         <li>Monitoreo remoto y mantenimiento preventivo</li>
-        <li>Proyectos residenciales, comerciales e industriales</li>
       </ul>
+      <span class="svc-tag">Nacional</span>
     </div>
 
     <!-- INSTALACIONES -->
@@ -724,7 +765,7 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 3
   <div class="process-inner">
     <div class="reveal-left">
       <div class="section-label">Metodología</div>
-      <h2 class="section-title">Cómo trabajo</h2>
+      <h2 class="section-title">Cómo trabajamos</h2>
       <p class="section-desc">Cada proyecto sigue un proceso técnico riguroso, desde el diagnóstico hasta la entrega con documentación completa.</p>
       <div style="margin-top:36px;">
         <a href="#contacto" class="btn-outline">Iniciar proyecto →</a>
@@ -764,38 +805,24 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 3
 </section>
 
 <!-- CLIENTES -->
-<section id="clientes" style="padding:70px 0;background:var(--bg);overflow:hidden;">
+<section id="clientes">
   <div class="clients-header reveal">
     <div class="section-label">Empresas que confían</div>
-    <h2 class="section-title" style="margin-bottom:0;">Clientes atendidos</h2>
+    <h2 class="section-title">Clientes atendidos</h2>
   </div>
-  <div class="ticker-strip" style="border-top:none;">
-    <div class="ticker-track">
-      <span class="ticker-logo-item"><img src="assets/Logos empresas/VATIA.png" alt="Vatia"></span>
-      <span class="ticker-logo-item"><img src="assets/Logos empresas/ABASTE.png" alt="Abaste Colombia"></span>
-      <span class="ticker-logo-item"><img src="assets/Logos empresas/DELTEC.png" alt="Deltec"></span>
-      <span class="ticker-logo-item"><img src="assets/Logos empresas/CENTRONET.png" alt="Centronet"></span>
-      <span class="ticker-logo-item"><img src="assets/Logos empresas/APC.png" alt="APC Frigoríficos"></span>
-      <span class="ticker-logo-item"><img src="assets/Logos empresas/AMERIPLAST.jpg" alt="Ameriplast"></span>
-      <span class="ticker-logo-item"><img src="assets/Logos empresas/ICOBANDAS.png" alt="Icobandas"></span>
-      <span class="ticker-logo-item"><img src="assets/Logos empresas/TECNOSOLAR.webp" alt="Tecnosolar"></span>
-      <span class="ticker-logo-item"><img src="assets/Logos empresas/INMCOR.jpeg" alt="Inmcor"></span>
-      <span class="ticker-logo-item"><img src="assets/Logos empresas/AVICOLA SANTA ELENA.jpg" alt="Avícola Santa Elena"></span>
-      <span class="ticker-logo-item"><img src="assets/Logos empresas/LOGO-BRASILIA-SIN-S.A.-pdf.jpg" alt="Transportadora Brasilia"></span>
-      <span class="ticker-logo-item"><img src="assets/Logos empresas/VPC.png" alt="VPC Buenaventura"></span>
-      <span class="ticker-logo-item" aria-hidden="true"><img src="assets/Logos empresas/VATIA.png" alt=""></span>
-      <span class="ticker-logo-item" aria-hidden="true"><img src="assets/Logos empresas/ABASTE.png" alt=""></span>
-      <span class="ticker-logo-item" aria-hidden="true"><img src="assets/Logos empresas/DELTEC.png" alt=""></span>
-      <span class="ticker-logo-item" aria-hidden="true"><img src="assets/Logos empresas/CENTRONET.png" alt=""></span>
-      <span class="ticker-logo-item" aria-hidden="true"><img src="assets/Logos empresas/APC.png" alt=""></span>
-      <span class="ticker-logo-item" aria-hidden="true"><img src="assets/Logos empresas/AMERIPLAST.jpg" alt=""></span>
-      <span class="ticker-logo-item" aria-hidden="true"><img src="assets/Logos empresas/ICOBANDAS.png" alt=""></span>
-      <span class="ticker-logo-item" aria-hidden="true"><img src="assets/Logos empresas/TECNOSOLAR.webp" alt=""></span>
-      <span class="ticker-logo-item" aria-hidden="true"><img src="assets/Logos empresas/INMCOR.jpeg" alt=""></span>
-      <span class="ticker-logo-item" aria-hidden="true"><img src="assets/Logos empresas/AVICOLA SANTA ELENA.jpg" alt=""></span>
-      <span class="ticker-logo-item" aria-hidden="true"><img src="assets/Logos empresas/LOGO-BRASILIA-SIN-S.A.-pdf.jpg" alt=""></span>
-      <span class="ticker-logo-item" aria-hidden="true"><img src="assets/Logos empresas/VPC.png" alt=""></span>
-    </div>
+  <div class="clients-grid">
+    <div class="client-logo reveal" style="transition-delay:.03s"><img src="assets/Logos empresas/VATIA.png" alt="Vatia"></div>
+    <div class="client-logo reveal" style="transition-delay:.06s"><img src="assets/Logos empresas/ABASTE.png" alt="Abaste Colombia"></div>
+    <div class="client-logo reveal" style="transition-delay:.09s"><img src="assets/Logos empresas/DELTEC.png" alt="Deltec"></div>
+    <div class="client-logo reveal" style="transition-delay:.12s"><img src="assets/Logos empresas/CENTRONET.png" alt="Centronet"></div>
+    <div class="client-logo reveal" style="transition-delay:.15s"><img src="assets/Logos empresas/APC.png" alt="APC Frigoríficos"></div>
+    <div class="client-logo reveal" style="transition-delay:.18s"><img src="assets/Logos empresas/AMERIPLAST.jpg" alt="Ameriplast"></div>
+    <div class="client-logo reveal" style="transition-delay:.21s"><img src="assets/Logos empresas/ICOBANDAS.png" alt="Icobandas"></div>
+    <div class="client-logo reveal" style="transition-delay:.24s"><img src="assets/Logos empresas/TECNOSOLAR.webp" alt="Tecnosolar"></div>
+    <div class="client-logo reveal" style="transition-delay:.27s"><img src="assets/Logos empresas/INMCOR.jpeg" alt="Inmcor"></div>
+    <div class="client-logo reveal" style="transition-delay:.30s"><img src="assets/Logos empresas/AVICOLA-SANTA-ELENA.jpg" alt="Avícola Santa Elena"></div>
+    <div class="client-logo reveal" style="transition-delay:.33s"><img src="assets/Logos empresas/BRASILIA.jpg" alt="Transportadora Brasilia"></div>
+    <div class="client-logo reveal" style="transition-delay:.36s"><img src="assets/Logos empresas/VPC.png" alt="VPC Buenaventura"></div>
   </div>
 </section>
 
@@ -808,29 +835,35 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 3
   </div>
   <div class="gallery-grid">
     <div class="gallery-item reveal" style="transition-delay:.04s" onclick="openLb(0)">
-      <img src="assets/trabajo/t1.jpeg" alt="Proyecto eléctrico" onerror="this.parentElement.style.background='var(--bg3)'">
-      <div class="gallery-overlay"><span>Instalación eléctrica</span></div>
+      <img src="assets/Trabajo/Solar/t2.jpeg" alt="Sistema solar" onerror="this.parentElement.style.background='var(--bg3)'">
+      <div class="gallery-overlay"><span>Sistema Solar</span></div>
     </div>
     <div class="gallery-item reveal" style="transition-delay:.09s" onclick="openLb(1)">
-      <img src="assets/trabajo/t2.jpeg" alt="Sistema solar" onerror="this.parentElement.style.background='var(--bg3)'">
-      <div class="gallery-overlay"><span>Sistema solar</span></div>
+      <img src="assets/Trabajo/Solar/978b7176-4784-4ad4-bd95-ed061f9d3fc9.JPG" alt="Sistema solar" onerror="this.parentElement.style.background='var(--bg3)'">
+      <div class="gallery-overlay"><span>Energía Solar</span></div>
     </div>
     <div class="gallery-item reveal" style="transition-delay:.13s" onclick="openLb(2)">
-      <img src="assets/trabajo/t3.jpg" alt="Infraestructura" onerror="this.parentElement.style.background='var(--bg3)'">
-      <div class="gallery-overlay"><span>Infraestructura</span></div>
+      <img src="assets/Trabajo/Solar/5bb1bb84-8854-4214-b495-13ea7a3e03c9.JPG" alt="Instalación solar" onerror="this.parentElement.style.background='var(--bg3)'">
+      <div class="gallery-overlay"><span>Instalación Solar</span></div>
     </div>
     <div class="gallery-item reveal" style="transition-delay:.17s" onclick="openLb(3)">
-      <img src="assets/trabajo/t4.jpg" alt="Cargador EV" onerror="this.parentElement.style.background='var(--bg3)'">
+      <img src="assets/Trabajo/Ev/f45ce4f2-d9d0-4412-a62c-c0b570f5a5df.JPG" alt="Cargador EV" onerror="this.parentElement.style.background='var(--bg3)'">
       <div class="gallery-overlay"><span>Cargador EV</span></div>
     </div>
     <div class="gallery-item reveal" style="transition-delay:.21s" onclick="openLb(4)">
-      <img src="assets/trabajo/t5.jpg" alt="Proyecto eléctrico" onerror="this.parentElement.style.background='var(--bg3)'">
-      <div class="gallery-overlay"><span>Proyecto eléctrico</span></div>
+      <img src="assets/Trabajo/Pantallas/92D3B034-E016-43A8-80AC-D1D63DBCD4B1.JPG" alt="Señalización LED" onerror="this.parentElement.style.background='var(--bg3)'">
+      <div class="gallery-overlay"><span>Pantallas LED</span></div>
     </div>
-    <div class="gallery-item reveal" style="transition-delay:.25s" onclick="openLb(5)">
-      <img src="assets/trabajo/t6.jpg" alt="Proyecto eléctrico" onerror="this.parentElement.style.background='var(--bg3)'">
-      <div class="gallery-overlay"><span>Proyecto eléctrico</span></div>
+    <div class="gallery-item reveal" style="transition-delay:.25s" onclick="openLb(0)">
+      <img src="assets/Trabajo/Solar/t2.jpeg" alt="Proyecto solar" onerror="this.parentElement.style.background='var(--bg3)'">
+      <div class="gallery-overlay"><span>Ver portafolio completo →</span></div>
     </div>
+  </div>
+  <div style="text-align:center;margin-top:36px;" class="reveal">
+    <a href="portafolio.html" class="btn-outline" style="display:inline-flex;">
+      Ver portafolio completo
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="margin-left:8px"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
   </div>
 </section>
 
@@ -840,6 +873,10 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 3
   <button class="lb-btn" id="lb-prev" onclick="lbNav(-1)" aria-label="Anterior">&#8592;</button>
   <img class="lb-img" id="lb-img" src="" alt="">
   <button class="lb-btn" id="lb-next" onclick="lbNav(1)" aria-label="Siguiente">&#8594;</button>
+  <div class="lb-caption" id="lb-caption">
+    <strong id="lb-title"></strong>
+    <span id="lb-desc"></span>
+  </div>
   <div class="lb-counter" id="lb-counter"></div>
 </div>
 
@@ -850,11 +887,11 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 3
       <div class="section-label">Contacto directo</div>
       <h2 class="contact-title">¿Tiene un proyecto<br>en mente?</h2>
       <p class="contact-desc">Atiendo proyectos de instalaciones eléctricas, energía solar, CCTV y redes de datos en <strong style="color:var(--text)">Cali y el Valle del Cauca</strong>. Respuesta técnica directa, sin intermediarios.</p>
-      <a href="https://wa.me/573145596767?text=Hola%20Ing.%20Victor%2C%20vi%20su%20web%20y%20quisiera%20cotizar%20un%20proyecto." target="_blank" class="contact-wa">
+      <a href="https://wa.me/573145569567?text=Hola%20Ing.%20Victor%2C%20vi%20su%20web%20y%20quisiera%20cotizar%20un%20proyecto." target="_blank" class="contact-wa">
         <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.852L0 24l6.335-1.51A11.955 11.955 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.002-1.367l-.36-.214-3.76.896.944-3.658-.235-.374A9.818 9.818 0 1112 21.818z"/></svg>
         <div class="contact-wa-txt">
           <strong>WhatsApp directo</strong>
-          <span>+57 314 559 6767 · Respuesta en el día</span>
+          <span>+57 314 556 9567</span>
         </div>
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" style="margin-left:auto"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
@@ -870,11 +907,23 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 3
         </div>
         <span style="color:var(--text2)">Cali y Valle del Cauca, Colombia</span>
       </div>
-      <div class="contact-detail">
-        <div class="contact-detail-icon">
+      <div class="contact-social-grid">
+        <a href="https://www.instagram.com/manuel_myna" target="_blank" class="contact-social-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          Instagram
+        </a>
+        <a href="https://www.tiktok.com/@manuelmyna" target="_blank" class="contact-social-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 12.67 0V8.69a8.16 8.16 0 0 0 4.77 1.52V6.76a4.85 4.85 0 0 1-1-.07z"/></svg>
+          TikTok
+        </a>
+        <a href="https://www.linkedin.com/in/manuel-mina/" target="_blank" class="contact-social-btn">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
-        </div>
-        <a href="https://www.linkedin.com/in/manuel-mina/" target="_blank" style="color:var(--text2);transition:color .3s" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text2)'">linkedin.com/in/manuel-mina</a>
+          LinkedIn
+        </a>
+        <a href="https://www.facebook.com/ManuelMyna/" target="_blank" class="contact-social-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          Facebook
+        </a>
       </div>
     </div>
     <div class="form-wrap reveal-right">
@@ -927,8 +976,10 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 3
       <a href="#proceso">Metodología</a>
       <a href="#galeria">Proyectos</a>
       <a href="#contacto">Contacto</a>
+      <a href="portafolio.html">Portafolio</a>
+      <a href="politica-privacidad.html">Privacidad</a>
     </div>
-    <div class="footer-copy">© 2026 Victor Manuel Mina. Todos los derechos reservados.</div>
+    <div class="footer-copy">© 2026 Victor Manuel Mina · <a href="politica-privacidad.html" style="color:inherit">Política de privacidad</a></div>
   </div>
 </footer>
 
@@ -980,26 +1031,46 @@ const counterObs = new IntersectionObserver(entries => {
 document.querySelectorAll('[data-target]').forEach(el => counterObs.observe(el));
 
 // ── Galería lightbox ──────────────────────────────────────────────
-const lbSrcs = [
-  'assets/trabajo/t1.jpeg','assets/trabajo/t2.jpeg','assets/trabajo/t3.jpg',
-  'assets/trabajo/t4.jpg','assets/trabajo/t5.jpg','assets/trabajo/t6.jpg'
+const lbData = [
+  { src: 'assets/Trabajo/Solar/t2.jpeg',
+    title: 'Sistema Solar Fotovoltaico',
+    desc: 'Instalación solar residencial — Cali, Valle del Cauca' },
+  { src: 'assets/Trabajo/Solar/978b7176-4784-4ad4-bd95-ed061f9d3fc9.JPG',
+    title: 'Energía Solar Fotovoltaica',
+    desc: 'Proyecto solar comercial · +5.5 MWp ejecutados' },
+  { src: 'assets/Trabajo/Solar/5bb1bb84-8854-4214-b495-13ea7a3e03c9.JPG',
+    title: 'Instalación Solar',
+    desc: 'Montaje e ingeniería de paneles solares — Valle del Cauca' },
+  { src: 'assets/Trabajo/Ev/f45ce4f2-d9d0-4412-a62c-c0b570f5a5df.JPG',
+    title: 'Cargador Eléctrico Vehicular',
+    desc: 'Infraestructura EV certificada RETIE · Level 2' },
+  { src: 'assets/Trabajo/Pantallas/92D3B034-E016-43A8-80AC-D1D63DBCD4B1.JPG',
+    title: 'Señalización LED',
+    desc: 'Instalación de pantallas LED y señalización digital' },
 ];
 let lbIdx = 0;
-const lbEl   = document.getElementById('lightbox');
-const lbImg  = document.getElementById('lb-img');
-const lbCtr  = document.getElementById('lb-counter');
+const lbEl    = document.getElementById('lightbox');
+const lbImg   = document.getElementById('lb-img');
+const lbCtr   = document.getElementById('lb-counter');
+const lbTitle = document.getElementById('lb-title');
+const lbDesc  = document.getElementById('lb-desc');
 
+function lbShow() {
+  const d = lbData[lbIdx];
+  lbImg.src = d.src;
+  if (lbTitle) lbTitle.textContent = d.title;
+  if (lbDesc)  lbDesc.textContent  = d.desc;
+  lbCtr.textContent = (lbIdx + 1) + ' / ' + lbData.length;
+}
 function openLb(i) {
-  lbIdx = i; lbImg.src = lbSrcs[lbIdx];
-  lbCtr.textContent = (lbIdx + 1) + ' / ' + lbSrcs.length;
-  lbEl.classList.add('open'); document.body.style.overflow = 'hidden';
+  lbIdx = i % lbData.length;
+  lbShow(); lbEl.classList.add('open'); document.body.style.overflow = 'hidden';
 }
 function closeLb() { lbEl.classList.remove('open'); document.body.style.overflow = ''; }
 function closeLbOutside(e) { if (e.target === lbEl) closeLb(); }
 function lbNav(dir) {
-  lbIdx = (lbIdx + dir + lbSrcs.length) % lbSrcs.length;
-  lbImg.src = lbSrcs[lbIdx];
-  lbCtr.textContent = (lbIdx + 1) + ' / ' + lbSrcs.length;
+  lbIdx = (lbIdx + dir + lbData.length) % lbData.length;
+  lbShow();
 }
 document.addEventListener('keydown', e => {
   if (!lbEl.classList.contains('open')) return;
@@ -1018,19 +1089,15 @@ function handleSubmit(e) {
   const btn     = e.target.querySelector('.form-submit');
 
   // Envío por email via Formspree
-  // Para activar: crea cuenta gratis en formspree.io y reemplaza YOUR_FORM_ID
-  const FORMSPREE_ID = 'YOUR_FORM_ID';
-  if (FORMSPREE_ID !== 'YOUR_FORM_ID') {
-    fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({ name, email, service: service || 'Consulta general', message: msg })
-    }).catch(() => {});
-  }
+  fetch('https://formspree.io/f/xvzljela', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify({ name, email, service: service || 'Consulta general', message: msg })
+  }).catch(() => {});
 
   // Redirección WhatsApp
   const text = encodeURIComponent(`Hola Ing. Victor, vi su web.\n\n*Nombre:* ${name}\n*Email:* ${email}\n*Servicio:* ${service||'Consulta general'}\n\n*Proyecto:*\n${msg}`);
-  window.open(`https://wa.me/573145596767?text=${text}`, '_blank');
+  window.open(`https://wa.me/573145569567?text=${text}`, '_blank');
   btn.textContent = 'Solicitud enviada ✓';
   btn.style.background = '#1DA851';
   setTimeout(() => { btn.textContent = 'Enviar solicitud técnica'; btn.style.background = ''; e.target.reset(); }, 3000);
@@ -1040,6 +1107,29 @@ window.addEventListener('scroll', () => {
   const glow = document.querySelector('.hero-glow');
   if (glow) glow.style.transform = `translateX(-50%) translateY(${window.scrollY * 0.18}px)`;
 }, { passive: true });
+
+// Cookie consent
+(function() {
+  if (localStorage.getItem('cookie_consent')) return;
+  const b = document.createElement('div');
+  Object.assign(b.style, {
+    position:'fixed', bottom:0, left:0, right:0, zIndex:'9999',
+    background:'rgba(7,17,28,.97)', borderTop:'1px solid rgba(200,144,16,.14)',
+    backdropFilter:'blur(12px)', padding:'16px 5%',
+    display:'flex', alignItems:'center', justifyContent:'space-between',
+    gap:'16px', flexWrap:'wrap'
+  });
+  b.innerHTML = `
+    <p style="font-size:.84rem;color:#B4C8D8;max-width:680px;margin:0">
+      Este sitio usa <strong style="color:#EEF2F7">Google Fonts</strong> y <strong style="color:#EEF2F7">Formspree</strong> para funcionalidades básicas, sin rastreo publicitario.
+      <a href="politica-privacidad.html" style="color:#C89010">Política de privacidad</a>
+    </p>
+    <div style="display:flex;gap:10px;flex-shrink:0">
+      <button onclick="localStorage.setItem('cookie_consent','accepted');this.closest('div').remove()" style="padding:9px 22px;background:#C89010;color:#000;border:none;border-radius:8px;font-weight:700;font-size:.76rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer">Aceptar</button>
+      <button onclick="localStorage.setItem('cookie_consent','rejected');this.closest('div').remove()" style="padding:9px 22px;background:transparent;color:#6A8598;border:1px solid rgba(200,144,16,.14);border-radius:8px;font-weight:600;font-size:.76rem;cursor:pointer">Solo esenciales</button>
+    </div>`;
+  document.body.appendChild(b);
+})();
 </script>
 </body>
 </html>

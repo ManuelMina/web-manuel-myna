@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Política de Privacidad & Cookies — Victor Manuel Mina</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #04090F; --bg2: #07111C; --card: #08131E;
+  --gold: #C89010; --text: #EEF2F7; --text2: #B4C8D8; --muted: #6A8598;
+  --border: rgba(200,144,16,.14); --r: 16px; --r2: 8px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.75; }
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+a { color: var(--gold); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+nav {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 5%; height: 68px; background: rgba(4,9,15,.97);
+  border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 10;
+}
+.nav-logo { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; }
+.nav-logo em { font-style: normal; color: var(--gold); }
+.nav-back {
+  font-size: .78rem; font-weight: 600; letter-spacing: .06em;
+  color: var(--muted); display: flex; align-items: center; gap: 6px;
+  transition: color .3s;
+}
+.nav-back:hover { color: var(--gold); text-decoration: none; }
+
+main { max-width: 820px; margin: 0 auto; padding: 72px 5% 100px; }
+.page-tag {
+  display: inline-block; padding: 4px 12px; border: 1px solid var(--border);
+  border-radius: 3px; font-size: .68rem; font-weight: 600; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 20px;
+}
+h1 {
+  font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-weight: 700; line-height: 1.2; margin-bottom: 10px;
+}
+.subtitle { font-size: .88rem; color: var(--muted); margin-bottom: 48px; }
+.subtitle strong { color: var(--text2); }
+
+.section {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--r); padding: 32px 36px; margin-bottom: 20px;
+}
+.section h2 {
+  font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700;
+  color: var(--gold); margin-bottom: 14px; display: flex; align-items: center; gap: 10px;
+}
+.section h2::before {
+  content: ''; width: 22px; height: 1px; background: var(--gold); flex-shrink: 0;
+}
+.section p { font-size: .9rem; color: var(--text2); margin-bottom: 10px; }
+.section p:last-child { margin-bottom: 0; }
+.section ul { list-style: none; padding: 0; }
+.section ul li {
+  font-size: .9rem; color: var(--text2); padding: 5px 0;
+  border-bottom: 1px solid rgba(255,255,255,.04);
+  display: flex; gap: 10px;
+}
+.section ul li:last-child { border-bottom: none; }
+.section ul li::before { content: '—'; color: var(--gold); flex-shrink: 0; }
+
+.cookie-table { width: 100%; border-collapse: collapse; margin-top: 12px; }
+.cookie-table th, .cookie-table td {
+  text-align: left; padding: 10px 12px; font-size: .83rem;
+  border-bottom: 1px solid rgba(255,255,255,.05);
+}
+.cookie-table th { color: var(--gold); font-weight: 600; letter-spacing: .06em; text-transform: uppercase; font-size: .72rem; }
+.cookie-table td { color: var(--text2); }
+.cookie-table tr:last-child td { border-bottom: none; }
+
+.cookie-notice {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 999;
+  background: rgba(7,17,28,.97); border-top: 1px solid var(--border);
+  backdrop-filter: blur(12px); padding: 18px 5%;
+  display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;
+}
+.cookie-notice p { font-size: .85rem; color: var(--text2); max-width: 680px; }
+.cookie-notice p a { color: var(--gold); }
+.cookie-btns { display: flex; gap: 10px; flex-shrink: 0; }
+.cookie-accept {
+  padding: 9px 22px; background: var(--gold); color: #000;
+  border: none; border-radius: var(--r2); font-weight: 700; font-size: .78rem;
+  letter-spacing: .08em; text-transform: uppercase; cursor: pointer;
+  transition: background .3s;
+}
+.cookie-accept:hover { background: #E4AD2A; }
+.cookie-reject {
+  padding: 9px 22px; background: transparent; color: var(--muted);
+  border: 1px solid var(--border); border-radius: var(--r2); font-weight: 600; font-size: .78rem;
+  letter-spacing: .06em; text-transform: uppercase; cursor: pointer;
+  transition: color .3s, border-color .3s;
+}
+.cookie-reject:hover { color: var(--text); border-color: rgba(255,255,255,.2); }
+
+footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 28px 5%; text-align: center; }
+footer p { font-size: .75rem; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">V<em>M</em></a>
+  <a href="index.html" class="nav-back">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    Volver al inicio
+  </a>
+</nav>
+
+<main>
+  <div class="page-tag">Legal</div>
+  <h1>Política de Privacidad<br>& Política de Cookies</h1>
+  <p class="subtitle">Última actualización: <strong>15 de mayo de 2026</strong> · Responsable: Victor Manuel Mina Lucumi</p>
+
+  <div class="section">
+    <h2>1. Responsable del tratamiento</h2>
+    <p>En cumplimiento de la <strong>Ley 1581 de 2012</strong> (Ley de Protección de Datos Personales), el Decreto 1377 de 2013 y las demás normas concordantes, se informa que el responsable del tratamiento de datos personales recolectados a través de este sitio web es:</p>
+    <ul>
+      <li><strong>Nombre:</strong> Victor Manuel Mina Lucumi</li>
+      <li><strong>Actividad:</strong> Ingeniero Electrónico — Soluciones eléctricas integrales (Dinastel SAS)</li>
+      <li><strong>Ciudad:</strong> Cali, Valle del Cauca, Colombia</li>
+      <li><strong>Correo electrónico:</strong> manuelmyna97@gmail.com</li>
+      <li><strong>Teléfono/WhatsApp:</strong> +57 314 556 9567</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>2. Datos que recopilamos</h2>
+    <p>A través del formulario de contacto de este sitio web recopilamos únicamente los datos que usted nos proporciona voluntariamente:</p>
+    <ul>
+      <li>Nombre completo</li>
+      <li>Dirección de correo electrónico</li>
+      <li>Tipo de servicio de interés</li>
+      <li>Descripción del proyecto o consulta</li>
+    </ul>
+    <p>No recopilamos datos sensibles según la definición del artículo 5 de la Ley 1581 de 2012, ni datos de menores de edad.</p>
+  </div>
+
+  <div class="section">
+    <h2>3. Finalidad del tratamiento</h2>
+    <p>Los datos personales recopilados se utilizan exclusivamente para:</p>
+    <ul>
+      <li>Responder a sus consultas y solicitudes de cotización</li>
+      <li>Enviar información técnica relacionada con el servicio solicitado</li>
+      <li>Gestionar la relación comercial derivada del contacto inicial</li>
+    </ul>
+    <p>No utilizamos sus datos para envíos masivos de publicidad, perfilamiento automatizado ni los compartimos con terceros con fines comerciales.</p>
+  </div>
+
+  <div class="section">
+    <h2>4. Base legal del tratamiento</h2>
+    <p>El tratamiento de sus datos se realiza sobre la base del <strong>consentimiento libre, previo, expreso e informado</strong> que usted otorga al enviar el formulario de contacto, de conformidad con el artículo 9 de la Ley 1581 de 2012.</p>
+  </div>
+
+  <div class="section">
+    <h2>5. Destinatarios y transferencias</h2>
+    <p>Sus datos pueden ser procesados por los siguientes proveedores de servicio que actúan como encargados del tratamiento:</p>
+    <ul>
+      <li><strong>Formspree (formspree.io):</strong> servicio de envío de formularios — servidor en Estados Unidos, con política de privacidad propia</li>
+      <li><strong>WhatsApp / Meta Platforms:</strong> canal alternativo de comunicación — aplica la política de privacidad de Meta</li>
+      <li><strong>Google Fonts:</strong> carga de tipografías desde servidores de Google</li>
+    </ul>
+    <p>No realizamos transferencias internacionales de datos fuera de los proveedores mencionados. No vendemos ni cedemos sus datos a terceros.</p>
+  </div>
+
+  <div class="section">
+    <h2>6. Sus derechos (Habeas Data)</h2>
+    <p>De conformidad con la Ley 1581 de 2012, usted tiene derecho a:</p>
+    <ul>
+      <li><strong>Conocer</strong> los datos personales que hemos recopilado sobre usted</li>
+      <li><strong>Actualizar</strong> sus datos cuando sean inexactos o incompletos</li>
+      <li><strong>Rectificar</strong> datos erróneos o inexactos</li>
+      <li><strong>Suprimir</strong> sus datos cuando considere que no son necesarios o hayan cumplido su finalidad</li>
+      <li><strong>Revocar</strong> el consentimiento otorgado para el tratamiento</li>
+      <li><strong>Presentar quejas</strong> ante la Superintendencia de Industria y Comercio (SIC)</li>
+    </ul>
+    <p>Para ejercer estos derechos, puede contactarnos por correo electrónico a <a href="mailto:manuelmyna97@gmail.com">manuelmyna97@gmail.com</a> o por WhatsApp al +57 314 556 9567. Daremos respuesta en un plazo máximo de <strong>15 días hábiles</strong>.</p>
+  </div>
+
+  <div class="section">
+    <h2>7. Plazo de conservación</h2>
+    <p>Sus datos se conservarán durante el tiempo necesario para atender su solicitud y, en caso de establecerse una relación comercial, durante la vigencia de dicha relación más los plazos legales aplicables (mínimo 5 años según normativa tributaria colombiana).</p>
+    <p>Los datos de contactos que no derivaron en relación comercial se eliminan al cabo de 12 meses.</p>
+  </div>
+
+  <div class="section">
+    <h2>8. Política de Cookies</h2>
+    <p>Este sitio web es una página estática que <strong>no utiliza cookies de seguimiento, publicidad ni analíticas de terceros</strong>. Las únicas conexiones externas que se realizan son:</p>
+    <table class="cookie-table">
+      <thead>
+        <tr><th>Origen</th><th>Finalidad</th><th>Tipo</th><th>Duración</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Google Fonts (fonts.googleapis.com)</td>
+          <td>Cargar tipografías del sitio</td>
+          <td>Técnica</td>
+          <td>Sesión</td>
+        </tr>
+        <tr>
+          <td>Formspree (formspree.io)</td>
+          <td>Envío del formulario de contacto</td>
+          <td>Funcional</td>
+          <td>Sesión</td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="margin-top:14px;">No instalamos cookies en su dispositivo. La solicitud a Google Fonts puede generar registros en los servidores de Google de acuerdo con su propia política de privacidad.</p>
+  </div>
+
+  <div class="section">
+    <h2>9. Seguridad</h2>
+    <p>Adoptamos las medidas técnicas y organizativas razonables para proteger sus datos personales contra acceso no autorizado, pérdida, destrucción o alteración. Sin embargo, ninguna transmisión por Internet es completamente segura, por lo que no podemos garantizar la seguridad absoluta de la información transmitida.</p>
+  </div>
+
+  <div class="section">
+    <h2>10. Modificaciones</h2>
+    <p>Esta política puede actualizarse para reflejar cambios en las prácticas de tratamiento o en la normativa aplicable. La versión actualizada se publicará en esta misma página con la fecha de la última modificación. Le recomendamos revisarla periódicamente.</p>
+    <p>Si continúa utilizando el sitio después de la publicación de cambios, se considerará que acepta la política actualizada.</p>
+  </div>
+
+  <div class="section">
+    <h2>11. Autoridad de control</h2>
+    <p>Si considera que el tratamiento de sus datos no se ajusta a la normativa vigente, puede presentar una reclamación ante la <strong>Superintendencia de Industria y Comercio (SIC)</strong> de Colombia, organismo competente en materia de protección de datos personales.</p>
+    <ul>
+      <li>Sitio web: <a href="https://www.sic.gov.co" target="_blank">www.sic.gov.co</a></li>
+      <li>Línea gratuita: 01 8000 910165</li>
+      <li>Correo: contactenos@sic.gov.co</li>
+    </ul>
+  </div>
+</main>
+
+<footer>
+  <p>© 2026 Victor Manuel Mina · Cali, Valle del Cauca, Colombia · <a href="index.html">Volver al sitio principal</a></p>
+</footer>
+
+<!-- Banner de cookies -->
+<div id="cookie-notice" class="cookie-notice" style="display:none">
+  <p>
+    Este sitio no usa cookies de rastreo. Usamos <strong>Google Fonts</strong> y <strong>Formspree</strong> para funcionalidades básicas.
+    Al continuar, acepta el uso descrito en nuestra <a href="politica-privacidad.html">Política de Privacidad</a>.
+  </p>
+  <div class="cookie-btns">
+    <button class="cookie-accept" onclick="acceptCookies()">Aceptar</button>
+    <button class="cookie-reject" onclick="rejectCookies()">Solo esenciales</button>
+  </div>
+</div>
+
+<script>
+function acceptCookies() {
+  localStorage.setItem('cookie_consent', 'accepted');
+  document.getElementById('cookie-notice').style.display = 'none';
+}
+function rejectCookies() {
+  localStorage.setItem('cookie_consent', 'rejected');
+  document.getElementById('cookie-notice').style.display = 'none';
+}
+if (!localStorage.getItem('cookie_consent')) {
+  document.getElementById('cookie-notice').style.display = 'flex';
+}
+</script>
+</body>
+</html>
