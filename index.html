@@ -69,8 +69,9 @@ nav {
   border-bottom: 1px solid transparent;
 }
 nav.scrolled { background: rgba(4,9,15,.92); backdrop-filter: blur(20px); border-bottom-color: var(--border); }
-.nav-logo { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; }
+.nav-logo { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; display: flex; align-items: baseline; gap: 10px; }
 .nav-logo em { font-style: normal; color: var(--gold); }
+.nav-logo-name { font-family: 'Inter', sans-serif; font-size: .72rem; font-weight: 400; color: var(--text2); letter-spacing: .04em; border-left: 1px solid var(--border); padding-left: 10px; align-self: center; white-space: nowrap; }
 .nav-links { display: flex; gap: 36px; list-style: none; }
 .nav-links a { font-size: .8rem; font-weight: 500; letter-spacing: .05em; color: var(--muted); transition: color .3s; }
 .nav-links a:hover { color: var(--text); }
@@ -89,7 +90,7 @@ nav.scrolled { background: rgba(4,9,15,.92); backdrop-filter: blur(20px); border
 }
 .hero-collage {
   position: absolute; inset: 0;
-  display: grid; grid-template-columns: repeat(3,1fr); grid-template-rows: repeat(2,1fr);
+  display: grid; grid-template-columns: repeat(4,1fr); grid-template-rows: repeat(4,1fr);
 }
 .hero-collage-cell { overflow: hidden; }
 .hero-collage-cell img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1); display: block; }
@@ -103,25 +104,13 @@ nav.scrolled { background: rgba(4,9,15,.92); backdrop-filter: blur(20px); border
   background: radial-gradient(circle, rgba(200,144,16,.05) 0%, transparent 70%);
   pointer-events: none; z-index: 1;
 }
-.hero-inner { position: relative; z-index: 2; max-width: 900px; width: 100%; text-align: center; }
-.hero-identity {
-  display: inline-flex; align-items: center; gap: 20px;
-  margin-bottom: 20px;
-}
-.hero-monogram {
+.hero-inner { position: relative; z-index: 2; max-width: 860px; width: 100%; text-align: center; }
+.hero-name {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(3rem, 7vw, 5rem); font-weight: 900;
-  line-height: 1; letter-spacing: -.04em; color: var(--text);
+  font-size: clamp(2rem, 7vw, 4.2rem); font-weight: 900;
+  line-height: 1.05; letter-spacing: -.03em; color: var(--text); margin-bottom: 22px;
 }
-.hero-monogram em { font-style: normal; color: var(--gold); }
-.hero-nameblock {
-  text-align: left; border-left: 1px solid rgba(200,144,16,.3); padding-left: 20px;
-}
-.hero-nameline {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(.95rem, 2.2vw, 1.45rem); font-weight: 700;
-  line-height: 1.25; color: var(--text); letter-spacing: .01em;
-}
+.hero-name em { font-style: normal; color: var(--gold); }
 .hero-chip {
   display: inline-flex; align-items: center; gap: 8px;
   padding: 6px 16px; border-radius: 3px;
@@ -164,12 +153,9 @@ nav.scrolled { background: rgba(4,9,15,.92); backdrop-filter: blur(20px); border
   display: flex; flex-direction: column; align-items: center; gap: 8px;
   color: var(--muted); font-size: .68rem; letter-spacing: .12em; text-transform: uppercase;
 }
-.hero-scroll-line {
-  width: 1px; height: 36px;
-  background: linear-gradient(to bottom, var(--gold), transparent);
-  animation: scrollLine 2s ease-in-out infinite;
-}
-@keyframes scrollLine { 0% { opacity:1; transform:scaleY(1); transform-origin:top; } 100% { opacity:0; transform:scaleY(0); transform-origin:top; } }
+.hero-scroll-line { width: 1px; height: 48px; overflow: hidden; position: relative; background: none; }
+.hero-scroll-line::after { content: ''; position: absolute; top: 0; left: 0; width: 1px; height: 100%; background: linear-gradient(to bottom, transparent 0%, var(--gold) 50%, transparent 100%); animation: scrollDrop 2s ease-in-out infinite; }
+@keyframes scrollDrop { 0% { transform: translateY(-100%); } 100% { transform: translateY(100%); } }
 
 /* TICKER */
 .ticker-strip {
@@ -277,33 +263,32 @@ nav.scrolled { background: rgba(4,9,15,.92); backdrop-filter: blur(20px); border
 }
 .process-step { display: flex; gap: 22px; align-items: flex-start; padding: 22px 0; }
 .process-num {
-  width: 46px; height: 46px; flex-shrink: 0; border-radius: 50%;
+  width: 52px; height: 52px; flex-shrink: 0; border-radius: 50%;
   border: 1px solid var(--border); background: var(--bg3);
   display: flex; align-items: center; justify-content: center;
-  font-family: 'Playfair Display', serif; font-size: .85rem; font-weight: 700; color: var(--gold);
+  font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--gold);
   position: relative; z-index: 1; transition: background .3s, border-color .3s;
 }
-.process-step:hover .process-num { background: var(--gold3); border-color: var(--gold); }
-.process-step-title { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 5px; }
-.process-step-desc { font-size: .83rem; color: var(--muted); line-height: 1.68; }
+.process-step:hover .process-num { background: var(--bg2); border-color: var(--gold); }
+.process-step-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: 5px; }
+.process-step-desc { font-size: .93rem; color: var(--muted); line-height: 1.68; }
 
 /* CLIENTS */
 #clientes { padding: 70px 0; background: var(--bg); overflow: hidden; }
-.clients-header { max-width: 1200px; margin: 0 auto 40px; padding: 0 5%; }
-
-/* CLIENTS GRID */
-#clientes { padding: 80px 5%; background: var(--bg); }
-.clients-header { max-width: 1200px; margin: 0 auto 52px; }
-.clients-grid {
-  max-width: 1100px; margin: 0 auto;
-  display: grid; grid-template-columns: repeat(4,1fr); gap: 36px 48px; align-items: center;
+.clients-header { max-width: 1200px; margin: 0 auto 44px; padding: 0 5%; }
+.clients-ticker { position: relative; overflow: hidden; padding: 10px 0; }
+.clients-ticker::before, .clients-ticker::after {
+  content: ''; position: absolute; top: 0; bottom: 0; width: 140px; z-index: 2; pointer-events: none;
 }
-.client-logo { display: flex; align-items: center; justify-content: center; padding: 12px 8px; }
-.client-logo img {
-  max-height: 64px; max-width: 160px; width: auto; height: auto; object-fit: contain;
-  transition: transform .35s, opacity .35s; opacity: .85;
-}
-.client-logo:hover img { transform: scale(1.07); opacity: 1; }
+.clients-ticker::before { left: 0; background: linear-gradient(90deg, var(--bg), transparent); }
+.clients-ticker::after  { right: 0; background: linear-gradient(270deg, var(--bg), transparent); }
+.clients-track { display: flex; width: max-content; animation: clientsTicker 32s linear infinite; align-items: center; }
+.clients-track:hover { animation-play-state: paused; }
+@keyframes clientsTicker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.client-logo-item { display: flex; align-items: center; justify-content: center; padding: 16px 44px; flex-shrink: 0; }
+.client-logo-item img { max-height: 65px; max-width: 190px; width: auto; height: auto; object-fit: contain; transition: transform .35s; }
+.client-logo-item:hover img { transform: scale(1.08); }
+.client-logo-item.centronet img { filter: brightness(0) invert(1); }
 
 /* LIGHTBOX */
 #lightbox {
@@ -468,10 +453,11 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 3
 
 <!-- NAV -->
 <nav id="nav">
-  <a href="#hero" class="nav-logo">V<em>M</em></a>
+  <a href="#hero" class="nav-logo">V<em>M</em><span class="nav-logo-name">Victor Manuel Mina</span></a>
   <ul class="nav-links">
     <li><a href="#sobre-mi">Perfil</a></li>
     <li><a href="#servicios">Servicios</a></li>
+    <li><a href="portafolio.html">Portafolio</a></li>
     <li><a href="#proceso">Metodología</a></li>
     <li><a href="#galeria">Proyectos</a></li>
     <li><a href="#contacto">Contacto</a></li>
@@ -492,7 +478,17 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 3
     <div class="hero-collage-cell"><img src="assets/Trabajo/Solar/5bb1bb84-8854-4214-b495-13ea7a3e03c9.JPG" alt=""></div>
     <div class="hero-collage-cell"><img src="assets/Trabajo/Ev/f45ce4f2-d9d0-4412-a62c-c0b570f5a5df.JPG" alt=""></div>
     <div class="hero-collage-cell"><img src="assets/Trabajo/Pantallas/92D3B034-E016-43A8-80AC-D1D63DBCD4B1.JPG" alt=""></div>
-    <div class="hero-collage-cell" style="background:var(--bg3)"></div>
+    <div class="hero-collage-cell"><img src="assets/Trabajo/Solar/t2.jpeg" alt=""></div>
+    <div class="hero-collage-cell"><img src="assets/Trabajo/Solar/978b7176-4784-4ad4-bd95-ed061f9d3fc9.JPG" alt=""></div>
+    <div class="hero-collage-cell"><img src="assets/Trabajo/Solar/5bb1bb84-8854-4214-b495-13ea7a3e03c9.JPG" alt=""></div>
+    <div class="hero-collage-cell"><img src="assets/Trabajo/Ev/f45ce4f2-d9d0-4412-a62c-c0b570f5a5df.JPG" alt=""></div>
+    <div class="hero-collage-cell"><img src="assets/Trabajo/Pantallas/92D3B034-E016-43A8-80AC-D1D63DBCD4B1.JPG" alt=""></div>
+    <div class="hero-collage-cell"><img src="assets/Trabajo/Solar/t2.jpeg" alt=""></div>
+    <div class="hero-collage-cell"><img src="assets/Trabajo/Solar/5bb1bb84-8854-4214-b495-13ea7a3e03c9.JPG" alt=""></div>
+    <div class="hero-collage-cell"><img src="assets/Trabajo/Ev/f45ce4f2-d9d0-4412-a62c-c0b570f5a5df.JPG" alt=""></div>
+    <div class="hero-collage-cell"><img src="assets/Trabajo/Solar/978b7176-4784-4ad4-bd95-ed061f9d3fc9.JPG" alt=""></div>
+    <div class="hero-collage-cell"><img src="assets/Trabajo/Pantallas/92D3B034-E016-43A8-80AC-D1D63DBCD4B1.JPG" alt=""></div>
+    <div class="hero-collage-cell"><img src="assets/Trabajo/Solar/t2.jpeg" alt=""></div>
   </div>
   <div class="hero-collage-overlay"></div>
   <div class="hero-glow"></div>
@@ -501,13 +497,7 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 3
       <span class="hero-chip-dot"></span>
       Disponible · Cali & Valle del Cauca
     </div>
-    <div class="hero-identity reveal" style="transition-delay:.06s">
-      <span class="hero-monogram">V<em>M</em></span>
-      <div class="hero-nameblock">
-        <div class="hero-nameline">Victor Manuel</div>
-        <div class="hero-nameline">Mina</div>
-      </div>
-    </div>
+    <h1 class="hero-name reveal" style="transition-delay:.06s">Victor <em>Manuel</em><br>Mina</h1>
     <p class="hero-role reveal" style="transition-delay:.12s">Ingeniero Electrónico · Energías Renovables</p>
     <p class="hero-company reveal" style="transition-delay:.16s">Fundador & Gerente General de <strong>Dinastel SAS</strong></p>
     <div class="hero-stats reveal" style="transition-delay:.21s">
@@ -810,19 +800,34 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 3
     <div class="section-label">Empresas que confían</div>
     <h2 class="section-title">Clientes atendidos</h2>
   </div>
-  <div class="clients-grid">
-    <div class="client-logo reveal" style="transition-delay:.03s"><img src="assets/Logos empresas/VATIA.png" alt="Vatia"></div>
-    <div class="client-logo reveal" style="transition-delay:.06s"><img src="assets/Logos empresas/ABASTE.png" alt="Abaste Colombia"></div>
-    <div class="client-logo reveal" style="transition-delay:.09s"><img src="assets/Logos empresas/DELTEC.png" alt="Deltec"></div>
-    <div class="client-logo reveal" style="transition-delay:.12s"><img src="assets/Logos empresas/CENTRONET.png" alt="Centronet"></div>
-    <div class="client-logo reveal" style="transition-delay:.15s"><img src="assets/Logos empresas/APC.png" alt="APC Frigoríficos"></div>
-    <div class="client-logo reveal" style="transition-delay:.18s"><img src="assets/Logos empresas/AMERIPLAST.jpg" alt="Ameriplast"></div>
-    <div class="client-logo reveal" style="transition-delay:.21s"><img src="assets/Logos empresas/ICOBANDAS.png" alt="Icobandas"></div>
-    <div class="client-logo reveal" style="transition-delay:.24s"><img src="assets/Logos empresas/TECNOSOLAR.webp" alt="Tecnosolar"></div>
-    <div class="client-logo reveal" style="transition-delay:.27s"><img src="assets/Logos empresas/INMCOR.jpeg" alt="Inmcor"></div>
-    <div class="client-logo reveal" style="transition-delay:.30s"><img src="assets/Logos empresas/AVICOLA-SANTA-ELENA.jpg" alt="Avícola Santa Elena"></div>
-    <div class="client-logo reveal" style="transition-delay:.33s"><img src="assets/Logos empresas/BRASILIA.jpg" alt="Transportadora Brasilia"></div>
-    <div class="client-logo reveal" style="transition-delay:.36s"><img src="assets/Logos empresas/VPC.png" alt="VPC Buenaventura"></div>
+  <div class="clients-ticker">
+    <div class="clients-track">
+      <div class="client-logo-item"><img src="assets/Logos empresas/VATIA.png" alt="Vatia"></div>
+      <div class="client-logo-item"><img src="assets/Logos empresas/ABASTE.png" alt="Abaste Colombia"></div>
+      <div class="client-logo-item"><img src="assets/Logos empresas/DELTEC.png" alt="Deltec"></div>
+      <div class="client-logo-item centronet"><img src="assets/Logos empresas/CENTRONET.png" alt="Centronet"></div>
+      <div class="client-logo-item"><img src="assets/Logos empresas/APC.png" alt="APC Frigoríficos"></div>
+      <div class="client-logo-item"><img src="assets/Logos empresas/AMERIPLAST.jpg" alt="Ameriplast"></div>
+      <div class="client-logo-item"><img src="assets/Logos empresas/ICOBANDAS.png" alt="Icobandas"></div>
+      <div class="client-logo-item"><img src="assets/Logos empresas/TECNOSOLAR.webp" alt="Tecnosolar"></div>
+      <div class="client-logo-item"><img src="assets/Logos empresas/INMCOR.jpeg" alt="Inmcor"></div>
+      <div class="client-logo-item"><img src="assets/Logos empresas/AVICOLA-SANTA-ELENA.jpg" alt="Avícola Santa Elena"></div>
+      <div class="client-logo-item"><img src="assets/Logos empresas/BRASILIA.jpg" alt="Transportadora Brasilia"></div>
+      <div class="client-logo-item"><img src="assets/Logos empresas/VPC.png" alt="VPC Buenaventura"></div>
+      <!-- duplicate set for seamless loop -->
+      <div class="client-logo-item"><img src="assets/Logos empresas/VATIA.png" alt="Vatia"></div>
+      <div class="client-logo-item"><img src="assets/Logos empresas/ABASTE.png" alt="Abaste Colombia"></div>
+      <div class="client-logo-item"><img src="assets/Logos empresas/DELTEC.png" alt="Deltec"></div>
+      <div class="client-logo-item centronet"><img src="assets/Logos empresas/CENTRONET.png" alt="Centronet"></div>
+      <div class="client-logo-item"><img src="assets/Logos empresas/APC.png" alt="APC Frigoríficos"></div>
+      <div class="client-logo-item"><img src="assets/Logos empresas/AMERIPLAST.jpg" alt="Ameriplast"></div>
+      <div class="client-logo-item"><img src="assets/Logos empresas/ICOBANDAS.png" alt="Icobandas"></div>
+      <div class="client-logo-item"><img src="assets/Logos empresas/TECNOSOLAR.webp" alt="Tecnosolar"></div>
+      <div class="client-logo-item"><img src="assets/Logos empresas/INMCOR.jpeg" alt="Inmcor"></div>
+      <div class="client-logo-item"><img src="assets/Logos empresas/AVICOLA-SANTA-ELENA.jpg" alt="Avícola Santa Elena"></div>
+      <div class="client-logo-item"><img src="assets/Logos empresas/BRASILIA.jpg" alt="Transportadora Brasilia"></div>
+      <div class="client-logo-item"><img src="assets/Logos empresas/VPC.png" alt="VPC Buenaventura"></div>
+    </div>
   </div>
 </section>
 
