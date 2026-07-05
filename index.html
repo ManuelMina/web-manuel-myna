@@ -498,11 +498,17 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 3
   .footer-inner { flex-direction: column; align-items: center; text-align: center; }
   .footer-links { flex-wrap: wrap; justify-content: center; gap: 14px 20px; }
   .form-row { grid-template-columns: 1fr; }
+  .clients-ticker::before, .clients-ticker::after { width: 36px; }
+  .client-logo-item { padding: 10px 22px; }
+  .client-logo-item img { max-height: 52px; max-width: 130px; }
 }
 @media (max-width: 500px) {
   .hero-name { font-size: 3rem; }
   .hero-btns { flex-direction: column; align-items: center; }
   .gallery-grid { grid-template-columns: 1fr 1fr; }
+  .clients-ticker::before, .clients-ticker::after { width: 20px; }
+  .client-logo-item { padding: 8px 16px; }
+  .client-logo-item img { max-height: 44px; max-width: 110px; }
 }
 </style>
 </head>
