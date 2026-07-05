@@ -382,6 +382,22 @@ nav.scrolled { background: rgba(4,9,15,.92); backdrop-filter: blur(20px); border
 .gallery-item:hover .gallery-overlay { opacity: 1; }
 .gallery-overlay span { font-size: .68rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); }
 
+/* INSTALADORES */
+#instaladores { background: var(--bg2); border-top: 1px solid var(--border); }
+.instaladores-header { max-width: 1200px; margin: 0 auto 48px; }
+.instaladores-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; align-items: stretch; }
+.instalador-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--r); padding: 32px 28px; display: flex; flex-direction: column; }
+.instalador-badge { display: inline-block; padding: 4px 10px; border: 1px solid var(--border); border-radius: 3px; font-size: .66rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--gold); background: var(--gold3); margin-bottom: 14px; width: fit-content; }
+.instalador-title { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--text); margin-bottom: 10px; }
+.instalador-desc { font-size: .85rem; color: var(--muted); line-height: 1.65; margin-bottom: 20px; }
+.instalador-form { margin-top: auto; }
+.instalador-form .form-group { margin-bottom: 12px; }
+.instalador-result, .instalador-error { display: none; margin-top: 16px; padding: 16px; border: 1px solid var(--border); border-radius: var(--r2); font-size: .85rem; color: var(--text2); line-height: 1.6; }
+.instalador-result.show, .instalador-error.show { display: block; }
+.instalador-result { background: var(--gold3); }
+.instalador-error { background: rgba(200,60,16,.1); }
+.instalador-curso { align-items: center; justify-content: center; text-align: center; border-style: dashed; }
+
 /* CONTACT */
 #contacto { background: var(--bg); }
 .contact-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
@@ -453,6 +469,7 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 3
   .about-photo-wrap { max-width: 360px; margin: 0 auto; }
   .process-inner { grid-template-columns: 1fr; gap: 48px; }
   .clients-grid { grid-template-columns: repeat(2,1fr); }
+  .instaladores-grid { grid-template-columns: 1fr; gap: 20px; }
 }
 @media (max-width: 768px) {
   .nav-links, .nav-cta { display: none; }
@@ -486,6 +503,7 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 3
   <a href="#hero" class="nav-logo"><span class="nav-vm">V<em>M</em></span><span class="nav-logo-name">Victor <em>Manuel</em> Mina</span></a>
   <ul class="nav-links">
     <li><a href="#cotizador">Cotizador</a></li>
+    <li><a href="#instaladores">Instaladores</a></li>
     <li><a href="#sobre-mi">Perfil</a></li>
     <li><a href="#servicios">Servicios</a></li>
     <li><a href="portafolio.html">Portafolio</a></li>
@@ -1003,8 +1021,95 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 3
   <div class="lb-counter" id="lb-counter"></div>
 </div>
 
-<!-- PLACEHOLDER INSTALADORES (Fase 2) -->
-<div id="instaladores"></div>
+<!-- INSTALADORES -->
+<section id="instaladores">
+  <div class="instaladores-header reveal">
+    <div class="section-label">Para instaladores</div>
+    <h2 class="section-title">Herramientas y soporte<br>para tu equipo técnico</h2>
+    <p class="section-desc">Recursos técnicos y apoyo de ingeniería para instaladores y equipos que ejecutan proyectos solares en el Valle del Cauca.</p>
+  </div>
+  <div class="instaladores-grid">
+
+    <!-- IMAN: MANUAL RETIE -->
+    <div class="instalador-card reveal" style="transition-delay:.05s">
+      <span class="instalador-badge">Gratis</span>
+      <p class="instalador-title">Manual de Instalación Solar bajo RETIE</p>
+      <p class="instalador-desc">Descarga gratis la guía técnica de instalación solar bajo normativa RETIE. Directo a tu correo.</p>
+      <form class="instalador-form" id="retieForm" onsubmit="handleRetieSubmit(event)">
+        <div class="form-group">
+          <input type="text" id="retie-nombre" class="form-input" placeholder="Nombre completo" required>
+        </div>
+        <div class="form-group">
+          <input type="tel" id="retie-whatsapp" class="form-input" placeholder="WhatsApp (10 dígitos)" required>
+        </div>
+        <div class="form-group">
+          <input type="email" id="retie-email" class="form-input" placeholder="Correo electrónico" required>
+        </div>
+        <button type="submit" class="form-submit" id="retie-submit-btn">Descargar manual gratis</button>
+      </form>
+      <div class="instalador-result" id="retie-result"></div>
+      <div class="instalador-error" id="retie-error"></div>
+    </div>
+
+    <!-- OFERTA: DISEÑOS DE INGENIERIA -->
+    <div class="instalador-card reveal" style="transition-delay:.1s">
+      <span class="instalador-badge">Diseños de ingeniería</span>
+      <p class="instalador-title">Diseño técnico para tu proyecto</p>
+      <p class="instalador-desc">Memoria de cálculo, planos, diseño bajo RETIE y NTC 2050, y apoyo en legalización CREG 174. Cuéntanos tu proyecto y te enviamos el alcance.</p>
+      <form class="instalador-form" id="disenosForm" onsubmit="handleDisenosSubmit(event)">
+        <div class="form-group">
+          <input type="text" id="dis-nombre" class="form-input" placeholder="Nombre completo" required>
+        </div>
+        <div class="form-group">
+          <input type="tel" id="dis-whatsapp" class="form-input" placeholder="WhatsApp (10 dígitos)" required>
+        </div>
+        <div class="form-group">
+          <input type="email" id="dis-email" class="form-input" placeholder="Correo electrónico" required>
+        </div>
+        <div class="form-group">
+          <input type="number" id="dis-kwp" class="form-input" placeholder="Potencia estimada (kWp)" min="0" step="0.1" required>
+        </div>
+        <div class="form-group">
+          <select id="dis-ciudad" class="form-select" required>
+            <option value="">Ciudad del proyecto</option>
+            <option>Cali</option>
+            <option>Jamundí</option>
+            <option>Palmira</option>
+            <option>Yumbo</option>
+            <option>Buga</option>
+            <option>Tuluá</option>
+            <option>Cartago</option>
+            <option>Buenaventura</option>
+            <option>Candelaria</option>
+            <option>Florida</option>
+            <option>Pradera</option>
+            <option>El Cerrito</option>
+            <option>Ginebra</option>
+            <option>Guacarí</option>
+            <option>Roldanillo</option>
+            <option>Zarzal</option>
+            <option>Sevilla</option>
+            <option>Otra ciudad del Valle</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <textarea id="dis-desc" class="form-textarea" placeholder="Descripción breve del proyecto" required style="min-height:70px"></textarea>
+        </div>
+        <button type="submit" class="form-submit" id="dis-submit-btn">Enviar mi proyecto</button>
+      </form>
+      <div class="instalador-result" id="dis-result"></div>
+      <div class="instalador-error" id="dis-error"></div>
+    </div>
+
+    <!-- CURSO: TEASER -->
+    <div class="instalador-card instalador-curso reveal" style="transition-delay:.15s">
+      <span class="instalador-badge">Próximamente</span>
+      <p class="instalador-title">Curso de Instalación Solar bajo RETIE</p>
+      <p class="instalador-desc">Formación técnica práctica para instaladores. Muy pronto abrimos inscripciones.</p>
+    </div>
+
+  </div>
+</section>
 
 <!-- CONTACTO -->
 <section id="contacto">
@@ -1115,7 +1220,7 @@ function toggleMenu() {
     borderBottom:'1px solid rgba(200,144,16,.14)',
     padding:'24px 5%', display:'flex', flexDirection:'column', gap:'18px'
   });
-  [['Cotizador','#cotizador'],['Perfil','#sobre-mi'],['Servicios','#servicios'],['Metodología','#proceso'],['Proyectos','#galeria'],['Contacto','#contacto']].forEach(([label,href]) => {
+  [['Cotizador','#cotizador'],['Instaladores','#instaladores'],['Perfil','#sobre-mi'],['Servicios','#servicios'],['Metodología','#proceso'],['Proyectos','#galeria'],['Contacto','#contacto']].forEach(([label,href]) => {
     const a = document.createElement('a');
     a.href = href; a.textContent = label;
     Object.assign(a.style, { color:'#B4C8D8', fontSize:'.9rem', fontWeight:'500', letterSpacing:'.05em' });
@@ -1243,6 +1348,95 @@ function handleCotizadorSubmit(e) {
   .finally(() => {
     btn.disabled = false;
     btn.textContent = 'Calcular mi sistema solar';
+  });
+}
+
+// ── Instaladores: Manual RETIE ─────────────────────────────────────
+function handleRetieSubmit(e) {
+  e.preventDefault();
+  const nombre   = document.getElementById('retie-nombre').value.trim();
+  const whatsapp = document.getElementById('retie-whatsapp').value.replace(/\D/g, '');
+  const email    = document.getElementById('retie-email').value.trim();
+
+  const resultEl = document.getElementById('retie-result');
+  const errorEl  = document.getElementById('retie-error');
+  const btn      = document.getElementById('retie-submit-btn');
+  resultEl.classList.remove('show');
+  errorEl.classList.remove('show');
+
+  if (!/^3\d{9}$/.test(whatsapp)) { alert('Ingresa un número de WhatsApp colombiano válido (10 dígitos).'); return; }
+  if (!/^\S+@\S+\.\S+$/.test(email)) { alert('Ingresa un correo electrónico válido.'); return; }
+
+  btn.disabled = true;
+  btn.textContent = 'Enviando...';
+
+  fetch(BACKEND_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'text/plain' },
+    body: JSON.stringify({ origen: 'Manual RETIE', nombre, whatsapp, email })
+  })
+  .then(r => r.json())
+  .then(data => {
+    if (!data.ok) throw new Error('backend_error');
+    resultEl.innerHTML = '<p>Listo. Te enviamos el Manual RETIE a tu correo 📩</p>';
+    resultEl.classList.add('show');
+    e.target.reset();
+  })
+  .catch(() => {
+    errorEl.innerHTML = `
+      <p>No pudimos procesar la descarga en este momento. Escríbenos y te lo enviamos directo.</p>
+      <a href="https://wa.me/573145569567?text=${encodeURIComponent('Hola Manuel, quiero el Manual RETIE.')}" target="_blank" class="btn-primary">Escribir por WhatsApp</a>`;
+    errorEl.classList.add('show');
+  })
+  .finally(() => {
+    btn.disabled = false;
+    btn.textContent = 'Descargar manual gratis';
+  });
+}
+
+// ── Instaladores: Diseños de ingeniería ────────────────────────────
+function handleDisenosSubmit(e) {
+  e.preventDefault();
+  const nombre   = document.getElementById('dis-nombre').value.trim();
+  const whatsapp = document.getElementById('dis-whatsapp').value.replace(/\D/g, '');
+  const email    = document.getElementById('dis-email').value.trim();
+  const kwp      = parseFloat(document.getElementById('dis-kwp').value);
+  const ciudad   = document.getElementById('dis-ciudad').value;
+  const desc     = document.getElementById('dis-desc').value.trim();
+
+  const resultEl = document.getElementById('dis-result');
+  const errorEl  = document.getElementById('dis-error');
+  const btn      = document.getElementById('dis-submit-btn');
+  resultEl.classList.remove('show');
+  errorEl.classList.remove('show');
+
+  if (!/^3\d{9}$/.test(whatsapp)) { alert('Ingresa un número de WhatsApp colombiano válido (10 dígitos).'); return; }
+  if (!/^\S+@\S+\.\S+$/.test(email)) { alert('Ingresa un correo electrónico válido.'); return; }
+
+  btn.disabled = true;
+  btn.textContent = 'Enviando...';
+
+  fetch(BACKEND_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'text/plain' },
+    body: JSON.stringify({ origen: 'Diseños', nombre, whatsapp, email, kwp, ciudad, descripcion: desc })
+  })
+  .then(r => r.json())
+  .then(data => {
+    if (!data.ok) throw new Error('backend_error');
+    resultEl.innerHTML = '<p>Recibimos tu proyecto. Te contactamos en menos de 24 horas con el alcance y la propuesta.</p>';
+    resultEl.classList.add('show');
+    e.target.reset();
+  })
+  .catch(() => {
+    errorEl.innerHTML = `
+      <p>No pudimos enviar tu proyecto en este momento. Escríbenos directo.</p>
+      <a href="https://wa.me/573145569567?text=${encodeURIComponent('Hola Manuel, quiero cotizar un diseño de ingeniería.')}" target="_blank" class="btn-primary">Escribir por WhatsApp</a>`;
+    errorEl.classList.add('show');
+  })
+  .finally(() => {
+    btn.disabled = false;
+    btn.textContent = 'Enviar mi proyecto';
   });
 }
 
