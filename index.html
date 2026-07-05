@@ -120,8 +120,8 @@ nav.scrolled { background: rgba(4,9,15,.92); backdrop-filter: blur(20px); border
 .hero-inner { position: relative; z-index: 2; max-width: 860px; width: 100%; text-align: center; }
 .hero-name {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(2rem, 7vw, 4.2rem); font-weight: 900;
-  line-height: 1.05; letter-spacing: -.03em; color: var(--text); margin-bottom: 22px;
+  font-size: clamp(1.9rem, 5.4vw, 3.4rem); font-weight: 900;
+  line-height: 1.14; letter-spacing: -.02em; color: var(--text); margin-bottom: 22px;
 }
 .hero-name em { font-style: normal; color: var(--gold); }
 .hero-chip {
@@ -169,6 +169,24 @@ nav.scrolled { background: rgba(4,9,15,.92); backdrop-filter: blur(20px); border
 .hero-scroll-line { width: 1px; height: 48px; overflow: hidden; position: relative; background: none; }
 .hero-scroll-line::after { content: ''; position: absolute; top: 0; left: 0; width: 1px; height: 100%; background: linear-gradient(to bottom, transparent 0%, var(--gold) 50%, transparent 100%); animation: scrollDrop 2s ease-in-out infinite; }
 @keyframes scrollDrop { 0% { transform: translateY(-100%); } 100% { transform: translateY(100%); } }
+
+/* COTIZADOR */
+#cotizador { background: var(--bg2); }
+.cotizador-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+.cotizador-intro-list { list-style: none; margin-top: 24px; display: flex; flex-direction: column; gap: 14px; }
+.cotizador-intro-list li { display: flex; align-items: flex-start; gap: 10px; font-size: .87rem; color: var(--text2); }
+.cotizador-intro-list li::before { content: ''; width: 14px; height: 1px; background: var(--gold); margin-top: 10px; flex-shrink: 0; }
+.cotizador-form-wrap { background: var(--card); border: 1px solid var(--border); border-radius: var(--r); padding: 38px 34px; }
+.cotizador-result { display: none; margin-top: 20px; padding: 24px; border: 1px solid var(--border); border-radius: var(--r2); background: var(--gold3); }
+.cotizador-result.show { display: block; }
+.cotizador-result h4 { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--text); margin-bottom: 14px; }
+.cotizador-result p { font-size: .88rem; color: var(--text2); margin-bottom: 8px; }
+.cotizador-result strong { color: var(--gold); }
+.cotizador-result .btn-primary { margin-top: 14px; width: 100%; justify-content: center; }
+.cotizador-error { display: none; margin-top: 16px; padding: 16px; border: 1px solid var(--border); border-radius: var(--r2); background: rgba(200,60,16,.1); }
+.cotizador-error.show { display: block; }
+.cotizador-error p { font-size: .85rem; color: var(--text2); margin-bottom: 10px; }
+.cotizador-error .btn-primary { width: 100%; justify-content: center; }
 
 /* TICKER */
 .ticker-strip {
@@ -448,6 +466,7 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 3
   .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; gap: 6px; }
   .gallery-item:first-child, .gallery-item:last-child { grid-column: span 1; }
   .contact-inner { grid-template-columns: 1fr; gap: 48px; }
+  .cotizador-inner { grid-template-columns: 1fr; gap: 40px; }
   .about-stats { grid-template-columns: repeat(2,1fr); }
   .footer-inner { flex-direction: column; align-items: center; text-align: center; }
   .footer-links { flex-wrap: wrap; justify-content: center; gap: 14px 20px; }
@@ -466,6 +485,7 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 3
 <nav id="nav">
   <a href="#hero" class="nav-logo"><span class="nav-vm">V<em>M</em></span><span class="nav-logo-name">Victor <em>Manuel</em> Mina</span></a>
   <ul class="nav-links">
+    <li><a href="#cotizador">Cotizador</a></li>
     <li><a href="#sobre-mi">Perfil</a></li>
     <li><a href="#servicios">Servicios</a></li>
     <li><a href="portafolio.html">Portafolio</a></li>
@@ -473,7 +493,7 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 3
     <li><a href="#galeria">Proyectos</a></li>
     <li><a href="#contacto">Contacto</a></li>
   </ul>
-  <a href="#contacto" class="nav-cta">Cotizar proyecto</a>
+  <a href="#cotizador" class="nav-cta">Cotizar proyecto</a>
   <button class="nav-menu-btn" onclick="toggleMenu()" aria-label="Menú">
     <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
       <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
@@ -508,9 +528,9 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 3
       <span class="hero-chip-dot"></span>
       Disponible · Cali & Valle del Cauca
     </div>
-    <h1 class="hero-name reveal" style="transition-delay:.06s">Victor <em>Manuel</em><br>Mina</h1>
-    <p class="hero-role reveal" style="transition-delay:.12s">Ingeniero Electrónico · Energías Renovables</p>
-    <p class="hero-company reveal" style="transition-delay:.16s">Fundador & Gerente General de <strong>Dinastel SAS</strong></p>
+    <h1 class="hero-name reveal" style="transition-delay:.06s">Reduce tu factura de energía hasta <em>90%</em> con un sistema solar legalizado</h1>
+    <p class="hero-role reveal" style="transition-delay:.12s">Diseño, instalación y legalización ante tu operador de red.</p>
+    <p class="hero-company reveal" style="transition-delay:.16s"><strong>150+ proyectos ejecutados</strong> en el Valle del Cauca</p>
     <div class="hero-stats reveal" style="transition-delay:.21s">
       <div class="hero-stat">
         <span class="hero-stat-num">5.5 MWp</span>
@@ -530,12 +550,12 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 3
       </div>
     </div>
     <div class="hero-btns reveal" style="transition-delay:.27s">
-      <a href="https://wa.me/573145569567?text=Hola%20Ing.%20Victor%2C%20vi%20su%20web%20y%20quisiera%20cotizar%20un%20proyecto." target="_blank" class="btn-primary">
-        Solicitar cotización
+      <a href="#cotizador" class="btn-primary">
+        Cotiza en 2 minutos
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
-      <a href="#servicios" class="btn-outline">
-        Ver servicios
+      <a href="#instaladores" class="btn-outline">
+        Soy instalador
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
     </div>
@@ -543,6 +563,130 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 3
   <div class="hero-scroll">
     <div class="hero-scroll-line"></div>
     Scroll
+  </div>
+</section>
+
+<!-- COTIZADOR -->
+<section id="cotizador">
+  <div class="cotizador-inner">
+    <div class="reveal-left">
+      <div class="section-label">Cotizador solar</div>
+      <h2 class="section-title">Calcula tu sistema<br>solar en minutos</h2>
+      <p class="section-desc">Completa el formulario y recibe una estimación de tamaño del sistema, inversión y ahorro — con seguimiento personalizado por WhatsApp.</p>
+      <ul class="cotizador-intro-list">
+        <li>Estimación basada en tu consumo real</li>
+        <li>Rango de inversión y ahorro mensual</li>
+        <li>Informe enviado a tu correo</li>
+        <li>La cotización formal requiere visita técnica</li>
+      </ul>
+    </div>
+    <div class="cotizador-form-wrap reveal-right">
+      <p class="form-title">Solicita tu cotización</p>
+      <p class="form-sub">Cobertura: Valle del Cauca.</p>
+      <form id="cotizadorForm" onsubmit="handleCotizadorSubmit(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="cot-nombre">Nombre</label>
+            <input type="text" id="cot-nombre" class="form-input" placeholder="Tu nombre completo" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="cot-whatsapp">WhatsApp</label>
+            <input type="tel" id="cot-whatsapp" class="form-input" placeholder="3XX XXX XXXX" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="cot-email">Correo electrónico</label>
+          <input type="email" id="cot-email" class="form-input" placeholder="tu@email.com" required>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="cot-ciudad">Ciudad</label>
+            <select id="cot-ciudad" class="form-select" required>
+              <option value="">Selecciona tu ciudad</option>
+              <option>Cali</option>
+              <option>Jamundí</option>
+              <option>Palmira</option>
+              <option>Yumbo</option>
+              <option>Buga</option>
+              <option>Tuluá</option>
+              <option>Cartago</option>
+              <option>Buenaventura</option>
+              <option>Candelaria</option>
+              <option>Florida</option>
+              <option>Pradera</option>
+              <option>El Cerrito</option>
+              <option>Ginebra</option>
+              <option>Guacarí</option>
+              <option>Roldanillo</option>
+              <option>Zarzal</option>
+              <option>Sevilla</option>
+              <option>Otra ciudad del Valle</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="cot-uso">Tipo de uso</label>
+            <select id="cot-uso" class="form-select" required>
+              <option value="">Selecciona</option>
+              <option>Residencial</option>
+              <option>Comercial</option>
+              <option>Industrial</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="cot-factura">Valor de tu factura mensual (COP)</label>
+            <input type="number" id="cot-factura" class="form-input" placeholder="Ej: 450000" min="1" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="cot-consumo">Consumo mensual en kWh (opcional)</label>
+            <input type="number" id="cot-consumo" class="form-input" placeholder="Si lo conoces" min="0">
+          </div>
+        </div>
+        <button type="submit" class="form-submit" id="cot-submit-btn">Calcular mi sistema solar</button>
+      </form>
+      <div class="cotizador-result" id="cot-result"></div>
+      <div class="cotizador-error" id="cot-error"></div>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENTES -->
+<section id="clientes">
+  <div class="clients-header reveal">
+    <div class="section-label">Empresas que confían</div>
+    <h2 class="section-title">Clientes atendidos</h2>
+  </div>
+  <div class="clients-ticker">
+    <div class="clients-track">
+      <div class="client-logo-item"><img src="assets/Logos empresas/VATIA.png" alt="Vatia" loading="lazy"></div>
+      <div class="client-logo-item"><img src="assets/Logos empresas/ABASTE.png" alt="Abaste Colombia" loading="lazy"></div>
+      <div class="client-logo-item"><img src="assets/Logos empresas/DELTEC.png" alt="Deltec" loading="lazy"></div>
+      <div class="client-logo-item"><img src="assets/Logos empresas/CENTRONET.png" alt="Centronet" loading="lazy"></div>
+      <div class="client-logo-item"><img src="assets/Logos empresas/APC.png" alt="APC Frigoríficos" loading="lazy"></div>
+      <div class="client-logo-item"><img src="assets/Logos empresas/AMERIPLAST.png" alt="Ameriplast" loading="lazy"></div>
+      <div class="client-logo-item"><img src="assets/Logos empresas/ICOBANDAS.png" alt="Icobandas" loading="lazy"></div>
+      <div class="client-logo-item"><img src="assets/Logos empresas/TECNOSOLAR.png" alt="Tecnosolar" loading="lazy"></div>
+      <div class="client-logo-item"><img src="assets/Logos empresas/INMCOR.png" alt="Inmcor" loading="lazy"></div>
+      <div class="client-logo-item"><img src="assets/Logos empresas/AVICOLA-SANTA-ELENA.png" alt="Avícola Santa Elena" loading="lazy"></div>
+      <div class="client-logo-item"><img src="assets/Logos empresas/BRASILIA.png" alt="Transportadora Brasilia" loading="lazy"></div>
+      <div class="client-logo-item"><img src="assets/Logos empresas/VPC.png" alt="VPC Buenaventura" loading="lazy"></div>
+
+      <!-- duplicate set for seamless loop -->
+      <div class="client-logo-item"><img src="assets/Logos empresas/VATIA.png" alt="Vatia" loading="lazy"></div>
+      <div class="client-logo-item"><img src="assets/Logos empresas/ABASTE.png" alt="Abaste Colombia" loading="lazy"></div>
+      <div class="client-logo-item"><img src="assets/Logos empresas/DELTEC.png" alt="Deltec" loading="lazy"></div>
+      <div class="client-logo-item"><img src="assets/Logos empresas/CENTRONET.png" alt="Centronet" loading="lazy"></div>
+      <div class="client-logo-item"><img src="assets/Logos empresas/APC.png" alt="APC Frigoríficos" loading="lazy"></div>
+      <div class="client-logo-item"><img src="assets/Logos empresas/AMERIPLAST.png" alt="Ameriplast" loading="lazy"></div>
+      <div class="client-logo-item"><img src="assets/Logos empresas/ICOBANDAS.png" alt="Icobandas" loading="lazy"></div>
+      <div class="client-logo-item"><img src="assets/Logos empresas/TECNOSOLAR.png" alt="Tecnosolar" loading="lazy"></div>
+      <div class="client-logo-item"><img src="assets/Logos empresas/INMCOR.png" alt="Inmcor" loading="lazy"></div>
+      <div class="client-logo-item"><img src="assets/Logos empresas/AVICOLA-SANTA-ELENA.png" alt="Avícola Santa Elena" loading="lazy"></div>
+      <div class="client-logo-item"><img src="assets/Logos empresas/BRASILIA.png" alt="Transportadora Brasilia" loading="lazy"></div>
+      <div class="client-logo-item"><img src="assets/Logos empresas/VPC.png" alt="VPC Buenaventura" loading="lazy"></div>
+
+    </div>
   </div>
 </section>
 
@@ -604,19 +748,19 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 3
       </p>
       <div class="about-stats">
         <div class="about-stat reveal-up" style="transition-delay:.05s">
-          <span class="about-stat-num" data-target="5500" data-suffix=" kWp">0</span>
+          <span class="about-stat-num" data-target="5500" data-suffix=" kWp">5.500 kWp</span>
           <span class="about-stat-label">Solar ejecutado</span>
         </div>
         <div class="about-stat reveal-up" style="transition-delay:.1s">
-          <span class="about-stat-num" data-target="30" data-prefix="+">0</span>
+          <span class="about-stat-num" data-target="30" data-prefix="+">+30</span>
           <span class="about-stat-label">Clientes</span>
         </div>
         <div class="about-stat reveal-up" style="transition-delay:.15s">
-          <span class="about-stat-num" data-target="150" data-prefix="+">0</span>
+          <span class="about-stat-num" data-target="150" data-prefix="+">+150</span>
           <span class="about-stat-label">Instalaciones</span>
         </div>
         <div class="about-stat reveal-up" style="transition-delay:.2s">
-          <span class="about-stat-num" data-target="7" data-suffix=" años">0</span>
+          <span class="about-stat-num" data-target="7" data-suffix=" años">7 años</span>
           <span class="about-stat-label">Experiencia</span>
         </div>
       </div>
@@ -805,45 +949,6 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 3
   </div>
 </section>
 
-<!-- CLIENTES -->
-<section id="clientes">
-  <div class="clients-header reveal">
-    <div class="section-label">Empresas que confían</div>
-    <h2 class="section-title">Clientes atendidos</h2>
-  </div>
-  <div class="clients-ticker">
-    <div class="clients-track">
-      <div class="client-logo-item"><img src="assets/Logos empresas/VATIA.png" alt="Vatia" loading="lazy"></div>
-      <div class="client-logo-item"><img src="assets/Logos empresas/ABASTE.png" alt="Abaste Colombia" loading="lazy"></div>
-      <div class="client-logo-item"><img src="assets/Logos empresas/DELTEC.png" alt="Deltec" loading="lazy"></div>
-      <div class="client-logo-item"><img src="assets/Logos empresas/CENTRONET.png" alt="Centronet" loading="lazy"></div>
-      <div class="client-logo-item"><img src="assets/Logos empresas/APC.png" alt="APC Frigoríficos" loading="lazy"></div>
-      <div class="client-logo-item"><img src="assets/Logos empresas/AMERIPLAST.png" alt="Ameriplast" loading="lazy"></div>
-      <div class="client-logo-item"><img src="assets/Logos empresas/ICOBANDAS.png" alt="Icobandas" loading="lazy"></div>
-      <div class="client-logo-item"><img src="assets/Logos empresas/TECNOSOLAR.png" alt="Tecnosolar" loading="lazy"></div>
-      <div class="client-logo-item"><img src="assets/Logos empresas/INMCOR.png" alt="Inmcor" loading="lazy"></div>
-      <div class="client-logo-item"><img src="assets/Logos empresas/AVICOLA-SANTA-ELENA.png" alt="Avícola Santa Elena" loading="lazy"></div>
-      <div class="client-logo-item"><img src="assets/Logos empresas/BRASILIA.png" alt="Transportadora Brasilia" loading="lazy"></div>
-      <div class="client-logo-item"><img src="assets/Logos empresas/VPC.png" alt="VPC Buenaventura" loading="lazy"></div>
-
-      <!-- duplicate set for seamless loop -->
-      <div class="client-logo-item"><img src="assets/Logos empresas/VATIA.png" alt="Vatia" loading="lazy"></div>
-      <div class="client-logo-item"><img src="assets/Logos empresas/ABASTE.png" alt="Abaste Colombia" loading="lazy"></div>
-      <div class="client-logo-item"><img src="assets/Logos empresas/DELTEC.png" alt="Deltec" loading="lazy"></div>
-      <div class="client-logo-item"><img src="assets/Logos empresas/CENTRONET.png" alt="Centronet" loading="lazy"></div>
-      <div class="client-logo-item"><img src="assets/Logos empresas/APC.png" alt="APC Frigoríficos" loading="lazy"></div>
-      <div class="client-logo-item"><img src="assets/Logos empresas/AMERIPLAST.png" alt="Ameriplast" loading="lazy"></div>
-      <div class="client-logo-item"><img src="assets/Logos empresas/ICOBANDAS.png" alt="Icobandas" loading="lazy"></div>
-      <div class="client-logo-item"><img src="assets/Logos empresas/TECNOSOLAR.png" alt="Tecnosolar" loading="lazy"></div>
-      <div class="client-logo-item"><img src="assets/Logos empresas/INMCOR.png" alt="Inmcor" loading="lazy"></div>
-      <div class="client-logo-item"><img src="assets/Logos empresas/AVICOLA-SANTA-ELENA.png" alt="Avícola Santa Elena" loading="lazy"></div>
-      <div class="client-logo-item"><img src="assets/Logos empresas/BRASILIA.png" alt="Transportadora Brasilia" loading="lazy"></div>
-      <div class="client-logo-item"><img src="assets/Logos empresas/VPC.png" alt="VPC Buenaventura" loading="lazy"></div>
-
-    </div>
-  </div>
-</section>
-
 <!-- GALERÍA -->
 <section id="galeria">
   <div class="gallery-inner reveal">
@@ -897,6 +1002,9 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 3
   </div>
   <div class="lb-counter" id="lb-counter"></div>
 </div>
+
+<!-- PLACEHOLDER INSTALADORES (Fase 2) -->
+<div id="instaladores"></div>
 
 <!-- CONTACTO -->
 <section id="contacto">
@@ -1007,7 +1115,7 @@ function toggleMenu() {
     borderBottom:'1px solid rgba(200,144,16,.14)',
     padding:'24px 5%', display:'flex', flexDirection:'column', gap:'18px'
   });
-  [['Perfil','#sobre-mi'],['Servicios','#servicios'],['Metodología','#proceso'],['Proyectos','#galeria'],['Contacto','#contacto']].forEach(([label,href]) => {
+  [['Cotizador','#cotizador'],['Perfil','#sobre-mi'],['Servicios','#servicios'],['Metodología','#proceso'],['Proyectos','#galeria'],['Contacto','#contacto']].forEach(([label,href]) => {
     const a = document.createElement('a');
     a.href = href; a.textContent = label;
     Object.assign(a.style, { color:'#B4C8D8', fontSize:'.9rem', fontWeight:'500', letterSpacing:'.05em' });
@@ -1078,6 +1186,65 @@ document.addEventListener('keydown', e => {
   if (e.key === 'ArrowLeft') lbNav(-1);
   if (e.key === 'ArrowRight') lbNav(1);
 });
+
+// ── Cotizador solar ────────────────────────────────────────────────
+const BACKEND_URL = 'PEGA_AQUI_LA_URL_DEL_WEB_APP'; // URL del Web App de Apps Script (termina en /exec)
+
+function formatCOP(n) { return '$' + Math.round(n).toLocaleString('es-CO'); }
+
+function handleCotizadorSubmit(e) {
+  e.preventDefault();
+  const nombre   = document.getElementById('cot-nombre').value.trim();
+  const whatsapp = document.getElementById('cot-whatsapp').value.replace(/\D/g, '');
+  const email    = document.getElementById('cot-email').value.trim();
+  const ciudad   = document.getElementById('cot-ciudad').value;
+  const uso      = document.getElementById('cot-uso').value;
+  const factura  = parseFloat(document.getElementById('cot-factura').value);
+  const consumo  = document.getElementById('cot-consumo').value ? parseFloat(document.getElementById('cot-consumo').value) : null;
+
+  const resultEl = document.getElementById('cot-result');
+  const errorEl  = document.getElementById('cot-error');
+  const btn      = document.getElementById('cot-submit-btn');
+  resultEl.classList.remove('show');
+  errorEl.classList.remove('show');
+
+  if (!/^3\d{9}$/.test(whatsapp)) { alert('Ingresa un número de WhatsApp colombiano válido (10 dígitos, ej: 3145569567).'); return; }
+  if (!/^\S+@\S+\.\S+$/.test(email)) { alert('Ingresa un correo electrónico válido.'); return; }
+
+  btn.disabled = true;
+  btn.textContent = 'Calculando tu sistema...';
+
+  fetch(BACKEND_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'text/plain' },
+    body: JSON.stringify({ origen: 'Cotizador', nombre, whatsapp, email, ciudad, uso, factura, consumo })
+  })
+  .then(r => r.json())
+  .then(data => {
+    if (!data.ok) throw new Error('backend_error');
+    const waText = encodeURIComponent(`Hola Manuel, coticé en tu web. Mi factura es de $${factura.toLocaleString('es-CO')} en ${ciudad} y mi sistema estimado es de ${data.kwp} kWp. Quiero avanzar.`);
+    resultEl.innerHTML = `
+      <h4>Tu sistema estimado</h4>
+      <p>Tamaño del sistema: <strong>${data.kwp} kWp</strong></p>
+      <p>Inversión aproximada: <strong>entre ${formatCOP(data.inversion_min)} y ${formatCOP(data.inversion_max)}</strong></p>
+      <p>Ahorro mensual estimado: <strong>${formatCOP(data.ahorro_mes)}</strong></p>
+      <p>Retorno estimado: <strong>~${data.retorno_anios} años</strong></p>
+      <p>Te enviamos un informe con el detalle a tu correo 📩</p>
+      <a href="https://wa.me/573145569567?text=${waText}" target="_blank" class="btn-primary">Continuar por WhatsApp</a>`;
+    resultEl.classList.add('show');
+    e.target.reset();
+  })
+  .catch(() => {
+    errorEl.innerHTML = `
+      <p>No pudimos calcular tu cotización en este momento. Escríbenos directo y te ayudamos manualmente.</p>
+      <a href="https://wa.me/573145569567?text=${encodeURIComponent('Hola Manuel, quiero cotizar un sistema solar.')}" target="_blank" class="btn-primary">Escribir por WhatsApp</a>`;
+    errorEl.classList.add('show');
+  })
+  .finally(() => {
+    btn.disabled = false;
+    btn.textContent = 'Calcular mi sistema solar';
+  });
+}
 
 // ── Formulario de contacto ────────────────────────────────────────
 function handleSubmit(e) {
