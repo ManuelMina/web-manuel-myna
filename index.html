@@ -317,12 +317,11 @@ nav.scrolled { background: rgba(4,9,15,.92); backdrop-filter: blur(20px); border
 /* CLIENTS */
 #clientes { padding: 44px 0; background: var(--bg); overflow: hidden; }
 .clients-header { max-width: 1200px; margin: 0 auto 32px; padding: 0 5%; }
-.clients-ticker { position: relative; overflow: hidden; padding: 6px 0; }
-.clients-ticker::before, .clients-ticker::after {
-  content: ''; position: absolute; top: 0; bottom: 0; width: 140px; z-index: 2; pointer-events: none;
+.clients-ticker {
+  position: relative; overflow: hidden; padding: 6px 0;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 80px, #000 calc(100% - 80px), transparent);
+          mask-image: linear-gradient(90deg, transparent, #000 80px, #000 calc(100% - 80px), transparent);
 }
-.clients-ticker::before { left: 0; background: linear-gradient(90deg, var(--bg), transparent); }
-.clients-ticker::after  { right: 0; background: linear-gradient(270deg, var(--bg), transparent); }
 .clients-track { display: flex; width: max-content; animation: clientsTicker 128s linear infinite; align-items: center; }
 .clients-track:hover { animation-play-state: paused; }
 @keyframes clientsTicker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
@@ -498,7 +497,10 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 3
   .footer-inner { flex-direction: column; align-items: center; text-align: center; }
   .footer-links { flex-wrap: wrap; justify-content: center; gap: 14px 20px; }
   .form-row { grid-template-columns: 1fr; }
-  .clients-ticker::before, .clients-ticker::after { width: 36px; }
+  .clients-ticker {
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 24px, #000 calc(100% - 24px), transparent);
+            mask-image: linear-gradient(90deg, transparent, #000 24px, #000 calc(100% - 24px), transparent);
+  }
   .client-logo-item { padding: 10px 22px; }
   .client-logo-item img { max-height: 52px; max-width: 130px; }
 }
@@ -506,7 +508,10 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 3
   .hero-name { font-size: 3rem; }
   .hero-btns { flex-direction: column; align-items: center; }
   .gallery-grid { grid-template-columns: 1fr 1fr; }
-  .clients-ticker::before, .clients-ticker::after { width: 20px; }
+  .clients-ticker {
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 14px, #000 calc(100% - 14px), transparent);
+            mask-image: linear-gradient(90deg, transparent, #000 14px, #000 calc(100% - 14px), transparent);
+  }
   .client-logo-item { padding: 8px 16px; }
   .client-logo-item img { max-height: 44px; max-width: 110px; }
 }
