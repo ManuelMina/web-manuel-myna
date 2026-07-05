@@ -103,7 +103,7 @@ nav.scrolled { background: rgba(4,9,15,.92); backdrop-filter: blur(20px); border
 }
 .hero-collage {
   position: absolute; inset: 0;
-  display: grid; grid-template-columns: repeat(4,1fr); grid-template-rows: repeat(4,1fr);
+  display: grid; grid-template-columns: repeat(4,1fr); grid-template-rows: repeat(2,1fr);
 }
 .hero-collage-cell { overflow: hidden; }
 .hero-collage-cell img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1); display: block; }
@@ -255,19 +255,29 @@ nav.scrolled { background: rgba(4,9,15,.92); backdrop-filter: blur(20px); border
   gap: 1px; background: var(--border);
   border: 1px solid var(--border); border-radius: var(--r); overflow: hidden;
 }
-.service-card { background: var(--bg2); padding: 40px 36px; position: relative; overflow: hidden; transition: background .3s; }
+.service-card { background: var(--bg2); position: relative; overflow: hidden; transition: background .3s; }
 .service-card::after {
   content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
   background: linear-gradient(90deg, var(--gold), transparent); opacity: 0; transition: opacity .4s;
 }
-.service-card:hover { background: var(--bg3); }
-.service-card:hover::after { opacity: 1; }
+.service-card:hover, .service-card.open { background: var(--bg3); }
+.service-card:hover::after, .service-card.open::after { opacity: 1; }
+.svc-header {
+  width: 100%; display: flex; align-items: center; gap: 16px;
+  padding: 26px 36px; background: none; border: none; cursor: pointer;
+  font-family: inherit; text-align: left; color: inherit;
+}
 .svc-icon {
   width: 48px; height: 48px; background: var(--gold3); border: 1px solid var(--border);
-  border-radius: var(--r2); display: flex; align-items: center; justify-content: center; margin-bottom: 18px;
+  border-radius: var(--r2); display: flex; align-items: center; justify-content: center; flex-shrink: 0;
 }
 .svc-icon svg { width: 22px; height: 22px; color: var(--gold); }
-.svc-name { font-family: 'Playfair Display', serif; font-size: 1.18rem; font-weight: 700; color: var(--text); margin-bottom: 9px; }
+.svc-name { font-family: 'Playfair Display', serif; font-size: 1.18rem; font-weight: 700; color: var(--text); flex: 1; }
+.svc-chevron { width: 18px; height: 18px; color: var(--muted); flex-shrink: 0; transition: transform .35s var(--ease), color .3s; }
+.service-card.open .svc-chevron { transform: rotate(180deg); color: var(--gold); }
+.svc-body { max-height: 0; overflow: hidden; transition: max-height .45s var(--ease); }
+.service-card.open .svc-body { max-height: 640px; }
+.svc-body-inner { padding: 0 36px 32px; }
 .svc-desc { font-size: .87rem; color: var(--muted); line-height: 1.72; margin-bottom: 16px; }
 .svc-list { list-style: none; }
 .svc-list li {
@@ -522,22 +532,14 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 3
 <!-- HERO -->
 <section id="hero">
   <div class="hero-collage" aria-hidden="true">
-    <div class="hero-collage-cell"><img src="assets/Trabajo/Solar/SO1.webp" alt="" decoding="async" fetchpriority="low"></div>
-    <div class="hero-collage-cell"><img src="assets/Trabajo/Ev/EV1.webp" alt="" decoding="async" fetchpriority="low"></div>
-    <div class="hero-collage-cell"><img src="assets/Trabajo/Electricidad/EL1.webp" alt="" decoding="async" fetchpriority="low"></div>
-    <div class="hero-collage-cell"><img src="assets/Trabajo/Solar/SO2.webp" alt="" decoding="async" fetchpriority="low"></div>
-    <div class="hero-collage-cell"><img src="assets/Trabajo/Ev/EV2.webp" alt="" decoding="async" fetchpriority="low"></div>
-    <div class="hero-collage-cell"><img src="assets/Trabajo/Solar/SO3.webp" alt="" decoding="async" fetchpriority="low"></div>
-    <div class="hero-collage-cell"><img src="assets/Trabajo/Electricidad/EL2.webp" alt="" decoding="async" fetchpriority="low"></div>
-    <div class="hero-collage-cell"><img src="assets/Trabajo/Ev/EV3.webp" alt="" decoding="async" fetchpriority="low"></div>
-    <div class="hero-collage-cell"><img src="assets/Trabajo/Solar/SO4.webp" alt="" decoding="async" fetchpriority="low"></div>
-    <div class="hero-collage-cell"><img src="assets/Trabajo/Ev/EV4.webp" alt="" decoding="async" fetchpriority="low"></div>
-    <div class="hero-collage-cell"><img src="assets/Trabajo/Electricidad/EL3.webp" alt="" decoding="async" fetchpriority="low"></div>
-    <div class="hero-collage-cell"><img src="assets/Trabajo/Solar/SO5.webp" alt="" decoding="async" fetchpriority="low"></div>
-    <div class="hero-collage-cell"><img src="assets/Trabajo/Ev/EV5.webp" alt="" decoding="async" fetchpriority="low"></div>
-    <div class="hero-collage-cell"><img src="assets/Trabajo/Solar/SO6.webp" alt="" decoding="async" fetchpriority="low"></div>
-    <div class="hero-collage-cell"><img src="assets/Trabajo/Electricidad/EL4.webp" alt="" decoding="async" fetchpriority="low"></div>
-    <div class="hero-collage-cell"><img src="assets/Trabajo/Civil/CV1.webp" alt="" decoding="async" fetchpriority="low"></div>
+    <div class="hero-collage-cell"><img src="assets/Trabajo/Solar/SO1.webp" alt="" decoding="async" fetchpriority="low" loading="lazy"></div>
+    <div class="hero-collage-cell"><img src="assets/Trabajo/Ev/EV1.webp" alt="" decoding="async" fetchpriority="low" loading="lazy"></div>
+    <div class="hero-collage-cell"><img src="assets/Trabajo/Electricidad/EL1.webp" alt="" decoding="async" fetchpriority="low" loading="lazy"></div>
+    <div class="hero-collage-cell"><img src="assets/Trabajo/Solar/SO3.webp" alt="" decoding="async" fetchpriority="low" loading="lazy"></div>
+    <div class="hero-collage-cell"><img src="assets/Trabajo/Ev/EV3.webp" alt="" decoding="async" fetchpriority="low" loading="lazy"></div>
+    <div class="hero-collage-cell"><img src="assets/Trabajo/Electricidad/EL3.webp" alt="" decoding="async" fetchpriority="low" loading="lazy"></div>
+    <div class="hero-collage-cell"><img src="assets/Trabajo/Solar/SO5.webp" alt="" decoding="async" fetchpriority="low" loading="lazy"></div>
+    <div class="hero-collage-cell"><img src="assets/Trabajo/Civil/CV1.webp" alt="" decoding="async" fetchpriority="low" loading="lazy"></div>
   </div>
   <div class="hero-collage-overlay"></div>
   <div class="hero-glow"></div>
@@ -677,33 +679,23 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 3
   </div>
   <div class="clients-ticker">
     <div class="clients-track">
+      <!-- clientes destacados, repetidos para llenar el loop sin pedir mas archivos -->
       <div class="client-logo-item"><img src="assets/Logos empresas/VATIA.webp" alt="Vatia" loading="lazy"></div>
-      <div class="client-logo-item"><img src="assets/Logos empresas/ABASTE.webp" alt="Abaste Colombia" loading="lazy"></div>
       <div class="client-logo-item"><img src="assets/Logos empresas/DELTEC.webp" alt="Deltec" loading="lazy"></div>
-      <div class="client-logo-item"><img src="assets/Logos empresas/CENTRONET.webp" alt="Centronet" loading="lazy"></div>
-      <div class="client-logo-item"><img src="assets/Logos empresas/APC.webp" alt="APC Frigoríficos" loading="lazy"></div>
-      <div class="client-logo-item"><img src="assets/Logos empresas/AMERIPLAST.webp" alt="Ameriplast" loading="lazy"></div>
-      <div class="client-logo-item"><img src="assets/Logos empresas/ICOBANDAS.webp" alt="Icobandas" loading="lazy"></div>
-      <div class="client-logo-item"><img src="assets/Logos empresas/TECNOSOLAR.webp" alt="Tecnosolar" loading="lazy"></div>
-      <div class="client-logo-item"><img src="assets/Logos empresas/INMCOR.webp" alt="Inmcor" loading="lazy"></div>
       <div class="client-logo-item"><img src="assets/Logos empresas/AVICOLA-SANTA-ELENA.webp" alt="Avícola Santa Elena" loading="lazy"></div>
-      <div class="client-logo-item"><img src="assets/Logos empresas/BRASILIA.webp" alt="Transportadora Brasilia" loading="lazy"></div>
-      <div class="client-logo-item"><img src="assets/Logos empresas/VPC.webp" alt="VPC Buenaventura" loading="lazy"></div>
-
-      <!-- duplicate set for seamless loop -->
+      <div class="client-logo-item"><img src="assets/Logos empresas/ABASTE.webp" alt="Abaste Colombia" loading="lazy"></div>
       <div class="client-logo-item"><img src="assets/Logos empresas/VATIA.webp" alt="Vatia" loading="lazy"></div>
-      <div class="client-logo-item"><img src="assets/Logos empresas/ABASTE.webp" alt="Abaste Colombia" loading="lazy"></div>
       <div class="client-logo-item"><img src="assets/Logos empresas/DELTEC.webp" alt="Deltec" loading="lazy"></div>
-      <div class="client-logo-item"><img src="assets/Logos empresas/CENTRONET.webp" alt="Centronet" loading="lazy"></div>
-      <div class="client-logo-item"><img src="assets/Logos empresas/APC.webp" alt="APC Frigoríficos" loading="lazy"></div>
-      <div class="client-logo-item"><img src="assets/Logos empresas/AMERIPLAST.webp" alt="Ameriplast" loading="lazy"></div>
-      <div class="client-logo-item"><img src="assets/Logos empresas/ICOBANDAS.webp" alt="Icobandas" loading="lazy"></div>
-      <div class="client-logo-item"><img src="assets/Logos empresas/TECNOSOLAR.webp" alt="Tecnosolar" loading="lazy"></div>
-      <div class="client-logo-item"><img src="assets/Logos empresas/INMCOR.webp" alt="Inmcor" loading="lazy"></div>
       <div class="client-logo-item"><img src="assets/Logos empresas/AVICOLA-SANTA-ELENA.webp" alt="Avícola Santa Elena" loading="lazy"></div>
-      <div class="client-logo-item"><img src="assets/Logos empresas/BRASILIA.webp" alt="Transportadora Brasilia" loading="lazy"></div>
-      <div class="client-logo-item"><img src="assets/Logos empresas/VPC.webp" alt="VPC Buenaventura" loading="lazy"></div>
-
+      <div class="client-logo-item"><img src="assets/Logos empresas/ABASTE.webp" alt="Abaste Colombia" loading="lazy"></div>
+      <div class="client-logo-item"><img src="assets/Logos empresas/VATIA.webp" alt="Vatia" loading="lazy"></div>
+      <div class="client-logo-item"><img src="assets/Logos empresas/DELTEC.webp" alt="Deltec" loading="lazy"></div>
+      <div class="client-logo-item"><img src="assets/Logos empresas/AVICOLA-SANTA-ELENA.webp" alt="Avícola Santa Elena" loading="lazy"></div>
+      <div class="client-logo-item"><img src="assets/Logos empresas/ABASTE.webp" alt="Abaste Colombia" loading="lazy"></div>
+      <div class="client-logo-item"><img src="assets/Logos empresas/VATIA.webp" alt="Vatia" loading="lazy"></div>
+      <div class="client-logo-item"><img src="assets/Logos empresas/DELTEC.webp" alt="Deltec" loading="lazy"></div>
+      <div class="client-logo-item"><img src="assets/Logos empresas/AVICOLA-SANTA-ELENA.webp" alt="Avícola Santa Elena" loading="lazy"></div>
+      <div class="client-logo-item"><img src="assets/Logos empresas/ABASTE.webp" alt="Abaste Colombia" loading="lazy"></div>
     </div>
   </div>
 </section>
@@ -797,121 +789,163 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 3
 
     <!-- SOLAR -->
     <div class="service-card reveal" style="transition-delay:.05s">
-      <div class="svc-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-          <circle cx="12" cy="12" r="4"/>
-          <line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/>
-          <line x1="4.22" y1="4.22" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.78" y2="19.78"/>
-          <line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/>
-          <line x1="4.22" y1="19.78" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.78" y2="4.22"/>
-        </svg>
+      <button class="svc-header" onclick="toggleService(this)">
+        <div class="svc-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+            <circle cx="12" cy="12" r="4"/>
+            <line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/>
+            <line x1="4.22" y1="4.22" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.78" y2="19.78"/>
+            <line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.78" y2="4.22"/>
+          </svg>
+        </div>
+        <p class="svc-name">Ingeniería Solar Fotovoltaica</p>
+        <svg class="svc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="svc-body">
+        <div class="svc-body-inner">
+          <p class="svc-desc">Equipo especialista en todas las etapas del proyecto: desarrollo, propuesta técnica, construcción y legalización. +5.5 MWp ejecutados en proyectos residenciales, comerciales e industriales.</p>
+          <ul class="svc-list">
+            <li>Ingeniería de detalle y planos técnicos (unifilares, layout, estructura)</li>
+            <li>Estudio de viabilidad, dimensionado y propuesta económica</li>
+            <li>Construcción, instalación y puesta en marcha</li>
+            <li>Legalización ante UPME, CREG y operadores de red</li>
+            <li>Monitoreo remoto y mantenimiento preventivo</li>
+          </ul>
+          <span class="svc-tag">Nacional</span>
+        </div>
       </div>
-      <p class="svc-name">Ingeniería Solar Fotovoltaica</p>
-      <p class="svc-desc">Equipo especialista en todas las etapas del proyecto: desarrollo, propuesta técnica, construcción y legalización. +5.5 MWp ejecutados en proyectos residenciales, comerciales e industriales.</p>
-      <ul class="svc-list">
-        <li>Ingeniería de detalle y planos técnicos (unifilares, layout, estructura)</li>
-        <li>Estudio de viabilidad, dimensionado y propuesta económica</li>
-        <li>Construcción, instalación y puesta en marcha</li>
-        <li>Legalización ante UPME, CREG y operadores de red</li>
-        <li>Monitoreo remoto y mantenimiento preventivo</li>
-      </ul>
-      <span class="svc-tag">Nacional</span>
     </div>
 
     <!-- INSTALACIONES -->
     <div class="service-card reveal" style="transition-delay:.1s">
-      <div class="svc-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-          <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-        </svg>
+      <button class="svc-header" onclick="toggleService(this)">
+        <div class="svc-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+          </svg>
+        </div>
+        <p class="svc-name">Instalaciones Eléctricas</p>
+        <svg class="svc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="svc-body">
+        <div class="svc-body-inner">
+          <p class="svc-desc">Diseño e instalación de infraestructura eléctrica residencial, comercial e industrial bajo normativa RETIE en Cali y el Valle del Cauca.</p>
+          <ul class="svc-list">
+            <li>Instalaciones residenciales y conjuntos habitacionales</li>
+            <li>Instalaciones comerciales e industriales</li>
+            <li>Tableros eléctricos y centros de carga</li>
+            <li>Planos unifilares y memorias técnicas</li>
+            <li>Montaje de equipos e infraestructura</li>
+          </ul>
+          <span class="svc-tag">RETIE Certificado</span>
+        </div>
       </div>
-      <p class="svc-name">Instalaciones Eléctricas</p>
-      <p class="svc-desc">Diseño e instalación de infraestructura eléctrica residencial, comercial e industrial bajo normativa RETIE en Cali y el Valle del Cauca.</p>
-      <ul class="svc-list">
-        <li>Instalaciones residenciales y conjuntos habitacionales</li>
-        <li>Instalaciones comerciales e industriales</li>
-        <li>Tableros eléctricos y centros de carga</li>
-        <li>Planos unifilares y memorias técnicas</li>
-        <li>Montaje de equipos e infraestructura</li>
-      </ul>
-      <span class="svc-tag">RETIE Certificado</span>
     </div>
 
     <!-- MANTENIMIENTO -->
     <div class="service-card reveal" style="transition-delay:.15s">
-      <div class="svc-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-          <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
-        </svg>
+      <button class="svc-header" onclick="toggleService(this)">
+        <div class="svc-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+          </svg>
+        </div>
+        <p class="svc-name">Mantenimiento & Consultoría</p>
+        <svg class="svc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="svc-body">
+        <div class="svc-body-inner">
+          <p class="svc-desc">Contratos de mantenimiento preventivo y correctivo para empresas. Auditoría energética para reducir costos y optimizar eficiencia operativa.</p>
+          <ul class="svc-list">
+            <li>Mantenimiento preventivo programado</li>
+            <li>Atención de emergencias eléctricas</li>
+            <li>Auditoría de consumo y facturación eléctrica</li>
+            <li>Identificación de ineficiencias y plan de acción</li>
+          </ul>
+          <span class="svc-tag">Contratos Mensuales</span>
+        </div>
       </div>
-      <p class="svc-name">Mantenimiento & Consultoría</p>
-      <p class="svc-desc">Contratos de mantenimiento preventivo y correctivo para empresas. Auditoría energética para reducir costos y optimizar eficiencia operativa.</p>
-      <ul class="svc-list">
-        <li>Mantenimiento preventivo programado</li>
-        <li>Atención de emergencias eléctricas</li>
-        <li>Auditoría de consumo y facturación eléctrica</li>
-        <li>Identificación de ineficiencias y plan de acción</li>
-      </ul>
-      <span class="svc-tag">Contratos Mensuales</span>
     </div>
 
     <!-- CCTV -->
     <div class="service-card reveal" style="transition-delay:.2s">
-      <div class="svc-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-          <path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/>
-        </svg>
+      <button class="svc-header" onclick="toggleService(this)">
+        <div class="svc-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+            <path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/>
+          </svg>
+        </div>
+        <p class="svc-name">CCTV & Seguridad Electrónica</p>
+        <svg class="svc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="svc-body">
+        <div class="svc-body-inner">
+          <p class="svc-desc">Sistemas de videovigilancia y seguridad para hogares, empresas y conjuntos residenciales con monitoreo remoto en tiempo real.</p>
+          <ul class="svc-list">
+            <li>Cámaras IP y analógicas HD / 4K</li>
+            <li>DVR, NVR y almacenamiento en nube</li>
+            <li>Control de acceso y sistemas de alarma</li>
+            <li>Monitoreo remoto desde dispositivos móviles</li>
+          </ul>
+          <span class="svc-tag">Seguridad 24/7</span>
+        </div>
       </div>
-      <p class="svc-name">CCTV & Seguridad Electrónica</p>
-      <p class="svc-desc">Sistemas de videovigilancia y seguridad para hogares, empresas y conjuntos residenciales con monitoreo remoto en tiempo real.</p>
-      <ul class="svc-list">
-        <li>Cámaras IP y analógicas HD / 4K</li>
-        <li>DVR, NVR y almacenamiento en nube</li>
-        <li>Control de acceso y sistemas de alarma</li>
-        <li>Monitoreo remoto desde dispositivos móviles</li>
-      </ul>
-      <span class="svc-tag">Seguridad 24/7</span>
     </div>
 
     <!-- REDES & LED -->
     <div class="service-card reveal" style="transition-delay:.25s">
-      <div class="svc-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-          <rect x="2" y="2" width="6" height="6" rx="1"/><rect x="16" y="2" width="6" height="6" rx="1"/>
-          <rect x="9" y="16" width="6" height="6" rx="1"/>
-          <path d="M5 8v3a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8"/>
-          <line x1="12" y1="14" x2="12" y2="16"/>
-        </svg>
+      <button class="svc-header" onclick="toggleService(this)">
+        <div class="svc-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+            <rect x="2" y="2" width="6" height="6" rx="1"/><rect x="16" y="2" width="6" height="6" rx="1"/>
+            <rect x="9" y="16" width="6" height="6" rx="1"/>
+            <path d="M5 8v3a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8"/>
+            <line x1="12" y1="14" x2="12" y2="16"/>
+          </svg>
+        </div>
+        <p class="svc-name">Redes de Datos & Señalización LED</p>
+        <svg class="svc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="svc-body">
+        <div class="svc-body-inner">
+          <p class="svc-desc">Infraestructura de telecomunicaciones y señalización digital para oficinas, empresas y espacios comerciales.</p>
+          <ul class="svc-list">
+            <li>Cableado estructurado certificado</li>
+            <li>Redes LAN, WiFi empresarial y fibra óptica</li>
+            <li>Instalación de pantallas LED y monitores</li>
+            <li>Señalización digital y videowalls</li>
+          </ul>
+          <span class="svc-tag">Conectividad Total</span>
+        </div>
       </div>
-      <p class="svc-name">Redes de Datos & Señalización LED</p>
-      <p class="svc-desc">Infraestructura de telecomunicaciones y señalización digital para oficinas, empresas y espacios comerciales.</p>
-      <ul class="svc-list">
-        <li>Cableado estructurado certificado</li>
-        <li>Redes LAN, WiFi empresarial y fibra óptica</li>
-        <li>Instalación de pantallas LED y monitores</li>
-        <li>Señalización digital y videowalls</li>
-      </ul>
-      <span class="svc-tag">Conectividad Total</span>
     </div>
 
     <!-- EV -->
     <div class="service-card reveal" style="transition-delay:.3s">
-      <div class="svc-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-          <path d="M5 18H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h3.19M15 6h2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-3.19"/>
-          <line x1="23" y1="13" x2="23" y2="11"/>
-          <polyline points="11 6 7 12 13 12 9 18"/>
-        </svg>
+      <button class="svc-header" onclick="toggleService(this)">
+        <div class="svc-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+            <path d="M5 18H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h3.19M15 6h2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-3.19"/>
+            <line x1="23" y1="13" x2="23" y2="11"/>
+            <polyline points="11 6 7 12 13 12 9 18"/>
+          </svg>
+        </div>
+        <p class="svc-name">Cargadores Eléctricos Vehiculares</p>
+        <svg class="svc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="svc-body">
+        <div class="svc-body-inner">
+          <p class="svc-desc">Instalación de infraestructura de recarga bajo normativa RETIE para hogares, edificios y flotas corporativas.</p>
+          <ul class="svc-list">
+            <li>Instalación certificada Level 1, 2 y DC Fast Charge</li>
+            <li>Integración con sistema solar fotovoltaico</li>
+            <li>Soluciones para flotas y parqueaderos</li>
+            <li>Gestión inteligente de carga y monitoreo</li>
+          </ul>
+          <span class="svc-tag">RETIE · EV</span>
+        </div>
       </div>
-      <p class="svc-name">Cargadores Eléctricos Vehiculares</p>
-      <p class="svc-desc">Instalación de infraestructura de recarga bajo normativa RETIE para hogares, edificios y flotas corporativas.</p>
-      <ul class="svc-list">
-        <li>Instalación certificada Level 1, 2 y DC Fast Charge</li>
-        <li>Integración con sistema solar fotovoltaico</li>
-        <li>Soluciones para flotas y parqueaderos</li>
-        <li>Gestión inteligente de carga y monitoreo</li>
-      </ul>
-      <span class="svc-tag">RETIE · EV</span>
     </div>
 
   </div>
@@ -1228,6 +1262,13 @@ function toggleMenu() {
     mob.appendChild(a);
   });
   document.body.appendChild(mob);
+}
+
+function toggleService(btn) {
+  const card = btn.closest('.service-card');
+  const wasOpen = card.classList.contains('open');
+  document.querySelectorAll('.service-card.open').forEach(c => c.classList.remove('open'));
+  if (!wasOpen) card.classList.add('open');
 }
 
 const revealObs = new IntersectionObserver(entries => {
