@@ -133,6 +133,15 @@ function handleDisenos(data) {
     console.error('Error guardando en Notion: ' + err);
   }
 
+  try {
+    enviarNotificacionDisenos({
+      nombre: nombre, whatsapp: whatsapp, email: email, ciudad: ciudad,
+      kwp: kwp, descripcion: descripcion
+    });
+  } catch (err) {
+    console.error('Error enviando notificación de Diseños: ' + err);
+  }
+
   return { ok: true };
 }
 
@@ -231,6 +240,26 @@ function enviarManualRetieCorreo(destinatario, nombre) {
   MailApp.sendEmail({
     to: destinatario,
     bcc: 'manuelmyna97@gmail.com',
+    subject: asunto,
+    htmlBody: cuerpo
+  });
+}
+
+function enviarNotificacionDisenos(datos) {
+  var asunto = 'Nuevo lead: Diseño de ingeniería — ' + datos.nombre;
+  var cuerpo = ''
+    + '<div style="font-family:Arial,sans-serif;color:#222;line-height:1.6;max-width:560px;margin:0 auto">'
+    + '<h2 style="color:#C89010">Nuevo proyecto de diseño</h2>'
+    + '<p><strong>Nombre:</strong> ' + datos.nombre + '</p>'
+    + '<p><strong>WhatsApp:</strong> +57' + datos.whatsapp + '</p>'
+    + '<p><strong>Correo:</strong> ' + datos.email + '</p>'
+    + '<p><strong>Ciudad:</strong> ' + datos.ciudad + '</p>'
+    + '<p><strong>Potencia estimada:</strong> ' + datos.kwp + ' kWp</p>'
+    + '<p><strong>Descripción:</strong> ' + datos.descripcion + '</p>'
+    + '</div>';
+
+  MailApp.sendEmail({
+    to: 'manuelmyna97@gmail.com',
     subject: asunto,
     htmlBody: cuerpo
   });
